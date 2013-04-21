@@ -3,7 +3,6 @@
 
 require 'ppcurses/menu/BaseMenu.rb'
 require "curses"
-include Curses
 
 module PPCurses
 	class Menu < BaseMenu
