@@ -7,6 +7,6 @@ Gem::Specification.new do |s|
   s.authors     = ["Matthieu Cormier"]
   s.email       = 'mcormier@preenandprune.com'
   s.homepage    = 'https://github.com/mcormier/ppcurses'
-  # TODO - manually creating this list is for chumps
-  s.files       = ["lib/ppcurses.rb", "lib/ppcurses/Screen.rb", "lib/ppcurses/menu/Menu.rb", "lib/ppcurses/menu/BaseMenu.rb"]
+  s.files       = Dir.glob("{lib,test}/**/*") + %w(LICENCE.txt README.md)
+  s.require_path = "lib"
 end
