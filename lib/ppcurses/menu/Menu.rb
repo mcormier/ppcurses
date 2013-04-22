@@ -111,8 +111,8 @@ module PPCurses
 
 
 	  def close()
-		@win.close()
-	  end
+      @win.close()
+ 	 end
 
 	end
 

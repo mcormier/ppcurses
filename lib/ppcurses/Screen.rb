@@ -2,8 +2,16 @@ require "curses"
 include Curses
 
 module PPCurses
+
+  # Screen initializes the Curses screen 
+  # Pass a code block to the run method to start things
 	class Screen 
 
+    # Creates a curses session
+    #
+    # Example:
+    #   >> myScreen.run { displayMenu() }
+    #
     def run( )
       begin
         init_screen

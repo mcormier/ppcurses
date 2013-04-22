@@ -1,22 +1,31 @@
 
-class CompositeMenu
+module PPCurses
 
-  def initialize(menu1, menu2)
-    @menu1 = menu1
-    @menu2 = menu2
+  class CompositeMenu
 
-    @menu1.setSubMenu(menu2)
+    def initialize(menu1, menu2)
+      @menu1 = menu1
+      @menu2 = menu2
 
-  end
+      @menu1.setSubMenu(menu2)
 
-  def show()
-    @menu1.show()
-    @menu2.show()
-  end
+    end
+
+    def show()
+      @menu1.show()
+      @menu2.show()
+    end
 
 
-  def getMenuSelection()
-   @menu1.getMenuSelection() 
+    def getMenuSelection()
+     @menu1.getMenuSelection() 
+    end
+ 
+	  def close()
+      @menu1.close()
+      @menu2.close()
+ 	  end
+
   end
 
 end
