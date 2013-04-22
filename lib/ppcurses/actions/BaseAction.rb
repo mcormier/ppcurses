@@ -1,6 +1,7 @@
 require "curses"
 
-class BaseAction
+module PPCurses
+  class BaseAction
 
+  end
 end
-

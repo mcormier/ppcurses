@@ -4,7 +4,7 @@ require 'rubygems'
 require 'ppcurses'
 
 def displayMenu()
-  mainMenu = PPCurses::Menu.new( [ "1RM", "3RM", "5RM" ], nil )
+  mainMenu = PPCurses::Menu.new( [ "Press", "<ESCAPE>", "to Quit" ], nil )
   mainMenu.show()
   mainMenu.getMenuSelection() 
   mainMenu.close()

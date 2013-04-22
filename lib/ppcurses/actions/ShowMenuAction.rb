@@ -1,16 +1,17 @@
-require "curses"
+require 'ppcurses/actions/BaseAction.rb'
 
-class ShowMenuAction < BaseAction
+module PPCurses
+  class ShowMenuAction < BaseAction
 
-  def initialize( menu )
-    @menu = menu
+    def initialize( menu )
+      @menu = menu
+
+    end
+
+    def execute()
+      @menu.show()
+      @menu.getMenuSelection() 
+    end
 
   end
-
-  def execute()
-    @menu.show()
-    @menu.getMenuSelection() 
-  end
-
 end
-
