@@ -11,12 +11,16 @@ module PPCurses
       @parent = action
     end
 
-    def printPrompt()
+    def xPadding()
       if @parent.nil?
-        @win.setpos(@win.cury(), self.winPadding())
+        return self.winPadding()
       else
-        @win.setpos(@win.cury(), @parent.winPadding())
+        return @parent.winPadding()
       end
+    end
+
+    def printPrompt()
+      @win.setpos(@win.cury(), xPadding())
       @win.addstr(@prompt)
     end
 

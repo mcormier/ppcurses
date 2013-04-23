@@ -7,6 +7,10 @@ module PPCurses
       @win = win
     end
 
+    def xPadding()
+      return self.winPadding()
+    end
+
     def winPadding()
       return 2
     end
@@ -24,7 +28,7 @@ module PPCurses
                          winPadding()/2, winPadding()/2)
       @win.clear
       @win.box("|", "-")
-      @win.setpos(@win.cury()+1, self.winPadding())
+      @win.setpos(@win.cury()+1, xPadding() )
     end
 
     def show()

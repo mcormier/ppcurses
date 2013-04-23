@@ -1,17 +1,21 @@
-require "curses"
+require 'ppcurses/actions/PromptAction.rb'
 
-class GetIntegerAction < PromptAction
+module PPCurses
 
-  def execute()
-   x = @parent.winPadding()
-   y = @win.cury()
-   begin 
-     @win.setpos(y,x)
-     @win.clrtoeol()
-     @win.addstr(@prompt)
-     @data = @win.getstr()
-   end while not @data =~ /^\d+$/ 
+  class GetIntegerAction < PromptAction
+
+    def execute()
+     y = @win.cury()
+     begin 
+       @win.setpos(y,xPadding())
+       @win.clrtoeol()
+       @win.addstr(@prompt)
+       echo
+       @data = @win.getstr()
+       noecho
+     end while not @data =~ /^\d+$/ 
+    end
+
   end
 
 end
-

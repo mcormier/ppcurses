@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ppcurses'
-  s.version     = '0.0.11'
+  s.version     = '0.0.12'
   s.date        = '2013-04-23'
   s.summary     = "Convenience classes when using curses"
   s.description = "Curses abstraction"
