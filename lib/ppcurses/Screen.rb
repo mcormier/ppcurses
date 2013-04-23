@@ -28,7 +28,7 @@ module PPCurses
         # Empty Catch block so ruby doesn't puke out
         # a stack trace when CTRL-C is used
       ensure
-        #close_screen
+        close_screen
       end
     end 
 

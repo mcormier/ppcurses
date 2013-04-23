@@ -1,5 +1,7 @@
-require "curses"
+require 'ppcurses/actions/PromptAction.rb'
 
-class GetStringAction < PromptAction
+module PPCurses
+  class GetStringAction < PromptAction
+  end
 end
 
