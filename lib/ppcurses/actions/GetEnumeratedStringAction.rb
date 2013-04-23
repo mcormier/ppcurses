@@ -1,60 +1,63 @@
-require "curses"
+require 'ppcurses/actions/BaseAction.rb'
 
-class GetEnumeratedStringAction < PromptAction
+module PPCurses
 
-  # enumeration is a list of possible values
-  # i.e. CD, Vinyl, MP3
-  def initialize(prompt, enumeration) 
-    super(prompt)
+  class GetEnumeratedStringAction < PromptAction
 
-    # verify enumeration is an array
-    if ( enumeration.respond_to?('each_with_index') == false ) then
-      raise
-    end
-    @options = enumeration
-    @currOption = 0
-  end
+    # enumeration is a list of possible values
+    # i.e. CD, Vinyl, MP3
+    def initialize(prompt, enumeration) 
+      super(prompt)
 
-  def printPrompt()
-    super()
-    @options.each_with_index  do |option, index|
-      @win.addstr(option)
-      if ( index == @currOption ) then 
-        @win.addstr(" [X] ")
-      else
-        @win.addstr(" [ ] ")
+      # verify enumeration is an array
+      if ( enumeration.respond_to?('each_with_index') == false ) then
+        raise
       end
-
+      @options = enumeration
+      @currOption = 0
     end
-  end
 
-  def execute()
-    printPrompt()
-    # Enables reading arrow keys in getch 
-    @win.keypad(true)
-    while(1)
-      noecho
-      c = @win.getch
+    def printPrompt()
+      super()
+      @options.each_with_index  do |option, index|
+        @win.addstr(option)
+        if ( index == @currOption ) then 
+          @win.addstr(" [X] ")
+        else
+          @win.addstr(" [ ] ")
+        end
 
-      if c == KEY_LEFT then @currOption = @currOption-1 end
-      if c == KEY_RIGHT then @currOption= @currOption+1 end
-      if c == 10 then break end
+      end
+    end
 
-      if (@currOption < 0 ) then @currOption = @options.length-1 end
-      if (@currOption > @options.length-1 ) then @currOption = 0 end
-
-      echo
+    def execute()
       printPrompt()
-    end
-    echo
-    # Go to next line so that further actions to overwrite
-    # the choice
-    @win.setpos(@win.cury() + 1, @parent.winPadding())
-  end
+      # Enables reading arrow keys in getch 
+      @win.keypad(true)
+      while(1)
+        noecho
+        c = @win.getch
 
-  def data
-    @options[@currOption]
-  end 
+        if c == KEY_LEFT then @currOption = @currOption-1 end
+        if c == KEY_RIGHT then @currOption= @currOption+1 end
+        if c == 10 then break end
+
+        if (@currOption < 0 ) then @currOption = @options.length-1 end
+        if (@currOption > @options.length-1 ) then @currOption = 0 end
+
+        echo
+        printPrompt()
+      end
+      echo
+      # Go to next line so that further actions to overwrite
+      # the choice
+      @win.setpos(@win.cury() + 1, xPadding())
+    end
+
+    def data
+      @options[@currOption]
+    end 
+
+  end
 
 end
-

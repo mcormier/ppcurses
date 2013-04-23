@@ -11,6 +11,7 @@ end
 
 desc "Run All tests"
 task :testAll do
+  ruby  "test/getEnumStringAction.rb"
   ruby  "test/getIntegerAction.rb"
   ruby  "test/getBooleanAction.rb"
   ruby  "test/getStringAction.rb"
