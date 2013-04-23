@@ -1,7 +1,10 @@
 require 'rubygems'
 require 'rake'
 
-desc "blah"
-task :blah do
-  puts "Blah"
+task :default => [:build]
+
+desc "Build gem"
+task :build do
+  puts "Building gem"
+  `gem build ppcurses.gemspec`
 end
