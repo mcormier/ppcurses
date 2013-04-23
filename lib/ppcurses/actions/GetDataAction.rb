@@ -1,5 +1,11 @@
-require "curses"
+require 'ppcurses/actions/BaseAction.rb'
 
+module PPCurses
+
+
+# An action that contains an array of prompt actions.  
+# It can be used to group together multiple prompt actions.
+#
 class GetDataAction < BaseAction
 
   def initialize( actions )
@@ -9,7 +15,6 @@ class GetDataAction < BaseAction
          action.setParentAction(self)
       end
     end
- 
   end
 
   def beforeActions()
@@ -20,30 +25,23 @@ class GetDataAction < BaseAction
     # Stub for classes that extend
   end
 
-  def winPadding()
-    return 2
-  end
 
-  def winWidth()
-    Curses.cols - winPadding()
-  end
-
-  def winHeight()
-    Curses.lines - winPadding()
+  def data()
+    values = []
+    @actions.each  do |action|
+       values.push(action.data())
+    end
+    return values
   end
 
   def createWindow()
-    @win = Window.new( winHeight(), winWidth(), 
-                       winPadding()/2, winPadding()/2)
-
+    super()
     # Assign window to actions
     unless @actions.nil?
       @actions.each  do |action|
          action.setWindow(@win)
       end
     end
-    @win.clear
-    @win.box("|", "-")
   end
 
   def execute()
@@ -51,14 +49,12 @@ class GetDataAction < BaseAction
     echo
 
     y = @win.cury + 1
-    @win.setpos(y,winPadding())
+    @win.setpos(y,xPadding())
 
     self.beforeActions()
     
     @actions.each  do |action|
       action.execute
-      #y = @win.cury + 1
-      #@win.setpos(y,winPadding())
     end
 
     self.afterActions()
@@ -117,4 +113,6 @@ class GetDataAction < BaseAction
   end
 
 end
+
+end 
 

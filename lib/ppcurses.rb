@@ -11,6 +11,7 @@ module PPCurses
  require  'ppcurses/actions/GetBooleanAction.rb'
  require  'ppcurses/actions/GetIntegerAction.rb'
  require  'ppcurses/actions/GetEnumeratedStringAction.rb'
+ require  'ppcurses/actions/GetDataAction.rb'
 end
 
 

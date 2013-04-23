@@ -5,7 +5,7 @@ require 'ppcurses'
 
 def displayMenu()
   centerMenu = PPCurses::Menu.new( [ "Press", "<ESCAPE>", "to Quit" ], nil )
-  radioMenu = PPCurses::RadioMenu.new( [ "Wow", "another", "menu" ], nil )
+  radioMenu = PPCurses::RadioMenu.new( [ "Wow", "two", "menus!" ], nil )
 
   mainMenu = PPCurses::CompositeMenu.new(centerMenu, radioMenu)  
 
