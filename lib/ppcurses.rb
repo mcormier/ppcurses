@@ -8,6 +8,7 @@ module PPCurses
  # Actions
  require  'ppcurses/actions/ShowMenuAction.rb'
  require  'ppcurses/actions/GetStringAction.rb'
+ require  'ppcurses/actions/GetBooleanAction.rb'
 end
 
 

@@ -24,6 +24,7 @@ module PPCurses
                          winPadding()/2, winPadding()/2)
       @win.clear
       @win.box("|", "-")
+      @win.setpos(@win.cury()+1, self.winPadding())
     end
 
     def show()

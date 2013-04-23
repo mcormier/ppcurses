@@ -1,47 +1,47 @@
-require "curses"
+require 'ppcurses/actions/PromptAction.rb'
 
-class GetBooleanAction < PromptAction
+module PPCurses
 
-  def initialize(prompt) 
-    super(prompt)
-    @state = false;
-  end
+  class GetBooleanAction < PromptAction
 
-  def printPrompt()
-    super()
-    @win.addstr("No [")
-    if (@state == false) then @win.addstr("X") else @win.addstr(" ") end
-    @win.addstr("] Yes [")
-    if (@state == true) then @win.addstr("X") else @win.addstr(" ") end
-    @win.addstr("]")
-  end
- 
-
-  def execute()
-    printPrompt()
-    # Enables reading arrow keys in getch 
-    @win.keypad(true)
-    while(1)
-      noecho
-      c = @win.getch
-
-      if c == KEY_LEFT then @state = false end
-      if c == KEY_RIGHT then @state = true end
-      if c == 10 then break end
-
-      echo
-      printPrompt()
+    def initialize(prompt) 
+      super(prompt)
+      @state = false;
     end
-    echo
-    # Go to next line so that further actions to overwrite
-    # the choice
-    @win.setpos(@win.cury() + 1, @parent.winPadding())
-  end
 
-  def data
-    if @state == false then return "0" end
-    "1"
-  end 
+    def printPrompt()
+      super()
+      @win.addstr("No [")
+      if (@state == false) then @win.addstr("X") else @win.addstr(" ") end
+      @win.addstr("] Yes [")
+      if (@state == true) then @win.addstr("X") else @win.addstr(" ") end
+      @win.addstr("]")
+    end
+   
+
+    def execute()
+      printPrompt()
+      # Enables reading arrow keys in getch 
+      @win.keypad(true)
+      while(1)
+        noecho
+        c = @win.getch
+
+        if c == KEY_LEFT then @state = false end
+        if c == KEY_RIGHT then @state = true end
+        if c == 10 then break end
+
+        echo
+        printPrompt()
+      end
+      echo
+    end
+
+    def data
+      if @state == false then return "0" end
+      "1"
+    end 
+
+  end
 
 end
-

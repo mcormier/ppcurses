@@ -13,7 +13,7 @@ module PPCurses
 
     def printPrompt()
       if @parent.nil?
-        @win.setpos(@win.cury() + 1, self.winPadding())
+        @win.setpos(@win.cury(), self.winPadding())
       else
         @win.setpos(@win.cury(), @parent.winPadding())
       end
