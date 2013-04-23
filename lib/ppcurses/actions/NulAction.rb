@@ -1,11 +1,13 @@
-require "curses"
+require 'ppcurses/actions/BaseAction.rb'
 
-class NulAction < BaseAction
-  def initialize( )
+module PPCurses
+  class NulAction < BaseAction
+    def initialize( )
+    end
+
+
+    def execute()
+    end
+
   end
-
-
-  def execute()
-  end
-
 end

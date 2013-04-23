@@ -12,6 +12,8 @@ module PPCurses
  require  'ppcurses/actions/GetIntegerAction.rb'
  require  'ppcurses/actions/GetEnumeratedStringAction.rb'
  require  'ppcurses/actions/GetDataAction.rb'
+ require  'ppcurses/actions/NulAction.rb'
+ require  'ppcurses/actions/InsertSQLDataAction.rb'
 end
 
 
