@@ -7,6 +7,7 @@ module PPCurses
  require  'ppcurses/menu/RadioMenu.rb'
  # Actions
  require  'ppcurses/actions/ShowMenuAction.rb'
+ require  'ppcurses/actions/GetStringAction.rb'
 end
 
 
