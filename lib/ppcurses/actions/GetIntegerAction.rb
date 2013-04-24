@@ -6,9 +6,11 @@ module PPCurses
 
     def execute()
      y = @win.cury()
+     @data = ""
      begin 
        @win.setpos(y,xPadding())
        @win.clrtoeol()
+       @win.box("|", "-")
        @win.addstr(@prompt)
        echo
        @data = @win.getstr()
