@@ -48,7 +48,6 @@ class GetDataAction < BaseAction
     createWindow()
     echo
 
-    #y = @win.cury + 1
     @win.setpos(@win.cury,xPadding())
 
     self.beforeActions()
@@ -88,12 +87,12 @@ class GetDataAction < BaseAction
   def promptToChangeData(preparedSQL)
     self.printLine(preparedSQL)
 
-    @win.addstr("Proceed? ")
-    echo
-    c = @win.getch()
-    noecho
+    proceed = GetBooleanAction.new("Proceed? ")
+    proceed.setParentAction(self)
+    proceed.setWindow(@win)
+    proceed.execute()
 
-    if c == "y" or c == "Y" then
+    if proceed.data == "1" then
       self.printLine("")
       begin
         @db.execute preparedSQL
