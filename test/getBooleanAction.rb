@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'ppcurses'
+require_relative '../lib/ppcurses.rb'
 
 action = PPCurses::GetBooleanAction.new("Is the sky blue? ");
 

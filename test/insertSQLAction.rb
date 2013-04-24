@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'ppcurses'
+require_relative '../lib/ppcurses.rb'
 
 begin
   require 'sqlite3'

@@ -1,19 +1,19 @@
 
 module PPCurses
- require  'ppcurses/Screen.rb'
+ require_relative  'ppcurses/Screen.rb'
  # Menus
- require  'ppcurses/menu/Menu.rb'
- require  'ppcurses/menu/CompositeMenu.rb'
- require  'ppcurses/menu/RadioMenu.rb'
+ require_relative  'ppcurses/menu/Menu.rb'
+ require_relative  'ppcurses/menu/CompositeMenu.rb'
+ require_relative  'ppcurses/menu/RadioMenu.rb'
  # Actions
- require  'ppcurses/actions/ShowMenuAction.rb'
- require  'ppcurses/actions/GetStringAction.rb'
- require  'ppcurses/actions/GetBooleanAction.rb'
- require  'ppcurses/actions/GetIntegerAction.rb'
- require  'ppcurses/actions/GetEnumeratedStringAction.rb'
- require  'ppcurses/actions/GetDataAction.rb'
- require  'ppcurses/actions/NulAction.rb'
- require  'ppcurses/actions/InsertSQLDataAction.rb'
+ require_relative  'ppcurses/actions/ShowMenuAction.rb'
+ require_relative  'ppcurses/actions/GetStringAction.rb'
+ require_relative  'ppcurses/actions/GetBooleanAction.rb'
+ require_relative  'ppcurses/actions/GetIntegerAction.rb'
+ require_relative  'ppcurses/actions/GetEnumeratedStringAction.rb'
+ require_relative  'ppcurses/actions/GetDataAction.rb'
+ require_relative  'ppcurses/actions/NulAction.rb'
+ require_relative  'ppcurses/actions/InsertSQLDataAction.rb'
 end
 
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'ppcurses'
+require_relative '../lib/ppcurses.rb'
 
 intAction = PPCurses::GetIntegerAction.new("Input Integer : ");
 stringAction = PPCurses::GetStringAction.new("Input your name: ");

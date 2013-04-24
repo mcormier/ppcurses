@@ -1,4 +1,4 @@
-require 'ppcurses/actions/BaseAction.rb'
+require_relative 'BaseAction.rb'
 
 module PPCurses
 
@@ -11,7 +11,7 @@ module PPCurses
     end
 
     def winHeight()
-       return 7 + @actions.length
+       return 8 + @actions.length
     end
 
     def afterActions()

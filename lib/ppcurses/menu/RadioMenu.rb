@@ -1,5 +1,5 @@
 
-require 'ppcurses/menu/BaseMenu.rb'
+require_relative 'BaseMenu.rb'
 
 module PPCurses
   class RadioMenu  < BaseMenu

@@ -1,4 +1,4 @@
-require 'ppcurses/actions/BaseAction.rb'
+require_relative 'BaseAction.rb'
 
 module PPCurses
 
@@ -48,8 +48,8 @@ class GetDataAction < BaseAction
     createWindow()
     echo
 
-    y = @win.cury + 1
-    @win.setpos(y,xPadding())
+    #y = @win.cury + 1
+    @win.setpos(@win.cury,xPadding())
 
     self.beforeActions()
     

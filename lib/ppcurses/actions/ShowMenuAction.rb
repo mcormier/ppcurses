@@ -1,4 +1,4 @@
-require 'ppcurses/actions/BaseAction.rb'
+require_relative 'BaseAction.rb'
 
 module PPCurses
   class ShowMenuAction < BaseAction

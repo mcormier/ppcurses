@@ -1,4 +1,4 @@
-require 'ppcurses/actions/PromptAction.rb'
+require_relative 'PromptAction.rb'
 
 module PPCurses
   class GetStringAction < PromptAction

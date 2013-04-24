@@ -1,7 +1,7 @@
 # Curses reference:
 # http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
 
-require 'ppcurses/menu/BaseMenu.rb'
+require_relative 'BaseMenu.rb'
 require "curses"
 
 module PPCurses
