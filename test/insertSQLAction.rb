@@ -2,7 +2,12 @@
 
 require 'rubygems'
 require 'ppcurses'
-require 'sqlite3'
+
+begin
+  require 'sqlite3'
+rescue LoadError => e
+  abort "Missing dependency! Run: gem install sqlite3"
+end
 
 stringAction = PPCurses::GetStringAction.new("What is your name? ");
 intAction = PPCurses::GetIntegerAction.new("Input an integer? ");
