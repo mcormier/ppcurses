@@ -6,11 +6,11 @@ require_relative '../lib/ppcurses.rb'
 begin
   require 'sqlite3'
 rescue LoadError => e
-  abort "Missing dependency! Run: gem install sqlite3"
+  abort 'Missing dependency! Run: gem install sqlite3'
 end
 
-stringAction = PPCurses::GetStringAction.new("What is your name? ");
-intAction = PPCurses::GetIntegerAction.new("Input an integer? ");
+stringAction = PPCurses::GetStringAction.new('What is your name? ')
+intAction = PPCurses::GetIntegerAction.new('Input an integer? ')
 
 def doAction(action)
   action.show()
@@ -25,10 +25,13 @@ SQL
 
 
 sqlAction = PPCurses::InsertSQLDataAction.new( [stringAction, intAction],
-                  "Insert into testTable(name, val) values ('%s', %s)", db)
+                  "Insert into testTable(name, val) values (?, ?)", db)
 
 screen = PPCurses::Screen.new()
 screen.run { doAction(sqlAction) }
 
+
 db.close
 File.delete("test.db")
+
+

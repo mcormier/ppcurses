@@ -84,32 +84,7 @@ class GetDataAction < BaseAction
     @win.attroff(color_pair(1))
   end
 
-  def promptToChangeData(preparedSQL)
-    self.printLine(preparedSQL)
 
-    proceed = GetBooleanAction.new("Proceed? ")
-    proceed.setParentAction(self)
-    proceed.setWindow(@win)
-    proceed.execute()
-
-    if proceed.data == "1" then
-      self.printLine("")
-      begin
-        @db.execute preparedSQL
-        self.printSuccessLine("Execution successful")
-      rescue SQLite3::Exception => e
-        self.printErrorLine("Exception occurred")
-        self.printErrorLine(e.message)
-      ensure
-        self.printLine("")
-        self.printLine("< Press any key to continue > ")
-        @win.getch()
-      end
-      
-    end
-
-
-  end
 
 end
 
