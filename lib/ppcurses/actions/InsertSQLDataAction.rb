@@ -8,7 +8,6 @@ module PPCurses
       super(actions)
       @sql = sql
       @db = db
-      @prepStatement = db.prepare(sql)
     end
 
     def winHeight()
@@ -39,9 +38,10 @@ module PPCurses
       if proceed.data == '1' then
         self.printLine('')
         begin
-          @prepStatement.bind_params(dataArray)
-          @prepStatement.execute()
-          @prepStatement.close()
+          prepStatement = db.prepare(sql)
+          prepStatement.bind_params(dataArray)
+          prepStatement.execute()
+          prepStatement.close()
           self.printSuccessLine('Execution successful')
         rescue SQLite3::Exception => e
           self.printErrorLine('Exception occurred')
