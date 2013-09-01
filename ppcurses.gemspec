@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/mcormier/ppcurses'
   s.files       = Dir.glob("{lib,test}/**/*") + %w(LICENCE.txt README.rdoc)
   s.require_path = "lib"
+  s.license     = 'MIT'
 
   s.post_install_message = <<END_MSG
 
