@@ -38,7 +38,7 @@ module PPCurses
       if proceed.data == '1' then
         self.printLine('')
         begin
-          prepStatement = db.prepare(sql)
+          prepStatement = @db.prepare(@sql)
           prepStatement.bind_params(dataArray)
           prepStatement.execute()
           prepStatement.close()
