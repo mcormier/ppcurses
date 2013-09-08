@@ -31,7 +31,7 @@ module PPCurses
     # returns true if data was inserted
     #
     def prompt_to_change_data(user_display_sql, data_array)
-      self.printLine(user_display_sql)
+      self.print_line(user_display_sql)
 
       proceed = GetBooleanAction.new('Proceed? ')
       proceed.setParentAction(self)
@@ -41,20 +41,20 @@ module PPCurses
       did_insert = false
 
       if proceed.data == '1'
-        self.printLine('')
+        self.print_line('')
         begin
           prep_statement = @db.prepare(@sql)
           prep_statement.bind_params(data_array)
           prep_statement.execute()
           prep_statement.close()
           did_insert = true
-          self.printSuccessLine('Execution successful')
+          self.print_success_line('Execution successful')
         rescue SQLite3::Exception => e
-          self.printErrorLine('Exception occurred')
-          self.printErrorLine(e.message)
+          self.print_error_line('Exception occurred')
+          self.print_error_line(e.message)
         ensure
-          self.printLine('')
-          self.printLine('< Press any key to continue > ')
+          self.print_line('')
+          self.print_line('< Press any key to continue > ')
           @win.getch()
         end
 

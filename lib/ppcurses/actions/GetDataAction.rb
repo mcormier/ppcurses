@@ -1,7 +1,7 @@
 require_relative 'BaseAction.rb'
 
+#noinspection RubyResolve
 module PPCurses
-
 
 # An action that contains an array of prompt actions.  
 # It can be used to group together multiple prompt actions.
@@ -64,23 +64,23 @@ class GetDataAction < BaseAction
     @win.close
   end
 
-  def printLine(string)
+  def print_line(string)
     @win.setpos(@win.cury(), win_padding())
     @win.addstr(string)
     @win.setpos(@win.cury() + 1, win_padding())
   end
 
-  def printSuccessLine(string)
+  def print_success_line(string)
     init_pair(1, COLOR_GREEN, COLOR_BLACK)
     @win.attron(color_pair(1))
-    self.printLine(string)
+    self.print_line(string)
     @win.attroff(color_pair(1))
   end
 
-  def printErrorLine(string)
+  def print_error_line(string)
     init_pair(1, COLOR_RED, COLOR_BLACK)
     @win.attron(color_pair(1))
-    self.printLine(string)
+    self.print_line(string)
     @win.attroff(color_pair(1))
   end
 
