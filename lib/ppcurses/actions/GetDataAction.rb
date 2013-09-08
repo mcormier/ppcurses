@@ -12,7 +12,7 @@ class GetDataAction < BaseAction
     @actions = actions
     unless @actions.nil?
       @actions.each  do |action|
-         action.setParentAction(self)
+         action.set_parent_action(self)
       end
     end
   end

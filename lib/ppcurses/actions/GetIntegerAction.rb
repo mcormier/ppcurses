@@ -9,7 +9,7 @@ module PPCurses
      y = @win.cury()
      @data = ''
      begin 
-       @win.setpos(y,xPadding())
+       @win.setpos(y,x_padding())
        @win.clrtoeol()
        @win.box('|', '-')
        @win.addstr(@prompt)

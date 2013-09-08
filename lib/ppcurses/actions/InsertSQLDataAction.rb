@@ -1,5 +1,6 @@
 require_relative 'BaseAction.rb'
 
+#noinspection RubyResolve
 module PPCurses
 
   class InsertSQLDataAction < GetDataAction
@@ -10,7 +11,7 @@ module PPCurses
       @db = db
     end
 
-    def winHeight()
+    def win_height
       8 + @actions.length
     end
 
@@ -34,7 +35,7 @@ module PPCurses
       self.print_line(user_display_sql)
 
       proceed = GetBooleanAction.new('Proceed? ')
-      proceed.setParentAction(self)
+      proceed.set_parent_action(self)
       proceed.set_window(@win)
       proceed.execute()
 

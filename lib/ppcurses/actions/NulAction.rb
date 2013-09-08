@@ -2,11 +2,11 @@ require_relative 'BaseAction.rb'
 
 module PPCurses
   class NulAction < BaseAction
-    def initialize( )
+    def initialize
     end
 
 
-    def execute()
+    def execute
     end
 
   end

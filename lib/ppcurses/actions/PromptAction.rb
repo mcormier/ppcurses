@@ -1,5 +1,6 @@
 require_relative 'BaseAction.rb'
 
+#noinspection RubyResolve
 module PPCurses
   class PromptAction < BaseAction
 
@@ -7,25 +8,25 @@ module PPCurses
       @prompt = prompt
     end
 
-    def setParentAction(action)
+    def set_parent_action(action)
       @parent = action
     end
 
-    def xPadding()
+    def x_padding
       if @parent.nil?
-        return self.win_padding()
+        self.win_padding()
       else
-        return @parent.win_padding()
+        @parent.win_padding()
       end
     end
 
-    def printPrompt()
-      @win.setpos(@win.cury(), xPadding())
+    def print_prompt
+      @win.setpos(@win.cury(), x_padding())
       @win.addstr(@prompt)
     end
 
-    def execute()
-      printPrompt()
+    def execute
+      print_prompt()
       echo
       @data = @win.getstr()
       noecho
