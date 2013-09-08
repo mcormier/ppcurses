@@ -8,53 +8,53 @@ module PPCurses
 	class Menu < BaseMenu
 
 	  def initialize( menuItems, actionItems )
-		@items = Array.new
+      @items = Array.new
 
-		@maxMenuWidth = 0
+      @maxMenuWidth = 0
 
-		 menuItems.each do |item|
-		   @items.push item
-		   if item.length > @maxMenuWidth then @maxMenuWidth = item.length end
-		 end
+       menuItems.each do |item|
+         @items.push item
+         if item.length > @maxMenuWidth then @maxMenuWidth = item.length end
+       end
 
-		@selection = 0
+      @selection = 0
 
-		unless actionItems.nil? 
-		  @actions = Array.new
-		  actionItems.each do |item|
-			@actions.push item      
-		  end
-		end 
-   
-		winHeight = @items.length + 4 
-		winWidth = @maxMenuWidth + 4
-		@win = Window.new(winHeight,winWidth,(lines-winHeight) / 2, (cols-winWidth)/2)
+      unless actionItems.nil?
+        @actions = Array.new
+        actionItems.each do |item|
+        @actions.push item
+        end
+      end
 
-		@win.timeout=-1
-		# Enables reading arrow keys in getch 
-		@win.keypad(true)
+      winHeight = @items.length + 4
+      winWidth = @maxMenuWidth + 4
+      @win = Window.new(winHeight,winWidth,(lines-winHeight) / 2, (cols-winWidth)/2)
+
+      @win.timeout=-1
+      # Enables reading arrow keys in getch
+      @win.keypad(true)
 	  end
 
-	  def show()
-		@win.box("|", "-")
-		y = 2
-		x = 2
+	  def show
+      @win.box("|", "-")
+      y = 2
+      x = 2
 
-		for i in 0...@items.length
-		  @win.setpos(y, x)
-		  if @selection == i then @win.attron(A_REVERSE) end
-		  @win.addstr(@items[i])
-		  if @selection == i then @win.attroff(A_REVERSE) end
-		  y += 1
-		end
+      for i in 0...@items.length
+        @win.setpos(y, x)
+        if @selection == i then @win.attron(A_REVERSE) end
+        @win.addstr(@items[i])
+        if @selection == i then @win.attroff(A_REVERSE) end
+        y += 1
+      end
 
-	   @win.refresh
+       @win.refresh
 
-	   @subMenu.show() if @subMenu      
+       @subMenu.show() if @subMenu
 	  end
 
 	  def setGlobalAction(action)
-		@gAction = action
+		  @gAction = action
 	  end
 
 	  def menu_selection
@@ -106,11 +106,11 @@ module PPCurses
 		  return true
 		end
 
-		return false
+		 false
 	  end
 
 
-	  def close()
+	  def close
       @win.close()
  	 end
 
