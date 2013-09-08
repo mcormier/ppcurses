@@ -3,14 +3,14 @@
 require 'rubygems'
 require_relative '../lib/ppcurses.rb'
 
-action = PPCurses::GetIntegerAction.new("Input Integer : ");
+action = PPCurses::GetIntegerAction.new('Input Integer : ')
 
-def doIntegerAction(action)
+def do_integer_action(action)
   action.show()
   action.execute()
 end
 
 screen = PPCurses::Screen.new()
-screen.run { doIntegerAction(action) }
+screen.run { do_integer_action(action) }
 
-puts "Value input was: " + action.data()  
+puts 'Value input was: ' + action.data()
