@@ -10,11 +10,11 @@ module PPCurses
 	  def initialize( menu_items, action_items )
       @items = Array.new
 
-      @maxMenuWidth = 0
+      max_menu_width = 0
 
        menu_items.each do |item|
          @items.push item
-         if item.length > @maxMenuWidth then @maxMenuWidth = item.length end
+         if item.length > max_menu_width then max_menu_width = item.length end
        end
 
       @selection = 0
@@ -27,7 +27,7 @@ module PPCurses
       end
 
       w_height = @items.length + 4
-      w_width = @maxMenuWidth + 4
+      w_width = max_menu_width + 4
       @win = Window.new(w_height,w_width,(lines-w_height) / 2, (cols-w_width)/2)
 
       @win.timeout=-1
