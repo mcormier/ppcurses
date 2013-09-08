@@ -11,7 +11,7 @@ def displayMenu()
 
 
   mainMenu.show()
-  mainMenu.getMenuSelection() 
+  mainMenu.menu_selection()
   mainMenu.close()
 end
 

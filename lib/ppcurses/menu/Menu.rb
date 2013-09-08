@@ -57,23 +57,23 @@ module PPCurses
 		@gAction = action
 	  end
 
-	  def getMenuSelection()
+	  def menu_selection
 
-		while(1)
-		  c = @win.getch
+      while(1)
+        c = @win.getch
 
-		  processed = self.handleMenuSelection(c)
+        processed = self.handleMenuSelection(c)
 
-		  if c == 27 then # ESCAPE
-			self.hide()
-			break
-		  end
+        if c == 27 then # ESCAPE
+          self.hide()
+          break
+        end
 
-		  if processed == false then
-			@subMenu.handleMenuSelection(c) if @subMenu      
-		  end
+        if processed == false then
+        @subMenu.handleMenuSelection(c) if @subMenu
+        end
 
-		end 
+      end
 
 	  end
  

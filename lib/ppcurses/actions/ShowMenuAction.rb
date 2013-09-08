@@ -10,7 +10,7 @@ module PPCurses
 
     def execute()
       @menu.show()
-      @menu.getMenuSelection() 
+      @menu.menu_selection()
     end
 
   end

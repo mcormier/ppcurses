@@ -6,7 +6,7 @@ require_relative '../lib/ppcurses.rb'
 def displayMenu()
   mainMenu = PPCurses::Menu.new( [ "Press", "<ESCAPE>", "to Quit" ], nil )
   mainMenu.show()
-  mainMenu.getMenuSelection() 
+  mainMenu.menu_selection()
   mainMenu.close()
 end
 

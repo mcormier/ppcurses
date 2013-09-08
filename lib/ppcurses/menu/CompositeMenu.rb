@@ -17,8 +17,8 @@ module PPCurses
     end
 
 
-    def getMenuSelection()
-     @menu1.getMenuSelection() 
+    def menu_selection()
+     @menu1.menu_selection()
     end
  
 	  def close()
