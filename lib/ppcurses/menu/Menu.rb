@@ -9,6 +9,8 @@ module PPCurses
 
 	  def initialize( menu_items, action_items )
       @items = Array.new
+      @actions = Array.new
+      @selection = 0
 
       max_menu_width = 0
 
@@ -17,12 +19,9 @@ module PPCurses
          if item.length > max_menu_width then max_menu_width = item.length end
        end
 
-      @selection = 0
-
       unless action_items.nil?
-        @actions = Array.new
         action_items.each do |item|
-        @actions.push item
+          @actions.push item
         end
       end
 
@@ -54,23 +53,23 @@ module PPCurses
 	  end
 
 	  def set_global_action(action)
-		  @gAction = action
+		  @global_action = action
 	  end
 
 	  def menu_selection
 
-      while(1)
+      while 1
         c = @win.getch
 
-        processed = self.handle_menu_selection(c)
+        not_processed = !self.handle_menu_selection(c)
 
         if c == 27  # ESCAPE
           self.hide()
           break
         end
 
-        if processed == false then
-        @subMenu.handle_menu_selection(c) if @subMenu
+        if not_processed then
+          @subMenu.handle_menu_selection(c) if @subMenu
         end
 
       end
@@ -94,12 +93,12 @@ module PPCurses
 
 		if c == 10 # ENTER
 
-		  unless @gAction.nil?
-			@gAction.execute()
+		  unless @global_action.nil?
+			  @global_action.execute()
 		  end
 
 		  unless @actions.nil? or @actions[@selection].nil?
-			@actions[@selection].execute()
+			  @actions[@selection].execute()
 		  end
 
 		  self.show()
