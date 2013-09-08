@@ -11,8 +11,8 @@ class BaseMenu
     @subMenu.hide() if @subMenu      
   end
 
-  def getSelectedMenuName()
-    return @items[@selection] 
+  def selected_menu_name()
+    @items[@selection]
   end
 
 end
