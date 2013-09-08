@@ -4,13 +4,13 @@ module PPCurses
 
   class GetIntegerAction < PromptAction
 
-    def execute()
+    def execute
      y = @win.cury()
-     @data = ""
+     @data = ''
      begin 
        @win.setpos(y,xPadding())
        @win.clrtoeol()
-       @win.box("|", "-")
+       @win.box('|', '-')
        @win.addstr(@prompt)
        echo
        @data = @win.getstr()
