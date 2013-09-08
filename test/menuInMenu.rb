@@ -8,7 +8,7 @@ def displayMenu()
   innerMenu = PPCurses::Menu.new( [ "Wow", "another", "menu" ], nil )
 
   menuAction = PPCurses::ShowMenuAction.new(innerMenu) 
-  mainMenu.setGlobalAction(menuAction)
+  mainMenu.set_global_action(menuAction)
 
   mainMenu.show()
   mainMenu.menu_selection()

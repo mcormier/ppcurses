@@ -53,7 +53,7 @@ module PPCurses
        @subMenu.show() if @subMenu
 	  end
 
-	  def setGlobalAction(action)
+	  def set_global_action(action)
 		  @gAction = action
 	  end
 
@@ -62,7 +62,7 @@ module PPCurses
       while(1)
         c = @win.getch
 
-        processed = self.handleMenuSelection(c)
+        processed = self.handle_menu_selection(c)
 
         if c == 27  # ESCAPE
           self.hide()
@@ -70,14 +70,14 @@ module PPCurses
         end
 
         if processed == false then
-        @subMenu.handleMenuSelection(c) if @subMenu
+        @subMenu.handle_menu_selection(c) if @subMenu
         end
 
       end
 
 	  end
  
-	  def handleMenuSelection(c)
+	  def handle_menu_selection(c)
 		n_choices = @items.length
 
 		if c == KEY_UP
