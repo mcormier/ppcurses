@@ -6,16 +6,16 @@ module PPCurses
 
     def initialize(prompt) 
       super(prompt)
-      @state = false;
+      @state = false
     end
 
     def printPrompt()
       super()
-      @win.addstr("No [")
-      if (@state == false) then @win.addstr("X") else @win.addstr(" ") end
+      @win.addstr('No [')
+      if !@state then @win.addstr('X') else @win.addstr(' ') end
       @win.addstr("] Yes [")
-      if (@state == true) then @win.addstr("X") else @win.addstr(" ") end
-      @win.addstr("]")
+      if @state then @win.addstr('X') else @win.addstr(' ') end
+      @win.addstr(']')
     end
    
 
@@ -23,7 +23,7 @@ module PPCurses
       printPrompt()
       # Enables reading arrow keys in getch 
       @win.keypad(true)
-      while(1)
+      while 1
         noecho
         c = @win.getch
 
@@ -38,8 +38,8 @@ module PPCurses
     end
 
     def data
-      if @state == false then return "0" end
-      "1"
+      if !@state then return '0' end
+      '1'
     end 
 
   end
