@@ -3,14 +3,14 @@
 require 'rubygems'
 require_relative '../lib/ppcurses.rb'
 
-action = PPCurses::GetBooleanAction.new("Is the sky blue? ");
+action = PPCurses::GetBooleanAction.new('Is the sky blue? ')
 
-def doBooleanAction(action)
+def do_boolean_action(action)
   action.show()
   action.execute()
 end
 
 screen = PPCurses::Screen.new()
-screen.run { doBooleanAction(action) }
+screen.run { do_boolean_action(action) }
 
-puts "Value input was: " + action.data()  
+puts 'Value input was: ' + action.data()

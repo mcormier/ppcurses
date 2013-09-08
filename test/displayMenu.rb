@@ -3,13 +3,13 @@
 require 'rubygems'
 require_relative '../lib/ppcurses.rb'
 
-def displayMenu()
-  mainMenu = PPCurses::Menu.new( [ "Press", "<ESCAPE>", "to Quit" ], nil )
-  mainMenu.show()
-  mainMenu.menu_selection()
-  mainMenu.close()
+def display_menu
+  main_menu = PPCurses::Menu.new( [ 'Press', '<ESCAPE>', 'to Quit'], nil )
+  main_menu.show()
+  main_menu.menu_selection()
+  main_menu.close()
 end
 
 screen = PPCurses::Screen.new()
-screen.run { displayMenu() }
+screen.run { display_menu() }
 
