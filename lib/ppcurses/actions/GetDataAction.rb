@@ -17,24 +17,24 @@ class GetDataAction < BaseAction
     end
   end
 
-  def beforeActions()
+  def before_actions
     # Stub for classes that extend
   end
 
-  def afterActions()
+  def after_actions
     # Stub for classes that extend
   end
 
 
-  def data()
+  def data
     values = []
     @actions.each  do |action|
        values.push(action.data())
     end
-    return values
+    values
   end
 
-  def createWindow()
+  def create_window
     super()
     # Assign window to actions
     unless @actions.nil?
@@ -44,19 +44,19 @@ class GetDataAction < BaseAction
     end
   end
 
-  def execute()
-    createWindow()
+  def execute
+    create_window()
     echo
 
     @win.setpos(@win.cury,xPadding())
 
-    self.beforeActions()
+    self.before_actions()
     
     @actions.each  do |action|
       action.execute
     end
 
-    self.afterActions()
+    self.after_actions()
 
     noecho
     @win.clear 
