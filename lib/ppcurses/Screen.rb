@@ -1,4 +1,4 @@
-require "curses"
+require 'curses'
 include Curses
 
 module PPCurses
