@@ -2,7 +2,7 @@
 # http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
 
 require_relative 'BaseMenu.rb'
-require "curses"
+require 'curses'
 
 module PPCurses
 	class Menu < BaseMenu
