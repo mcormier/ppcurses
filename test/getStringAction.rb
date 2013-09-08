@@ -3,14 +3,14 @@
 require 'rubygems'
 require_relative '../lib/ppcurses.rb'
 
-action = PPCurses::GetStringAction.new("Input your name: ");
+action = PPCurses::GetStringAction.new('Input your name: ')
 
-def getStringAction(action)
+def get_string_action(action)
   action.show()
   action.execute()
 end
 
 screen = PPCurses::Screen.new()
-screen.run { getStringAction(action) }
+screen.run { get_string_action(action) }
 
-puts "Value input was: " + action.data()  
+puts 'Value input was: ' + action.data()
