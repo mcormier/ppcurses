@@ -1,5 +1,6 @@
 require_relative 'PromptAction.rb'
 
+#noinspection RubyResolve
 module PPCurses
 
   class GetBooleanAction < PromptAction
@@ -9,18 +10,18 @@ module PPCurses
       @state = false
     end
 
-    def printPrompt()
+    def print_prompt
       super()
       @win.addstr('No [')
-      if !@state then @win.addstr('X') else @win.addstr(' ') end
-      @win.addstr("] Yes [")
+      if @state then @win.addstr(' ') else @win.addstr('X') end
+      @win.addstr('] Yes [')
       if @state then @win.addstr('X') else @win.addstr(' ') end
       @win.addstr(']')
     end
    
 
-    def execute()
-      printPrompt()
+    def execute
+      print_prompt()
       # Enables reading arrow keys in getch 
       @win.keypad(true)
       while 1
@@ -32,14 +33,14 @@ module PPCurses
         if c == 10 then break end
 
         echo
-        printPrompt()
+        print_prompt()
       end
       echo
     end
 
     def data
-      if !@state then return '0' end
-      '1'
+      if @state then return '1' end
+      '0'
     end 
 
   end
