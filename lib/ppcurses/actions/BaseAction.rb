@@ -1,4 +1,4 @@
-require "curses"
+require 'curses'
 
 module PPCurses
   class BaseAction
@@ -7,33 +7,33 @@ module PPCurses
       @win = win
     end
 
-    def xPadding()
-      return self.winPadding()
+    def xPadding
+      self.winPadding()
     end
 
-    def winPadding()
-      return 2
+    def winPadding
+       2
     end
 
-    def winWidth()
+    def winWidth
       Curses.cols - winPadding()
     end
 
-    def winHeight()
+    def winHeight
       Curses.lines - winPadding()
     end
 
-    def createWindow()
+    def create_window
       @win = Window.new( winHeight(), winWidth(), 
                          winPadding()/2, winPadding()/2)
       @win.clear
-      @win.box("|", "-")
+      @win.box('|', '-')
       @win.setpos(@win.cury()+1, xPadding() )
     end
 
-    def show()
+    def show
       if @win.nil?
-        self.createWindow()
+        self.create_window()
       end
 
       @win.refresh
