@@ -1,5 +1,6 @@
 require_relative 'PromptAction.rb'
 
+#noinspection RubyResolve
 module PPCurses
 
   class GetIntegerAction < PromptAction
