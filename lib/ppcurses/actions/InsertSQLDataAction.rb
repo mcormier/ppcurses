@@ -14,34 +14,40 @@ module PPCurses
       8 + @actions.length
     end
 
-    def afterActions()
-      preparedSql = @sql
-      dataArray = []
+    def after_actions
+      prepared_sql = @sql
+      data_array = []
 
       @actions.each do |action|
-        preparedSql = preparedSql.sub('?', action.data)
-        dataArray.push(action.data)
+        prepared_sql = prepared_sql.sub('?', action.data)
+        data_array.push(action.data)
       end
 
-      self.promptToChangeData(preparedSql, dataArray)
+      self.prompt_to_change_data(prepared_sql, data_array)
       
     end
 
-    def promptToChangeData(userDisplaySQL, dataArray)
-      self.printLine(userDisplaySQL)
+    #
+    # returns true if data was inserted
+    #
+    def prompt_to_change_data(user_display_sql, data_array)
+      self.printLine(user_display_sql)
 
       proceed = GetBooleanAction.new('Proceed? ')
       proceed.setParentAction(self)
       proceed.setWindow(@win)
       proceed.execute()
 
-      if proceed.data == '1' then
+      did_insert = false
+
+      if proceed.data == '1'
         self.printLine('')
         begin
-          prepStatement = @db.prepare(@sql)
-          prepStatement.bind_params(dataArray)
-          prepStatement.execute()
-          prepStatement.close()
+          prep_statement = @db.prepare(@sql)
+          prep_statement.bind_params(data_array)
+          prep_statement.execute()
+          prep_statement.close()
+          did_insert = true
           self.printSuccessLine('Execution successful')
         rescue SQLite3::Exception => e
           self.printErrorLine('Exception occurred')
@@ -54,7 +60,7 @@ module PPCurses
 
       end
 
-
+      did_insert
     end
 
   end
