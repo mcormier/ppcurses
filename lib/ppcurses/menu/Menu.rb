@@ -5,7 +5,8 @@ require_relative 'BaseMenu.rb'
 require 'curses'
 
 module PPCurses
-	class Menu < BaseMenu
+	#noinspection RubyResolve
+  class Menu < BaseMenu
 
 	  def initialize( menu_items, action_items )
       @items = Array.new

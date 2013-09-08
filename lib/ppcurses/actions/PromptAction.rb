@@ -13,9 +13,9 @@ module PPCurses
 
     def xPadding()
       if @parent.nil?
-        return self.winPadding()
+        return self.win_padding()
       else
-        return @parent.winPadding()
+        return @parent.win_padding()
       end
     end
 

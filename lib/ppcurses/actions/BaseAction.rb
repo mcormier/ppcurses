@@ -1,34 +1,35 @@
 require 'curses'
 
+#noinspection RubyResolve
 module PPCurses
   class BaseAction
 
-    def setWindow(win)
+    def set_window(win)
       @win = win
     end
 
-    def xPadding
-      self.winPadding()
+    def x_padding
+      self.win_padding()
     end
 
-    def winPadding
+    def win_padding
        2
     end
 
-    def winWidth
-      Curses.cols - winPadding()
+    def win_width
+      Curses.cols - win_padding()
     end
 
-    def winHeight
-      Curses.lines - winPadding()
+    def win_height
+      Curses.lines - win_padding()
     end
 
     def create_window
-      @win = Window.new( winHeight(), winWidth(), 
-                         winPadding()/2, winPadding()/2)
+      @win = Window.new( win_height(), win_width(),
+                         win_padding()/2, win_padding()/2)
       @win.clear
       @win.box('|', '-')
-      @win.setpos(@win.cury()+1, xPadding() )
+      @win.setpos(@win.cury()+1, x_padding() )
     end
 
     def show

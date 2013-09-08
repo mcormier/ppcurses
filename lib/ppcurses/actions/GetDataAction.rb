@@ -39,7 +39,7 @@ class GetDataAction < BaseAction
     # Assign window to actions
     unless @actions.nil?
       @actions.each  do |action|
-         action.setWindow(@win)
+         action.set_window(@win)
       end
     end
   end
@@ -48,7 +48,7 @@ class GetDataAction < BaseAction
     create_window()
     echo
 
-    @win.setpos(@win.cury,xPadding())
+    @win.setpos(@win.cury,x_padding())
 
     self.before_actions()
     
@@ -65,9 +65,9 @@ class GetDataAction < BaseAction
   end
 
   def printLine(string)
-    @win.setpos(@win.cury(), winPadding())
+    @win.setpos(@win.cury(), win_padding())
     @win.addstr(string)
-    @win.setpos(@win.cury() + 1, winPadding())
+    @win.setpos(@win.cury() + 1, win_padding())
   end
 
   def printSuccessLine(string)

@@ -51,7 +51,7 @@ module PPCurses
       echo
       # Go to next line so that further actions to overwrite
       # the choice
-      @win.setpos(@win.cury() + 1, xPadding())
+      @win.setpos(@win.cury() + 1, x_padding())
     end
 
     def data

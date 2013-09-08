@@ -2,6 +2,7 @@
 require_relative 'BaseMenu.rb'
 
 module PPCurses
+  #noinspection RubyResolve
   class RadioMenu  < BaseMenu
 
     def initialize( menu_items, action_items )

@@ -35,7 +35,7 @@ module PPCurses
 
       proceed = GetBooleanAction.new('Proceed? ')
       proceed.setParentAction(self)
-      proceed.setWindow(@win)
+      proceed.set_window(@win)
       proceed.execute()
 
       did_insert = false
