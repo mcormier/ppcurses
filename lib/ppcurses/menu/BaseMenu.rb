@@ -1,14 +1,14 @@
 class BaseMenu
 
   def set_sub_menu(menu)
-    @subMenu = menu
+    @sub_menu = menu
   end
 
   def hide()
     @win.clear
     @win.refresh
 
-    @subMenu.hide() if @subMenu      
+    @sub_menu.hide() if @sub_menu
   end
 
   def selected_menu_name()

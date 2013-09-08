@@ -50,7 +50,7 @@ module PPCurses
 
        @win.refresh
 
-       @subMenu.show() if @subMenu
+       @sub_menu.show() if @sub_menu
 	  end
 
 	  def set_global_action(action)
@@ -70,7 +70,7 @@ module PPCurses
         end
 
         if not_processed then
-          @subMenu.handle_menu_selection(c) if @subMenu
+          @sub_menu.handle_menu_selection(c) if @sub_menu
         end
 
       end
