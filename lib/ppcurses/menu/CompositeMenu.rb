@@ -7,7 +7,7 @@ module PPCurses
       @menu1 = menu1
       @menu2 = menu2
 
-      @menu1.setSubMenu(menu2)
+      @menu1.set_sub_menu(menu2)
 
     end
 

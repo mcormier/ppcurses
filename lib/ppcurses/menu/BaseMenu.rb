@@ -1,6 +1,6 @@
 class BaseMenu
 
-  def setSubMenu(menu)
+  def set_sub_menu(menu)
     @subMenu = menu
   end
 
