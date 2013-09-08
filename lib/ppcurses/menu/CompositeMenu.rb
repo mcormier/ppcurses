@@ -11,17 +11,17 @@ module PPCurses
 
     end
 
-    def show()
+    def show
       @menu1.show()
       @menu2.show()
     end
 
 
-    def menu_selection()
+    def menu_selection
      @menu1.menu_selection()
     end
  
-	  def close()
+	  def close
       @menu1.close()
       @menu2.close()
  	  end
