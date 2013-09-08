@@ -7,21 +7,21 @@ require "curses"
 module PPCurses
 	class Menu < BaseMenu
 
-	  def initialize( menuItems, actionItems )
+	  def initialize( menu_items, action_items )
       @items = Array.new
 
       @maxMenuWidth = 0
 
-       menuItems.each do |item|
+       menu_items.each do |item|
          @items.push item
          if item.length > @maxMenuWidth then @maxMenuWidth = item.length end
        end
 
       @selection = 0
 
-      unless actionItems.nil?
+      unless action_items.nil?
         @actions = Array.new
-        actionItems.each do |item|
+        action_items.each do |item|
         @actions.push item
         end
       end
