@@ -36,7 +36,7 @@ module PPCurses
 	  end
 
 	  def show
-      @win.box("|", "-")
+      @win.box('|', '-')
       y = 2
       x = 2
 
@@ -64,7 +64,7 @@ module PPCurses
 
         processed = self.handleMenuSelection(c)
 
-        if c == 27 then # ESCAPE
+        if c == 27  # ESCAPE
           self.hide()
           break
         end
@@ -80,19 +80,19 @@ module PPCurses
 	  def handleMenuSelection(c)
 		n_choices = @items.length
 
-		if c == KEY_UP then
+		if c == KEY_UP
 		  if @selection == 0 then @selection = n_choices-1 else @selection -= 1 end
 		  self.show()
 		  return true
 		end
 
-		if c == KEY_DOWN then
+		if c == KEY_DOWN
 		  if @selection == n_choices-1 then @selection = 0  else @selection += 1 end
 		  self.show()
 		  return true
 		end
 
-		if c == 10 then # ENTER
+		if c == 10 # ENTER
 
 		  unless @gAction.nil?
 			@gAction.execute()
