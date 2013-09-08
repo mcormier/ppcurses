@@ -17,7 +17,7 @@ module PPCurses
       @currOption = 0
     end
 
-    def printPrompt()
+    def printPrompt
       super()
       @options.each_with_index  do |option, index|
         @win.addstr(option)
@@ -30,7 +30,7 @@ module PPCurses
       end
     end
 
-    def execute()
+    def execute
       printPrompt()
       # Enables reading arrow keys in getch 
       @win.keypad(true)
