@@ -50,7 +50,7 @@ module PPCurses
 
        @win.refresh
 
-       @sub_menu.show() if @sub_menu
+       @sub_menu.show if @sub_menu
 	  end
 
 	  def set_global_action(action)
@@ -65,7 +65,7 @@ module PPCurses
         not_processed = !self.handle_menu_selection(c)
 
         if c == 27  # ESCAPE
-          self.hide()
+          self.hide
           break
         end
 
@@ -82,27 +82,27 @@ module PPCurses
 
 		if c == KEY_UP
 		  if @selection == 0 then @selection = n_choices-1 else @selection -= 1 end
-		  self.show()
+		  self.show
 		  return true
 		end
 
 		if c == KEY_DOWN
 		  if @selection == n_choices-1 then @selection = 0  else @selection += 1 end
-		  self.show()
+		  self.show
 		  return true
 		end
 
 		if c == 10 # ENTER
 
 		  unless @global_action.nil?
-			  @global_action.execute()
+			  @global_action.execute
 		  end
 
 		  unless @actions.nil? or @actions[@selection].nil?
-			  @actions[@selection].execute()
+			  @actions[@selection].execute
 		  end
 
-		  self.show()
+		  self.show
 		  return true
 		end
 
@@ -111,7 +111,7 @@ module PPCurses
 
 
 	  def close
-      @win.close()
+      @win.close
  	 end
 
 	end
