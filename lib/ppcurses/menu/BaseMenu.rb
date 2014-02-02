@@ -4,14 +4,14 @@ class BaseMenu
     @sub_menu = menu
   end
 
-  def hide()
+  def hide
     @win.clear
     @win.refresh
 
-    @sub_menu.hide() if @sub_menu
+    @sub_menu.hide if @sub_menu
   end
 
-  def selected_menu_name()
+  def selected_menu_name
     @items[@selection]
   end
 
