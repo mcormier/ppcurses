@@ -9,7 +9,7 @@ module PPCurses
     end
 
     def x_padding
-      self.win_padding()
+      self.win_padding
     end
 
     def win_padding
@@ -17,24 +17,24 @@ module PPCurses
     end
 
     def win_width
-      Curses.cols - win_padding()
+      Curses.cols - win_padding
     end
 
     def win_height
-      Curses.lines - win_padding()
+      Curses.lines - win_padding
     end
 
     def create_window
-      @win = Window.new( win_height(), win_width(),
-                         win_padding()/2, win_padding()/2)
+      @win = Window.new( self.win_height, self.win_width,
+                         self.win_padding/2, self.win_padding/2)
       @win.clear
       @win.box('|', '-')
-      @win.setpos(@win.cury()+1, x_padding() )
+      @win.setpos(@win.cury+1, self.x_padding )
     end
 
     def show
       if @win.nil?
-        self.create_window()
+        self.create_window
       end
 
       @win.refresh
