@@ -8,16 +8,17 @@ module PPCurses
 	#noinspection RubyResolve
   class Menu < BaseMenu
 
+    # TODO -- use menu items, not strings and actions.
 	  def initialize( menu_items, action_items )
-      @items = Array.new
-      @actions = Array.new
+      @items = []
+      @actions = []
       @selection = 0
 
-      max_menu_width = 0
+      @max_menu_width = 0
 
        menu_items.each do |item|
          @items.push item
-         if item.length > max_menu_width then max_menu_width = item.length end
+         if item.length > @max_menu_width then @max_menu_width = item.length end
        end
 
       unless action_items.nil?
@@ -26,14 +27,19 @@ module PPCurses
         end
       end
 
+      self.create_window
+
+	  end
+
+    def create_window
       w_height = @items.length + 4
-      w_width = max_menu_width + 4
+      w_width = @max_menu_width + 4
       @win = Window.new(w_height,w_width,(lines-w_height) / 2, (cols-w_width)/2)
 
       @win.timeout=-1
       # Enables reading arrow keys in getch
       @win.keypad(true)
-	  end
+    end
 
 	  def show
       @win.box('|', '-')
