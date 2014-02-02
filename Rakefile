@@ -16,8 +16,14 @@ task :testAll do
   ruby 'test/getIntegerAction.rb'
   ruby 'test/getBooleanAction.rb'
   ruby 'test/getStringAction.rb'
-  ruby 'test/menuInMenu.rb'
-  ruby 'test/compositeMenu.rb'
-  ruby 'test/displayMenu.rb'
+  Rake::Task['testMenu'].execute
+end
+
+desc 'Run All Menu tests'
+task :testMenu do
+  ruby 'test/menu/displayMenu.rb'
+  ruby 'test/menu/changeMenuBorder.rb'
+  ruby 'test/menu/menuInMenu.rb'
+  ruby 'test/menu/compositeMenu.rb'
 end
 
