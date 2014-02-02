@@ -25,5 +25,6 @@ task :testMenu do
   ruby 'test/menu/changeMenuBorder.rb'
   ruby 'test/menu/menuInMenu.rb'
   ruby 'test/menu/compositeMenu.rb'
+  ruby 'test/menu/menuWmenuItems.rb'
 end
 

@@ -5,6 +5,7 @@ module PPCurses
   #noinspection RubyResolve
   class RadioMenu  < BaseMenu
 
+    # TODO - duplicate code from Menu ...
     def initialize( menu_items, action_items )
       @items = Array.new
       @actions = Array.new
@@ -92,9 +93,6 @@ module PPCurses
    
 
 
-    def close
-      @win.close
-    end
 
   end
 
