@@ -12,18 +12,18 @@ module PPCurses
     end
 
     def show
-      @menu1.show()
-      @menu2.show()
+      @menu1.show
+      @menu2.show
     end
 
 
     def menu_selection
-     @menu1.menu_selection()
+     @menu1.menu_selection
     end
  
 	  def close
-      @menu1.close()
-      @menu2.close()
+      @menu1.close
+      @menu2.close
  	  end
 
   end
