@@ -8,38 +8,13 @@ module PPCurses
 	#noinspection RubyResolve
   class Menu < BaseMenu
 
-    # TODO -- use menu items, not strings and actions.
 
-    # Case 1: menu_items is a list of strings, with an associated action list
-    #
-    # Case 2: Received a list of menu_items
 	  def initialize( menu_items, action_items )
       super( menu_items, action_items )
-      @selection = 0
-      @max_menu_width = 0
-
-      @menu_items = []
-
-      self.build_menu_items( menu_items, action_items )
 
       self.create_window
 
 	  end
-
-    def build_menu_items( menu_items, action_items )
-      @menu_items = []
-
-      (0...menu_items.length).each { |i|
-        menu_item = MenuItem.new
-        menu_item.title = menu_items[i]
-        unless action_items.nil?
-          menu_item.action = action_items[i]
-        end
-
-        @menu_items.push(menu_item)
-        @max_menu_width = menu_item.title.length if menu_item.title.length > @max_menu_width
-      }
-    end
 
     def create_window
       w_height = @menu_items.length + 4
