@@ -9,30 +9,33 @@ module PPCurses
   class Menu < BaseMenu
 
     # TODO -- use menu items, not strings and actions.
-	  def initialize( menu_items, action_items )
-      @items = []
-      @actions = []
-      @selection = 0
 
+    # Case 1: menu_items is a list of strings, with an associated action list
+    #
+    # Case 2: Received a list of menu_items
+	  def initialize( menu_items, action_items )
+      @selection = 0
       @max_menu_width = 0
 
-       menu_items.each do |item|
-         @items.push item
-         @max_menu_width = item.length if item.length > @max_menu_width
-       end
+      @menu_items = []
 
-      unless action_items.nil?
-        action_items.each do |item|
-          @actions.push item
+      (0...menu_items.length).each { |i|
+        menu_item = MenuItem.new
+        menu_item.title = menu_items[i]
+        unless action_items.nil?
+          menu_item.action = action_items[i]
         end
-      end
+
+        @menu_items.push(menu_item)
+        @max_menu_width = menu_item.title.length if menu_item.title.length > @max_menu_width
+      }
 
       self.create_window
 
 	  end
 
     def create_window
-      w_height = @items.length + 4
+      w_height = @menu_items.length + 4
       w_width = @max_menu_width + 4
       @win = Window.new(w_height,w_width,(lines-w_height) / 2, (cols-w_width)/2)
 
@@ -46,10 +49,10 @@ module PPCurses
       y = 2
       x = 2
 
-      (0...@items.length).each { |i|
+      (0...@menu_items.length).each { |i|
         @win.setpos(y, x)
         @win.attron(A_REVERSE) if @selection == i
-        @win.addstr(@items[i])
+        @win.addstr(@menu_items[i].title)
         @win.attroff(A_REVERSE) if @selection == i
         y += 1
       }
@@ -82,7 +85,7 @@ module PPCurses
 	  end
 
     def handle_menu_selection(c)
-      n_choices = @items.length
+      n_choices = @menu_items.length
 
       if c == KEY_UP
         (@selection == 0) ? @selection = n_choices - 1 : @selection -= 1
@@ -102,8 +105,8 @@ module PPCurses
           @global_action.execute
         end
 
-        unless @actions.nil? or @actions[@selection].nil?
-          @actions[@selection].execute
+        unless @menu_items[@selection].action.nil?
+          @menu_items[@selection].action.execute
         end
 
         self.show
