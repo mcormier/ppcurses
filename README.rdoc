@@ -1,6 +1,6 @@
 = PPCurses 
 
-Some convenience code to initialize curses and some rudimentary GUI classes.  See the **test** directory for example usage programs.
+Some convenience code to initialize curses and some rudimentary GUI classes.  See the **test** directory for example programs.
 
 == Install
   [sudo] gem install 'ppcurses'
