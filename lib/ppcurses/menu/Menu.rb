@@ -19,6 +19,15 @@ module PPCurses
 
       @menu_items = []
 
+      self.build_menu_items
+
+      self.create_window
+
+	  end
+
+    def build_menu_items
+      @menu_items = []
+
       (0...menu_items.length).each { |i|
         menu_item = MenuItem.new
         menu_item.title = menu_items[i]
@@ -29,10 +38,7 @@ module PPCurses
         @menu_items.push(menu_item)
         @max_menu_width = menu_item.title.length if menu_item.title.length > @max_menu_width
       }
-
-      self.create_window
-
-	  end
+    end
 
     def create_window
       w_height = @menu_items.length + 4
