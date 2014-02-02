@@ -14,21 +14,21 @@ module PPCurses
 
     def x_padding
       if @parent.nil?
-        self.win_padding()
+        self.win_padding
       else
-        @parent.win_padding()
+        @parent.win_padding
       end
     end
 
     def print_prompt
-      @win.setpos(@win.cury(), x_padding())
+      @win.setpos(@win.cury, self.x_padding )
       @win.addstr(@prompt)
     end
 
     def execute
-      print_prompt()
+      print_prompt
       echo
-      @data = @win.getstr()
+      @data = @win.getstr
       noecho
     end
 
