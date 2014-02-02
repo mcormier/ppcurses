@@ -74,18 +74,18 @@ module PPCurses
 
       if c == KEY_RIGHT
         if @selection < n_choices - 1 then @selection += 1 else @selection = 0 end
-        self.show()
+        self.show
       end
 
       if c == KEY_LEFT
         if @selection > 0 then @selection -= 1 else @selection = n_choices-1 end
-        self.show()
+        self.show
       end
 
       if c == 10 then # ENTER
         unless @actions.nil?
-          @actions[@selection].execute()
-          self.show()
+          @actions[@selection].execute
+          self.show
         end
       end
     end
@@ -93,7 +93,7 @@ module PPCurses
 
 
     def close
-      @win.close()
+      @win.close
     end
 
   end
