@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require_relative '../lib/ppcurses.rb'
+require_relative '../../lib/ppcurses.rb'
 
 def display_menu
   main_menu = PPCurses::Menu.new( [ 'Press', '<ESCAPE>', 'to Quit'], nil )
