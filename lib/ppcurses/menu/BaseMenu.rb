@@ -1,5 +1,16 @@
 class BaseMenu
 
+  attr_accessor :menu_items
+  attr_accessor :selection
+
+  attr_accessor :side_wall_char
+  attr_accessor :top_bot_wall_char
+
+  def initialize( menu_items, action_items )
+    self.side_wall_char = '|'
+    self.top_bot_wall_char = '-'
+  end
+
   def set_sub_menu(menu)
     @sub_menu = menu
   end
@@ -12,7 +23,11 @@ class BaseMenu
   end
 
   def selected_menu_name
-    @items[@selection]
+    @menu_items[@selection].title
+  end
+
+  def close
+    @win.close
   end
 
 end

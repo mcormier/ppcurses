@@ -14,18 +14,19 @@ module PPCurses
     #
     # Case 2: Received a list of menu_items
 	  def initialize( menu_items, action_items )
+      super( menu_items, action_items )
       @selection = 0
       @max_menu_width = 0
 
       @menu_items = []
 
-      self.build_menu_items
+      self.build_menu_items( menu_items, action_items )
 
       self.create_window
 
 	  end
 
-    def build_menu_items
+    def build_menu_items( menu_items, action_items )
       @menu_items = []
 
       (0...menu_items.length).each { |i|
@@ -51,7 +52,7 @@ module PPCurses
     end
 
 	  def show
-      @win.box('|', '-')
+      @win.box(self.side_wall_char, self.top_bot_wall_char)
       y = 2
       x = 2
 
@@ -122,10 +123,6 @@ module PPCurses
       false
     end
 
-
-	  def close
-      @win.close
- 	 end
 
 	end
 
