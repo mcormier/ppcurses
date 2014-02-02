@@ -21,7 +21,7 @@ module PPCurses
    
 
     def execute
-      print_prompt()
+      print_prompt
       # Enables reading arrow keys in getch 
       @win.keypad(true)
       while 1
@@ -33,7 +33,7 @@ module PPCurses
         if c == 10 then break end
 
         echo
-        print_prompt()
+        print_prompt
       end
       echo
     end
