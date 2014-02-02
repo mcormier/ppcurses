@@ -18,7 +18,7 @@ module PPCurses
 
        menu_items.each do |item|
          @items.push item
-         if item.length > @max_menu_width then @max_menu_width = item.length end
+         @max_menu_width = item.length if item.length > @max_menu_width
        end
 
       unless action_items.nil?
@@ -46,13 +46,13 @@ module PPCurses
       y = 2
       x = 2
 
-      for i in 0...@items.length
+      (0...@items.length).each { |i|
         @win.setpos(y, x)
-        if @selection == i then @win.attron(A_REVERSE) end
+        @win.attron(A_REVERSE) if @selection == i
         @win.addstr(@items[i])
-        if @selection == i then @win.attroff(A_REVERSE) end
+        @win.attroff(A_REVERSE) if @selection == i
         y += 1
-      end
+      }
 
        @win.refresh
 
@@ -75,45 +75,43 @@ module PPCurses
           break
         end
 
-        if not_processed then
-          @sub_menu.handle_menu_selection(c) if @sub_menu
-        end
+        @sub_menu.handle_menu_selection(c) if not_processed && @sub_menu
 
       end
 
 	  end
- 
-	  def handle_menu_selection(c)
-		n_choices = @items.length
 
-		if c == KEY_UP
-		  if @selection == 0 then @selection = n_choices-1 else @selection -= 1 end
-		  self.show
-		  return true
-		end
+    def handle_menu_selection(c)
+      n_choices = @items.length
 
-		if c == KEY_DOWN
-		  if @selection == n_choices-1 then @selection = 0  else @selection += 1 end
-		  self.show
-		  return true
-		end
+      if c == KEY_UP
+        (@selection == 0) ? @selection = n_choices - 1 : @selection -= 1
+        self.show
+        return true
+      end
 
-		if c == 10 # ENTER
+      if c == KEY_DOWN
+        (@selection == n_choices-1) ? @selection = 0 : @selection += 1
+        self.show
+        return true
+      end
 
-		  unless @global_action.nil?
-			  @global_action.execute
-		  end
+      if c == 10 # ENTER
 
-		  unless @actions.nil? or @actions[@selection].nil?
-			  @actions[@selection].execute
-		  end
+        unless @global_action.nil?
+          @global_action.execute
+        end
 
-		  self.show
-		  return true
-		end
+        unless @actions.nil? or @actions[@selection].nil?
+          @actions[@selection].execute
+        end
 
-		 false
-	  end
+        self.show
+        return true
+      end
+
+      false
+    end
 
 
 	  def close
