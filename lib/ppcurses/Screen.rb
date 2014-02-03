@@ -5,7 +5,9 @@ module PPCurses
 
   # Screen initializes the Curses screen 
   # Pass a code block to the run method to start things
-	class Screen 
+  #
+  # noinspection RubyResolve
+  class Screen
 
     # Creates a curses session
     #
