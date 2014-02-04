@@ -5,10 +5,10 @@ require_relative 'BaseMenu.rb'
 require 'curses'
 
 module PPCurses
-	#noinspection RubyResolve
+  #noinspection RubyResolve
   class Menu < BaseMenu
 
-	  def show
+    def show
       @win.box(self.side_wall_char, self.top_bot_wall_char)
       y = 2
       x = 2
@@ -24,13 +24,13 @@ module PPCurses
        @win.refresh
 
        @sub_menu.show if @sub_menu
-	  end
+    end
 
-	  def set_global_action(action)
-		  @global_action = action
-	  end
+    def set_global_action(action)
+      @global_action = action
+    end
 
-	  def menu_selection
+    def menu_selection
 
       while 1
         c = @win.getch
@@ -46,7 +46,7 @@ module PPCurses
 
       end
 
-	  end
+    end
 
     def handle_menu_selection(c)
       n_choices = @menu_items.length
@@ -81,6 +81,6 @@ module PPCurses
     end
 
 
-	end
+  end
 
 end
