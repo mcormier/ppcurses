@@ -9,8 +9,8 @@ module PPCurses
     end
 
     def execute
-      @menu.show()
-      @menu.menu_selection()
+      @menu.show
+      @menu.menu_selection
     end
 
   end
