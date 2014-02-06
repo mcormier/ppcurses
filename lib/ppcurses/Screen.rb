@@ -1,3 +1,6 @@
+# Curses reference:
+# http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
+
 require 'curses'
 include Curses
 
@@ -14,8 +17,10 @@ module PPCurses
     # Example:
     #   >> myScreen.run { displayMenu() }
     #
-    def run( )
+    def run
       begin
+        # TODO -- Sniff whether terminal supports unicode or not.
+
         init_screen
         Curses.raw
         clear
