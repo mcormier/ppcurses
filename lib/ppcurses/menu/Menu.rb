@@ -16,7 +16,7 @@ module PPCurses
       (0...@menu_items.length).each { |i|
         @win.setpos(y, x)
         @win.attron(A_REVERSE) if @selection == i
-        @win.addstr(@menu_items[i].title)
+        @win.addstr(@menu_items[i].display_string)
         @win.attroff(A_REVERSE) if @selection == i
         y += 1
       }

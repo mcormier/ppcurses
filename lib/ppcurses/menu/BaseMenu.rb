@@ -56,8 +56,8 @@ module PPCurses
     def find_max_menu_width
       @max_menu_width = 0
       (0...menu_items.length).each { |i|
-        title = menu_items[i].title
-        @max_menu_width = title.length if title.length > @max_menu_width
+        display = menu_items[i].display_string
+        @max_menu_width = display.length if display.length > @max_menu_width
       }
     end
 
