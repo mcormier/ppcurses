@@ -19,8 +19,6 @@ module PPCurses
     #
     def run
       begin
-        # TODO -- Sniff whether terminal supports unicode or not.
-
         init_screen
         Curses.raw
         clear
