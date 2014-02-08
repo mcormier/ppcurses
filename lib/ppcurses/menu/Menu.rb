@@ -77,7 +77,12 @@ module PPCurses
         return true
       end
 
-      false
+      item_consumed = @menu_items[@selection].handle_key(c)
+      if item_consumed
+        self.show
+      end
+
+      item_consumed
     end
 
 
