@@ -1,6 +1,7 @@
 
 module PPCurses
  require_relative  'ppcurses/Screen.rb'
+ require_relative  'ppcurses/Constants.rb'
  # Menus
  require_relative  'ppcurses/menu/Menu.rb'
  require_relative  'ppcurses/menu/CompositeMenu.rb'

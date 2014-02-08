@@ -59,7 +59,7 @@ module PPCurses
 
         self.handle_menu_selection(c)
 
-        if c == 27 # ESCAPE
+        if c == ESCAPE
           @win.clear
           @win.refresh
           break
@@ -83,7 +83,7 @@ module PPCurses
         self.show
       end
 
-      if c == 10 then # ENTER
+      if c == ENTER then
         unless @actions.nil?
           @actions[@selection].execute
           self.show

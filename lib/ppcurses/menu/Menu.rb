@@ -37,7 +37,7 @@ module PPCurses
 
         not_processed = !self.handle_menu_selection(c)
 
-        if c == 27  # ESCAPE
+        if c == ESCAPE
           self.hide
           break
         end
@@ -63,7 +63,7 @@ module PPCurses
         return true
       end
 
-      if c == 10 # ENTER
+      if c == ENTER
 
         unless @global_action.nil?
           @global_action.execute
