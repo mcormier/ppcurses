@@ -14,8 +14,8 @@ string_action = PPCurses::GetStringAction.new('What is your name? ')
 integer_action = PPCurses::GetIntegerAction.new('Input an integer? ')
 
 def do_action(action)
-  action.show()
-  action.execute()
+  action.show
+  action.execute
 end
 
 
@@ -29,8 +29,8 @@ SQL
 sql_action = PPCurses::InsertSQLDataAction.new( [string_action, integer_action],
                                                 'Insert into testTable(name, val) values (?, ?)', db)
 
-screen = PPCurses::Screen.new()
-screen.run { doAction(sql_action) }
+screen = PPCurses::Screen.new
+screen.run { do_action(sql_action) }
 
 
 db.close
