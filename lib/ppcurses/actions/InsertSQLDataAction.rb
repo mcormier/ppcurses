@@ -37,7 +37,7 @@ module PPCurses
       proceed = GetBooleanAction.new('Proceed? ')
       proceed.set_parent_action(self)
       proceed.set_window(@win)
-      proceed.execute()
+      proceed.execute
 
       did_insert = false
 
@@ -46,8 +46,8 @@ module PPCurses
         begin
           prep_statement = @db.prepare(@sql)
           prep_statement.bind_params(data_array)
-          prep_statement.execute()
-          prep_statement.close()
+          prep_statement.execute
+          prep_statement.close
           did_insert = true
           self.print_success_line('Execution successful')
         rescue SQLite3::Exception => e
@@ -56,7 +56,7 @@ module PPCurses
         ensure
           self.print_line('')
           self.print_line('< Press any key to continue > ')
-          @win.getch()
+          @win.getch
         end
 
       end
