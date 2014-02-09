@@ -10,7 +10,11 @@ module PPCurses
 
   class MenuItem
     attr_accessor :title
-    attr_accessor :action
+
+    # Who to notify when menu is selected chosen?
+    # The target should be a method selector, and
+    attr_accessor :target
+
     attr_accessor :state
     attr_accessor :selectable
 
@@ -45,6 +49,16 @@ module PPCurses
 
       if key == ' ' and @selectable
         toggle_on_off_state
+        unless @target.nil?
+          @target.call(self)
+        end
+        return true
+      end
+
+      if key == ENTER
+        unless @target.nil?
+          @target.call(self)
+        end
         return true
       end
 

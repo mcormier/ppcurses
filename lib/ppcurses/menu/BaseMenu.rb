@@ -46,7 +46,7 @@ module PPCurses
       (0...menu_items.length).each { |i|
         menu_item = MenuItem.new(menu_items[i])
         unless action_items.nil?
-          menu_item.action = action_items[i]
+          menu_item.target= action_items[i].method(:execute)
         end
 
         @menu_items.push(menu_item)

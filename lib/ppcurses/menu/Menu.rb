@@ -63,14 +63,10 @@ module PPCurses
         return true
       end
 
-      if c == ENTER
+      if c == ENTER && !@global_action.nil?
 
         unless @global_action.nil?
           @global_action.execute
-        end
-
-        unless @menu_items[@selection].action.nil?
-          @menu_items[@selection].action.execute
         end
 
         self.show

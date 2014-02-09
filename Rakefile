@@ -26,5 +26,6 @@ task :testMenu do
   ruby 'test/menu/menuInMenu.rb'
   ruby 'test/menu/compositeMenu.rb'
   ruby 'test/menu/menuWmenuItems.rb'
+  ruby 'test/menu/menuItemsWTarget.rb'
 end
 
