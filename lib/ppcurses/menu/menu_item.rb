@@ -45,25 +45,37 @@ module PPCurses
 
     end
 
+    def call_target
+      unless @target.nil?
+        case @target.arity
+          when 0
+            @target.call
+          when 1
+            @target.call(self)
+          else
+            raise ArgumentError, "Too many parameters for target don't know what to do"
+        end
+      end
+    end
+
+
+
     def handle_key(key)
 
       if key == ' ' and @selectable
         toggle_on_off_state
-        unless @target.nil?
-          @target.call(self)
-        end
+        call_target
         return true
       end
 
       if key == ENTER
-        unless @target.nil?
-          @target.call(self)
-        end
+        call_target
         return true
       end
 
       false
     end
+
 
   end
 
