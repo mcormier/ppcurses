@@ -29,7 +29,7 @@ class GetDataAction < BaseAction
   def data
     values = []
     @actions.each  do |action|
-       values.push(action.data())
+       values.push( action.data )
     end
     values
   end
@@ -45,18 +45,18 @@ class GetDataAction < BaseAction
   end
 
   def execute
-    create_window()
+    create_window
     echo
 
-    @win.setpos(@win.cury,x_padding())
+    @win.setpos(@win.cury, x_padding )
 
-    self.before_actions()
+    self.before_actions
     
     @actions.each  do |action|
       action.execute
     end
 
-    self.after_actions()
+    self.after_actions
 
     noecho
     @win.clear 
@@ -65,9 +65,9 @@ class GetDataAction < BaseAction
   end
 
   def print_line(string)
-    @win.setpos(@win.cury(), win_padding())
+    @win.setpos(@win.cury, win_padding)
     @win.addstr(string)
-    @win.setpos(@win.cury() + 1, win_padding())
+    @win.setpos(@win.cury + 1, win_padding)
   end
 
   def print_success_line(string)
