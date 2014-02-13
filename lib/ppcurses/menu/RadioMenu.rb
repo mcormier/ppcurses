@@ -90,9 +90,11 @@ module PPCurses
         end
       end
     end
-   
 
 
+    def selected_menu_name
+      @items[@selection]
+    end
 
   end
 
