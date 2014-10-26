@@ -21,6 +21,7 @@ module PPCurses
       begin
         init_screen
         Curses.raw
+        Curses.ESCDELAY=0
         clear
         curs_set(0) # Makes cursor invisible
         noecho
