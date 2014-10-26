@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# TODO -- get version number from ppcurses.gemspec and maybe make this script in ruby - maybe push thi into rake
+# TODO -- get version number from ppcurses.gemspec and maybe make this script in ruby - maybe push this into rake
 
 VERSION=0.0.25
 
