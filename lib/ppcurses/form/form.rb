@@ -17,6 +17,7 @@ module PPCurses
       for i in @elements.each
         @win.setpos(y, x)
         i.show(@win)
+        y = y + 1
       end
 
     end
