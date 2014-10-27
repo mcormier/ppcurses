@@ -10,8 +10,8 @@ module PPCurses
       @size = size
     end
 
-    def show
-      @win.addstr("#{@label}: ")
+    def show(screen)
+      screen.addstr("#{@label}: ")
     end
 
   end
