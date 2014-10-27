@@ -9,9 +9,11 @@ require_relative '../../lib/ppcurses.rb'
 def display_form
 
   first_name = PPCurses::InputElement.new('First Name', 10)
+  last_name = PPCurses::InputElement.new('Last Name', 10)
   form = PPCurses::Form.new(Curses)
 
   form.elements.push(first_name)
+  form.elements.push(last_name)
   form.show
 
   Curses.getch
