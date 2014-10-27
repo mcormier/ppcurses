@@ -16,7 +16,7 @@ module PPCurses
 
       for i in @elements.each
         @win.setpos(y, x)
-        @win.addstr("BLAH")
+        i.show(@win)
       end
 
     end
