@@ -10,6 +10,9 @@ module PPCurses
       @size = size
     end
 
+    def show
+      @win.addstr("#{@label}: ")
+    end
 
   end
 
