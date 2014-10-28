@@ -12,8 +12,6 @@ module PPCurses
 
     def show
 
-      @selected_element = @elements[0]
-
       y = 1
       x = 1
 
@@ -28,7 +26,19 @@ module PPCurses
     end
 
 
+    def set_selected_element(new_element)
+      if @selected_element.nil?
+        @selected_element = new_element
+      end
+
+      @selected_element.selected=true
+
+    end
+
+
     def handle_input
+
+      set_selected_element(@elements[0])
 
       while 1
         c = @win.getch
@@ -41,13 +51,13 @@ module PPCurses
         end
 
          if c == KEY_UP
+           #@selected_element = @selected_element - 1
            # TODO -- give focus to previous element
-           break
          end
 
          if c == KEY_DOWN
-           # TODO -- give focus to next element
-           break
+           #@selected_element = @selected_element + 1
+           # TODO -- check bounds/use datastructure
          end
 
        # @sub_menu.handle_menu_selection(c) if not_processed && @sub_menu
