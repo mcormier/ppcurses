@@ -4,6 +4,26 @@
 require 'curses'
 include Curses
 
+module OS
+  def OS.windows?
+    (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+  end
+
+  def OS.mac?
+    (/darwin/ =~ RUBY_PLATFORM) != nil
+  end
+
+  def OS.unix?
+    !OS.windows?
+  end
+
+  def OS.linux?
+    OS.unix? and not OS.mac?
+  end
+end
+
+
+
 module PPCurses
 
   # Screen initializes the Curses screen 
@@ -21,13 +41,19 @@ module PPCurses
       begin
         init_screen
         Curses.raw
-        Curses.ESCDELAY=0
+
+        # Can't implement regardless as this can cause an unsupportedOperationException on some configurations
+        #  like cygwin.
+        if OS.unix?
+          Curses.ESCDELAY=0
+        end
+
         clear
         curs_set(0) # Makes cursor invisible
         noecho
         cbreak
         start_color
-      
+
         yield 
         
       rescue SystemExit, Interrupt
@@ -36,7 +62,7 @@ module PPCurses
       ensure
         close_screen
       end
-    end 
+    end
 
   end
 end
