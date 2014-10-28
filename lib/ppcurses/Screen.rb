@@ -48,6 +48,11 @@ module PPCurses
           Curses.ESCDELAY=0
         end
 
+
+        #  Otherwise arrow keys, etc can't be read from the main screen and cause the
+        #  program to stop.
+        Curses.stdscr.keypad(true)
+
         clear
         curs_set(0) # Makes cursor invisible
         noecho
