@@ -47,28 +47,27 @@ module PPCurses
       while 1
         c = @win.getch
 
-        #not_processed = !self.handle_menu_selection(c)
-
         if c == ESCAPE
           # exit for now
           break
         end
 
-         if c == KEY_UP
+         if c == KEY_UP or c == KEY_DOWN
+
            selected_index = @elements.index(@selected_element)
-           (selected_index == 0) ? next_selection = n_choices - 1 : next_selection =  selected_index - 1
+
+           if c == KEY_DOWN
+             (selected_index == n_choices-1) ? next_selection = 0 : next_selection = selected_index + 1
+           else
+             (selected_index == 0) ? next_selection = n_choices - 1 : next_selection =  selected_index - 1
+           end
+
            set_selected_element(@elements[next_selection])
-           show
+         else
+           @selected_element.handle_menu_selection(c)
          end
 
-         if c == KEY_DOWN
-           selected_index = @elements.index(@selected_element)
-           (selected_index == n_choices-1) ? next_selection = 0 : next_selection = selected_index + 1
-           set_selected_element(@elements[next_selection])
-           show
-         end
-
-       # @sub_menu.handle_menu_selection(c) if not_processed && @sub_menu
+         show
 
       end
 
