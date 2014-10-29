@@ -26,6 +26,10 @@ module PPCurses
       screen.attroff(A_UNDERLINE)
     end
 
+    def handle_menu_selection( key )
+
+    end
+
   end
 
 end
