@@ -16,8 +16,9 @@ module PPCurses
     def show(screen)
       # Show Label
       screen.attron(A_REVERSE) if @selected
-      screen.addstr("#{@label}: ")
+      screen.addstr("#{@label}:")
       screen.attroff(A_REVERSE) if @selected
+      screen.addstr(' ')
 
       # Show input value
       screen.attron(A_UNDERLINE)
