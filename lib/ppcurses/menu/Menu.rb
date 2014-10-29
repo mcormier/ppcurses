@@ -8,6 +8,8 @@ module PPCurses
   #noinspection RubyResolve
   class Menu < BaseMenu
 
+    attr_accessor :selection
+
     def show
       @win.box(self.side_wall_char, self.top_bot_wall_char)
       y = 2
