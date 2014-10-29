@@ -39,6 +39,7 @@ module PPCurses
 
 
     def handle_input
+      n_choices = @elements.length
 
       set_selected_element(@elements[0])
       show
@@ -55,13 +56,15 @@ module PPCurses
 
          if c == KEY_UP
            selected_index = @elements.index(@selected_element)
-           set_selected_element(@elements[selected_index-1])
+           (selected_index == 0) ? next_selection = n_choices - 1 : next_selection =  selected_index - 1
+           set_selected_element(@elements[next_selection])
            show
          end
 
          if c == KEY_DOWN
            selected_index = @elements.index(@selected_element)
-           set_selected_element(@elements[selected_index+1])
+           (selected_index == n_choices-1) ? next_selection = 0 : next_selection = selected_index + 1
+           set_selected_element(@elements[next_selection])
            show
          end
 
