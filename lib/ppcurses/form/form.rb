@@ -12,15 +12,18 @@ module PPCurses
 
     def show
 
+      curs_set($visible)
+
       y = 1
       x = 1
 
       for i in @elements.each
         @win.setpos(y, x)
-        i.show(@win)
+        i.show(@win.stdscr)
         y = y + 1
       end
 
+      @selected_element.set_curs_pos(@win.stdscr)
       # TODO display a button to exit SUBMIT/CANCEL
 
     end

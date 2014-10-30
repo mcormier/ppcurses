@@ -15,7 +15,6 @@ def display_form
   form.elements.push(first_name)
   form.elements.push(last_name)
 
-  form.show
   form.handle_input
 
 

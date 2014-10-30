@@ -26,6 +26,8 @@ end
 
 module PPCurses
 
+
+
   # Screen initializes the Curses screen 
   # Pass a code block to the run method to start things
   #
@@ -54,7 +56,7 @@ module PPCurses
         Curses.stdscr.keypad(true)
 
         clear
-        curs_set(0) # Makes cursor invisible
+        curs_set($invisible)
         noecho
         cbreak
         start_color

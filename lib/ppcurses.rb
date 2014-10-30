@@ -1,5 +1,9 @@
 
 module PPCurses
+
+  $invisible = 0
+  $visible = 1
+
  require_relative  'ppcurses/Screen.rb'
  require_relative  'ppcurses/Constants.rb'
  # Menus
