@@ -25,7 +25,8 @@ module PPCurses
       screen.attroff(A_REVERSE) if @selected
       screen.addstr(' ')
 
-      @cursor_x_pos = screen.curx
+      # save cursor position based on value length
+      @cursor_x_pos = screen.curx + @value.length
       @cursor_y_pos = screen.cury
 
       # Show input value
