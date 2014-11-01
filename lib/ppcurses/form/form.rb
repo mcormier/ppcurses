@@ -12,7 +12,7 @@ module PPCurses
 
     def show
 
-      curs_set($visible)
+      curs_set(VISIBLE)
 
       y = 1
       x = 1

@@ -56,7 +56,7 @@ module PPCurses
         Curses.stdscr.keypad(true)
 
         clear
-        curs_set($invisible)
+        curs_set(INVISIBLE)
         noecho
         cbreak
         start_color

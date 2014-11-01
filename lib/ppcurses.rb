@@ -3,8 +3,8 @@ module PPCurses
 
   PP_KEY_DELETE = 127
 
-  $invisible = 0
-  $visible = 1
+  INVISIBLE = 0
+  VISIBLE = 1
 
  require_relative  'ppcurses/Screen.rb'
  require_relative  'ppcurses/Constants.rb'
