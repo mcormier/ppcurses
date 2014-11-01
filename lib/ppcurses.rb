@@ -2,7 +2,8 @@
 module PPCurses
 
   PP_KEY_DELETE = 127
-
+  PP_KEY_ESCAPE = 10
+  
   INVISIBLE = 0
   VISIBLE = 1
 
