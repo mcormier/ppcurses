@@ -81,6 +81,13 @@ module PPCurses
       end
 
       # Adding new characters to the string
+
+      # Check size of string before adding another character
+      if @value.length >= @size
+        # Ignore input
+        return
+      end
+
       if @cursor_location == @value.length
         @value += key
       else
