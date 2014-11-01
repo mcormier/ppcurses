@@ -50,8 +50,16 @@ module PPCurses
     def handle_menu_selection( key )
 
       # TODO -- filter control characters
-      # TODO -- handle the delete key
       # TODO -- handle editing in the middle of the string
+
+      if key == PP_KEY_DELETE then
+        # TODO check where the cursor is.  Logic below
+        # assumes cursor is at the end of the string
+
+        @value = @value.slice(0..@cursor_location-2)
+        @cursor_location -= 1
+        return
+      end
 
       if key == KEY_LEFT then
         @cursor_location -= 1 unless @cursor_location == 0
