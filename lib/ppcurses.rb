@@ -1,6 +1,8 @@
 
 module PPCurses
 
+  PP_KEY_DELETE = 127
+
   $invisible = 0
   $visible = 1
 
