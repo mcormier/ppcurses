@@ -50,8 +50,18 @@ module PPCurses
     def handle_menu_selection( key )
 
       # TODO -- filter control characters
-      # TODO -- add a cursor position and move it based on the left and right arrow keys
-      # TODO -- show the cursor...
+      # TODO -- handle the delete key
+      # TODO -- handle editing in the middle of the string
+
+      if key == KEY_LEFT then
+        @cursor_location -= 1 unless @cursor_location == 0
+        return
+      end
+
+      if key == KEY_RIGHT then
+        @cursor_location += 1 unless @cursor_location == @value.length
+        return
+      end
 
       @value += key
       @cursor_location += 1
