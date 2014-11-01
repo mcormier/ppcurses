@@ -6,9 +6,10 @@ module PPCurses
   DELETE = 127
   SPACE_BAR = ' '
 
-  
+  # To be used in conjunction with curs_set for more readable code e.g. curs_set(INVISIBLE)
   INVISIBLE = 0
   VISIBLE = 1
+
 
  require_relative  'ppcurses/Screen.rb'
  # Menus
