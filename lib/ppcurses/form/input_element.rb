@@ -40,7 +40,6 @@ module PPCurses
     def handle_menu_selection( key )
 
       # TODO -- filter control characters
-      # TODO -- handle editing in the middle of the string
 
       if key == PP_KEY_DELETE
 
@@ -53,12 +52,17 @@ module PPCurses
         # Cursor is at the end of the string, remove the last character
         if @cursor_location == @value.length
           @value = @value.slice(0..@cursor_location-2)
+        elsif @cursor_location == 1
+          # cursor is right after the first character
+          @value = @value.slice(1..@value.length-1)
         else
           # Cursor is in the middle of the string, remove the character at the cursor location
+          # Example:
           #
-          #   ^ - cursor-location = 3
-          # 0123
-          # abcd
+          # abcdefg
+          # 1234567
+          #   ^ -> cursor-location = 3
+          #
           @value = @value.slice(0..@cursor_location-2) + @value.slice(@cursor_location..@value.length-1)
         end
 
@@ -66,19 +70,26 @@ module PPCurses
         return
       end
 
-      if key == KEY_LEFT then
+      if key == KEY_LEFT
         @cursor_location -= 1 unless @cursor_location == 0
         return
       end
 
-      if key == KEY_RIGHT then
+      if key == KEY_RIGHT
         @cursor_location += 1 unless @cursor_location == @value.length
         return
       end
 
-      @value += key
+      # Adding new characters to the string
+      if @cursor_location == @value.length
+        @value += key
+      else
+        @value = @value.slice(0..@cursor_location-1) + key + @value.slice(@cursor_location..@value.length-1)
+      end
+
       @cursor_location += 1
     end
+
 
     def set_curs_pos(screen)
       x =  @value_start_x_pos + @cursor_location
