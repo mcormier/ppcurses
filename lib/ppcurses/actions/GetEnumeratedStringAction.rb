@@ -42,7 +42,7 @@ module PPCurses
 
         if c == KEY_LEFT then @current_option = @current_option-1 end
         if c == KEY_RIGHT then @current_option = @current_option+1 end
-        if c == 10 then break end
+        if c == PP_KEY_ESCAPE then break end
 
         if @current_option < 0 then @current_option = @options.length-1 end
         if @current_option > @options.length-1 then @current_option = 0 end
