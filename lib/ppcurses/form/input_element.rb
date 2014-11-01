@@ -34,29 +34,34 @@ module PPCurses
       print_value( screen )
     end
 
-    def print_label( screen )
-      screen.attron(A_REVERSE) if @selected
-      screen.addstr("#{@label}:")
-      screen.attroff(A_REVERSE) if @selected
-      screen.addstr(' ')
-    end
 
-    def print_value( screen )
-      screen.attron(A_UNDERLINE)
-      screen.addstr(@value.ljust(@size))
-      screen.attroff(A_UNDERLINE)
-    end
+    # TODO -- rename to handle key input, menu doesn't make sense ...
 
     def handle_menu_selection( key )
 
       # TODO -- filter control characters
       # TODO -- handle editing in the middle of the string
 
-      if key == PP_KEY_DELETE then
-        # TODO check where the cursor is.  Logic below
-        # assumes cursor is at the end of the string
+      if key == PP_KEY_DELETE
 
-        @value = @value.slice(0..@cursor_location-2)
+        # Cursor is at the front of the string, nothing in
+        # front of it to delete, or there is nothing to delete
+        if @cursor_location == 0 or @value.length == 0
+          return
+        end
+
+        # Cursor is at the end of the string, remove the last character
+        if @cursor_location == @value.length
+          @value = @value.slice(0..@cursor_location-2)
+        else
+          # Cursor is in the middle of the string, remove the character at the cursor location
+          #
+          #   ^ - cursor-location = 3
+          # 0123
+          # abcd
+          @value = @value.slice(0..@cursor_location-2) + @value.slice(@cursor_location..@value.length-1)
+        end
+
         @cursor_location -= 1
         return
       end
@@ -80,6 +85,23 @@ module PPCurses
 
       screen.setpos( @value_start_y_pos, x )
     end
+
+    # --------------------------------------------------------------------------------
+    private
+
+    def print_label( screen )
+      screen.attron(A_REVERSE) if @selected
+      screen.addstr("#{@label}:")
+      screen.attroff(A_REVERSE) if @selected
+      screen.addstr(' ')
+    end
+
+    def print_value( screen )
+      screen.attron(A_UNDERLINE)
+      screen.addstr(@value.ljust(@size))
+      screen.attroff(A_UNDERLINE)
+    end
+
 
   end
 
