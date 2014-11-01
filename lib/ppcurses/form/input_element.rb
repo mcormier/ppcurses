@@ -19,17 +19,23 @@ module PPCurses
     end
 
     def show(screen)
-      # Show Label
-      screen.attron(A_REVERSE) if @selected
-      screen.addstr("#{@label}:")
-      screen.attroff(A_REVERSE) if @selected
-      screen.addstr(' ')
+      print_label( screen )
 
       # save cursor position based on value length
       @cursor_x_pos = screen.curx + @value.length
       @cursor_y_pos = screen.cury
 
-      # Show input value
+      print_value( screen )
+    end
+
+    def print_label( screen )
+      screen.attron(A_REVERSE) if @selected
+      screen.addstr("#{@label}:")
+      screen.attroff(A_REVERSE) if @selected
+      screen.addstr(' ')
+    end
+
+    def print_value( screen )
       screen.attron(A_UNDERLINE)
       screen.addstr(@value.ljust(@size))
       screen.attroff(A_UNDERLINE)
