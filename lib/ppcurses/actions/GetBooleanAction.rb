@@ -30,7 +30,7 @@ module PPCurses
 
         if c == KEY_LEFT then @state = false end
         if c == KEY_RIGHT then @state = true end
-        if c == 10 then break end
+        if c == PP_KEY_ESCAPE then break end
 
         echo
         print_prompt
