@@ -6,7 +6,6 @@ module PPCurses
   DELETE = 127
   SPACE_BAR = ' '
 
-  PP_KEY_ESCAPE = 10
   
   INVISIBLE = 0
   VISIBLE = 1
