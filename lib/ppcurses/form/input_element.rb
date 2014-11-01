@@ -7,8 +7,14 @@ module PPCurses
     attr_accessor :size
     attr_accessor :selected
 
-    attr_accessor :cursor_x_pos
-    attr_accessor :cursor_y_pos
+    attr_accessor :value_start_x_pos
+    attr_accessor :value_start_y_pos
+
+    # Stores the X location of the cursor relative to the
+    # value being displayed.  If the cursor is in
+    # the middle of the string then subsequent keys
+    # will be added from this location, etc.
+    attr_accessor :cursor_location
 
 
     def initialize(label, size )
@@ -16,14 +22,14 @@ module PPCurses
       @size = size
       @selected = false
       @value = ''
+      @cursor_location = 0
     end
 
     def show(screen)
       print_label( screen )
 
-      # save cursor position based on value length
-      @cursor_x_pos = screen.curx + @value.length
-      @cursor_y_pos = screen.cury
+      @value_start_x_pos = screen.curx
+      @value_start_y_pos = screen.cury
 
       print_value( screen )
     end
@@ -48,10 +54,13 @@ module PPCurses
       # TODO -- show the cursor...
 
       @value += key
+      @cursor_location += 1
     end
 
     def set_curs_pos(screen)
-      screen.setpos( @cursor_y_pos, @cursor_x_pos )
+      x =  @value_start_x_pos + @cursor_location
+
+      screen.setpos( @value_start_y_pos, x )
     end
 
   end
