@@ -3,9 +3,9 @@ module PPCurses
 
   ENTER = 10
   ESCAPE = 27
+  DELETE = 127
   SPACE_BAR = ' '
 
-  PP_KEY_DELETE = 127
   PP_KEY_ESCAPE = 10
   
   INVISIBLE = 0

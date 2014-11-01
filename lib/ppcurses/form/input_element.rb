@@ -41,7 +41,7 @@ module PPCurses
 
       # TODO -- filter control characters
 
-      if key == PP_KEY_DELETE
+      if key == DELETE
 
         # Cursor is at the front of the string, nothing in
         # front of it to delete, or there is nothing to delete
