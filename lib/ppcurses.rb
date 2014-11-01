@@ -1,6 +1,10 @@
 
 module PPCurses
 
+  ENTER = 10
+  ESCAPE = 27
+  SPACE_BAR = ' '
+
   PP_KEY_DELETE = 127
   PP_KEY_ESCAPE = 10
   
@@ -8,7 +12,6 @@ module PPCurses
   VISIBLE = 1
 
  require_relative  'ppcurses/Screen.rb'
- require_relative  'ppcurses/Constants.rb'
  # Menus
  require_relative  'ppcurses/menu/Menu.rb'
  require_relative  'ppcurses/menu/CompositeMenu.rb'
