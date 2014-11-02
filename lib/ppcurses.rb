@@ -28,6 +28,7 @@ module PPCurses
  require_relative  'ppcurses/actions/InsertSQLDataAction.rb'
  # Forms
  require_relative  'ppcurses/form/form.rb'
+ require_relative  'ppcurses/form/button.rb'
  require_relative  'ppcurses/form/input_element.rb'
 
 end
