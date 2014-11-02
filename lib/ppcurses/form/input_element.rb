@@ -39,8 +39,6 @@ module PPCurses
 
     def handle_menu_selection( key )
 
-      # TODO -- filter control characters
-
       if key == DELETE
 
         # Cursor is at the front of the string, nothing in
@@ -77,6 +75,12 @@ module PPCurses
 
       if key == KEY_RIGHT
         @cursor_location += 1 unless @cursor_location == @value.length
+        return
+      end
+
+
+      # Ignore control characters
+      if key.is_a?(Fixnum)
         return
       end
 
