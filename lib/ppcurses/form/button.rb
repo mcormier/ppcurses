@@ -36,7 +36,7 @@ module PPCurses
   # For grouping two buttons together, i.e. SUBMIT/CANCEL
   class ButtonPair
 
-
+    attr_accessor :selected
 
     def initialize(button1_label, button2_label)
       @button1 = Button.new(button1_label)
@@ -47,7 +47,9 @@ module PPCurses
 
       # TODO -- create a Point class
       x = screen.curx
-      y = screen.cury
+      y = screen.cury + 1
+      screen.setpos(y,x)
+
 
       @button1.show(screen)
 
@@ -62,6 +64,10 @@ module PPCurses
 
     end
 
+
+    def set_curs_pos(screen)
+      curs_set(INVISIBLE)
+    end
 
   end
 

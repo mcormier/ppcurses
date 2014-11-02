@@ -103,6 +103,7 @@ module PPCurses
 
 
     def set_curs_pos(screen)
+      curs_set(VISIBLE)
       x =  @value_start_x_pos + @cursor_location
 
       screen.setpos( @value_start_y_pos, x )

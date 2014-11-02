@@ -16,9 +16,6 @@ module PPCurses
     end
 
     def show
-
-      curs_set(VISIBLE)
-
       y = 1
       x = 1
 
@@ -27,10 +24,6 @@ module PPCurses
         i.show(@win.stdscr)
         y += 1
       end
-
-      y += 1
-      @win.setpos(y, x)
-      @button_pair.show(@win.stdscr)
 
       @selected_element.set_curs_pos(@win.stdscr)
     end
@@ -49,6 +42,9 @@ module PPCurses
 
 
     def handle_input
+
+      @elements.push(@button_pair)
+
       n_choices = @elements.length
 
       set_selected_element(@elements[0])
