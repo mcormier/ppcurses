@@ -14,7 +14,7 @@ module PPCurses
       x = screen.curx
       y = screen.cury
 
-      screen.addstr(''.ljust(@label.length + 4, '-'))
+      screen.addstr(''.ljust(width, '-'))
       y += 1
       screen.setpos(y,x)
       screen.attron(A_REVERSE) if @selected
@@ -23,7 +23,7 @@ module PPCurses
 
       y += 1
       screen.setpos(y,x)
-      screen.addstr(''.ljust(@label.length + 4, '-'))
+      screen.addstr(''.ljust(width, '-'))
 
     end
 
@@ -37,6 +37,7 @@ module PPCurses
   class ButtonPair
 
     attr_accessor :selected
+    attr_accessor :selected_element
 
     def initialize(button1_label, button2_label)
       @button1 = Button.new(button1_label)
@@ -62,8 +63,41 @@ module PPCurses
 
     def handle_keypress( key )
 
+      if key == KEY_LEFT
+        #@cursor_location -= 1 unless @cursor_location == 0
+        #return
+      end
+
+      if key == KEY_RIGHT
+        #@cursor_location += 1 unless @cursor_location == @value.length
+        #return
+      end
+
     end
 
+
+    def set_selected_element(new_element)
+
+      unless @selected_element.nil?
+        @selected_element.selected=false
+      end
+
+      @selected_element = new_element
+      @selected_element.selected=true
+
+    end
+
+    def selected=(value)
+
+      @selected=value
+
+      if @selected_element.nil?
+        set_selected_element(@button1)
+      else
+        @selected_element.selected=value
+      end
+
+    end
 
     def set_curs_pos(screen)
       curs_set(INVISIBLE)
