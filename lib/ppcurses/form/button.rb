@@ -65,8 +65,11 @@ module PPCurses
     def handle_keypress( key )
 
       if key == KEY_LEFT or key == KEY_RIGHT
-        #@cursor_location += 1 unless @cursor_location == @value.length
-        #return
+        if @selected_element == @button1
+          set_selected_element(@button2)
+        else
+          set_selected_element(@button1)
+        end
       end
 
     end
