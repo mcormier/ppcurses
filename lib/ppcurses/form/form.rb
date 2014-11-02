@@ -5,9 +5,14 @@ module PPCurses
     attr_accessor :elements
     attr_accessor :selected_element
 
+    attr_accessor :submit_button
+    attr_accessor :cancel_button
+
     def initialize (screen)
       @win = screen
       @elements = []
+
+      @button_pair = ButtonPair.new('Submit', 'Cancel')
     end
 
     def show
@@ -20,12 +25,14 @@ module PPCurses
       for i in @elements.each
         @win.setpos(y, x)
         i.show(@win.stdscr)
-        y = y + 1
+        y += 1
       end
 
-      @selected_element.set_curs_pos(@win.stdscr)
-      # TODO display a button to exit SUBMIT/CANCEL
+      y += 1
+      @win.setpos(y, x)
+      @button_pair.show(@win.stdscr)
 
+      @selected_element.set_curs_pos(@win.stdscr)
     end
 
 
