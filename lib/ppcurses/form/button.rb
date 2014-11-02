@@ -14,16 +14,17 @@ module PPCurses
       x = screen.curx
       y = screen.cury
 
+      screen.attron(A_REVERSE) if @selected
       screen.addstr(''.ljust(width, '-'))
       y += 1
       screen.setpos(y,x)
-      screen.attron(A_REVERSE) if @selected
+
       screen.addstr("| #{@label} |")
-      screen.attroff(A_REVERSE) if @selected
 
       y += 1
       screen.setpos(y,x)
       screen.addstr(''.ljust(width, '-'))
+      screen.attroff(A_REVERSE) if @selected
 
     end
 
@@ -63,12 +64,7 @@ module PPCurses
 
     def handle_keypress( key )
 
-      if key == KEY_LEFT
-        #@cursor_location -= 1 unless @cursor_location == 0
-        #return
-      end
-
-      if key == KEY_RIGHT
+      if key == KEY_LEFT or key == KEY_RIGHT
         #@cursor_location += 1 unless @cursor_location == @value.length
         #return
       end
