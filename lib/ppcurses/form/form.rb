@@ -67,7 +67,7 @@ module PPCurses
 
            set_selected_element(@elements[next_selection])
          else
-           @selected_element.handle_menu_selection(c)
+           @selected_element.handle_keypress(c)
          end
 
          show

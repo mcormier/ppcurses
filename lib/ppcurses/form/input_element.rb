@@ -35,9 +35,9 @@ module PPCurses
     end
 
 
-    # TODO -- rename to handle key input, menu doesn't make sense ...
 
-    def handle_menu_selection( key )
+
+    def handle_keypress( key )
 
       if key == DELETE
 
@@ -109,7 +109,7 @@ module PPCurses
     end
 
     # --------------------------------------------------------------------------------
-    private
+    protected
 
     def print_label( screen )
       screen.attron(A_REVERSE) if @selected
