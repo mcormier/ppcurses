@@ -4,10 +4,12 @@ module PPCurses
 
     attr_accessor :label
     attr_accessor :selected
+    attr_accessor :pushed
 
     def initialize(label)
       @label = label
       @selected = false
+      @pushed = false
     end
 
     def show(screen)
@@ -35,11 +37,17 @@ module PPCurses
 
   end
 
+
+
+
   # For grouping two buttons together, i.e. SUBMIT/CANCEL
   class ButtonPair
 
     attr_accessor :selected
     attr_accessor :selected_element
+
+    attr_reader :button1
+    attr_reader :button2
 
     def initialize(button1_label, button2_label)
       @button1 = Button.new(button1_label)
@@ -75,6 +83,7 @@ module PPCurses
       end
 
       if key == ENTER
+        @selected_element.pushed=true
         return true
       end
 
