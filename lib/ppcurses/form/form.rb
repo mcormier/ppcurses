@@ -9,6 +9,7 @@ module PPCurses
       @win = screen
       @elements = []
 
+      # TODO -- don't hard code labels.
       @button_pair = ButtonPair.new('Submit', 'Cancel')
     end
 
@@ -16,11 +17,15 @@ module PPCurses
       y = 1
       x = 1
 
-      for i in @elements.each
+      for i in 0..@elements.length - 3
+        element = @elements[i]
         @win.setpos(y, x)
-        i.show(@win.stdscr)
-        y += 1
+        element.show(@win.stdscr)
+        y += element.height
       end
+
+      @win.setpos(y, x)
+      @button_pair.show(@win.stdscr)
 
       @selected_element.set_curs_pos(@win.stdscr)
     end
@@ -40,7 +45,8 @@ module PPCurses
 
     def handle_input
 
-      @elements.push(@button_pair)
+      @elements.push(@button_pair.button1)
+      @elements.push(@button_pair.button2)
 
       n_choices = @elements.length
 
@@ -50,7 +56,11 @@ module PPCurses
       while 1
         c = @win.getch
 
-        if c == KEY_UP or c == KEY_DOWN or c == TAB
+        if c == TAB
+          tab_consumed = @selected_element.send_tab
+        end
+
+        if c == KEY_UP or c == KEY_DOWN or ( c == TAB and tab_consumed == false)
 
           selected_index = @elements.index(@selected_element)
 

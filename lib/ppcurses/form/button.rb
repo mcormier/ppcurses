@@ -35,6 +35,28 @@ module PPCurses
       @label.length + 4
     end
 
+    def height
+      3
+    end
+
+    def send_tab
+      false
+    end
+
+    def set_curs_pos(screen)
+      curs_set(INVISIBLE)
+    end
+
+    def handle_keypress( key )
+
+      if key == ENTER
+        @pushed=true
+        return true
+      end
+
+      false
+    end
+
   end
 
 
@@ -90,6 +112,15 @@ module PPCurses
       false
     end
 
+
+    def send_tab
+      if @selected_element == @button1
+        set_selected_element(@button2)
+        return true
+      end
+
+      false
+    end
 
     def set_selected_element(new_element)
 
