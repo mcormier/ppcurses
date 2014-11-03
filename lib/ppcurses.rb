@@ -1,6 +1,7 @@
 
 module PPCurses
 
+  TAB   = 9
   ENTER = 10
   ESCAPE = 27
   DELETE = 127
