@@ -74,6 +74,11 @@ module PPCurses
         end
       end
 
+      if key == ENTER
+        return true
+      end
+
+      false
     end
 
 
