@@ -5,9 +5,6 @@ module PPCurses
     attr_accessor :elements
     attr_accessor :selected_element
 
-    attr_accessor :submit_button
-    attr_accessor :cancel_button
-
     def initialize (screen)
       @win = screen
       @elements = []
