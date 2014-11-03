@@ -61,7 +61,7 @@ module PPCurses
         cbreak
         start_color
 
-        yield 
+        return yield
         
       rescue SystemExit, Interrupt
         # Empty Catch block so ruby doesn't puke out
