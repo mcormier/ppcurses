@@ -7,6 +7,7 @@ module PPCurses
 
     def initialize(label)
       @label = label
+      @selected = false
     end
 
     def show(screen)
@@ -43,6 +44,7 @@ module PPCurses
     def initialize(button1_label, button2_label)
       @button1 = Button.new(button1_label)
       @button2 = Button.new(button2_label)
+      @selected = false
     end
 
     def show(screen)
