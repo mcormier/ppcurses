@@ -38,7 +38,6 @@ module PPCurses
     end
 
 
-    # TODO support tab to next element.
     def handle_input
 
       @elements.push(@button_pair)
@@ -51,11 +50,11 @@ module PPCurses
       while 1
         c = @win.getch
 
-        if c == KEY_UP or c == KEY_DOWN
+        if c == KEY_UP or c == KEY_DOWN or c == TAB
 
           selected_index = @elements.index(@selected_element)
 
-          if c == KEY_DOWN
+          if c == KEY_DOWN or c == TAB
             (selected_index == n_choices-1) ? next_selection = 0 : next_selection = selected_index + 1
           else
             (selected_index == 0) ? next_selection = n_choices - 1 : next_selection =  selected_index - 1
