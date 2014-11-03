@@ -38,6 +38,7 @@ module PPCurses
     end
 
 
+    # TODO support tab to next element.
     def handle_input
 
       @elements.push(@button_pair)
@@ -72,6 +73,10 @@ module PPCurses
 
       end
 
+    end
+
+    def submitted?
+      @button_pair.button1.pushed
     end
 
 
