@@ -44,7 +44,7 @@ module PPCurses
         # Cursor is at the front of the string, nothing in
         # front of it to delete, or there is nothing to delete
         if @cursor_location == 0 or @value.length == 0
-          return
+          return false
         end
 
         # Cursor is at the end of the string, remove the last character
@@ -65,23 +65,23 @@ module PPCurses
         end
 
         @cursor_location -= 1
-        return
+        return false
       end
 
       if key == KEY_LEFT
         @cursor_location -= 1 unless @cursor_location == 0
-        return
+        return false
       end
 
       if key == KEY_RIGHT
         @cursor_location += 1 unless @cursor_location == @value.length
-        return
+        return false
       end
 
 
       # Ignore control characters
       if key.is_a?(Fixnum)
-        return
+        return false
       end
 
       # Adding new characters to the string
@@ -89,7 +89,7 @@ module PPCurses
       # Check size of string before adding another character
       if @value.length >= @size
         # Ignore input
-        return
+        return false
       end
 
       if @cursor_location == @value.length
@@ -99,6 +99,7 @@ module PPCurses
       end
 
       @cursor_location += 1
+      false
     end
 
 
