@@ -17,13 +17,15 @@ def display_form
 
   form.handle_input
 
-
+  { first_name: first_name.value, last_name: last_name.value, form_submitted: form.submitted?}
 end
 
 
 
+
 screen = PPCurses::Screen.new
-screen.run { display_form }
+form_response = screen.run { display_form }
 
-
+puts 'Form response data: '
+puts form_response
 
