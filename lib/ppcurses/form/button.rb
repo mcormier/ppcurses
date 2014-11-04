@@ -90,51 +90,6 @@ module PPCurses
 
     end
 
-    def handle_keypress( key )
-
-      if key == KEY_LEFT or key == KEY_RIGHT
-        if @selected_element == @button1
-          set_selected_element(@button2)
-        else
-          set_selected_element(@button1)
-        end
-      end
-
-      if key == ENTER
-        @selected_element.pushed=true
-        return true
-      end
-
-      false
-    end
-
-    def set_selected_element(new_element)
-
-      unless @selected_element.nil?
-        @selected_element.selected=false
-      end
-
-      @selected_element = new_element
-      @selected_element.selected=true
-
-    end
-
-    def selected=(value)
-
-      @selected=value
-
-      if @selected_element.nil?
-        set_selected_element(@button1)
-      else
-        @selected_element.selected=value
-      end
-
-    end
-
-    def set_curs_pos(screen)
-      curs_set(INVISIBLE)
-    end
-
   end
 
 
