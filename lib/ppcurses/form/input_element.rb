@@ -110,10 +110,6 @@ module PPCurses
       screen.setpos( @value_start_y_pos, x )
     end
 
-    def send_tab
-      false
-    end
-
     def height
       1
     end

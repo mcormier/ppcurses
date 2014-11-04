@@ -23,14 +23,12 @@ module PPCurses
     # - def show(screen)
     # - def height
     # - def set_curs_pos(screen)
-    # - def send_tab
     # - def handle_keypress(key)
     #
     def add (element)
       unless element.respond_to?('show'); raise end
       unless element.respond_to?('height'); raise end
       unless element.respond_to?('set_curs_pos'); raise end
-      unless element.respond_to?('send_tab'); raise end
       unless element.respond_to?('handle_keypress'); raise end
 
       @elements.push(element)
@@ -50,11 +48,7 @@ module PPCurses
       while 1
         c = @win.getch
 
-        if c == TAB
-          tab_consumed = @selected_element.send_tab
-        end
-
-        if c == KEY_UP or c == KEY_DOWN or ( c == TAB and tab_consumed == false)
+        if c == KEY_UP or c == KEY_DOWN or c == TAB
 
           selected_index = @elements.index(@selected_element)
 

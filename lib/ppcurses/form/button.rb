@@ -39,10 +39,6 @@ module PPCurses
       3
     end
 
-    def send_tab
-      false
-    end
-
     def set_curs_pos(screen)
       curs_set(INVISIBLE)
     end
@@ -106,16 +102,6 @@ module PPCurses
 
       if key == ENTER
         @selected_element.pushed=true
-        return true
-      end
-
-      false
-    end
-
-
-    def send_tab
-      if @selected_element == @button1
-        set_selected_element(@button2)
         return true
       end
 
