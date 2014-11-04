@@ -12,8 +12,8 @@ def display_form
   last_name = PPCurses::InputElement.new('Last Name', 10)
   form = PPCurses::Form.new(Curses)
 
-  form.elements.push(first_name)
-  form.elements.push(last_name)
+  form.add(first_name)
+  form.add(last_name)
 
   form.handle_input
 

@@ -2,7 +2,7 @@ module PPCurses
 
   class Form
 
-    attr_accessor :elements
+
     attr_accessor :selected_element
 
     def initialize (screen)
@@ -11,6 +11,10 @@ module PPCurses
 
       # TODO -- don't hard code labels.
       @button_pair = ButtonPair.new('Submit', 'Cancel')
+    end
+
+    def add (element)
+      @elements.push(element)
     end
 
     def show
