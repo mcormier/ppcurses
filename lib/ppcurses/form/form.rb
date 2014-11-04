@@ -37,22 +37,7 @@ module PPCurses
       @elements.push(element)
     end
 
-    def show
-      y = 1
-      x = 1
 
-      for i in 0..@elements.length - 3
-        element = @elements[i]
-        @win.setpos(y, x)
-        element.show(@win.stdscr)
-        y += element.height
-      end
-
-      @win.setpos(y, x)
-      @button_pair.show(@win.stdscr)
-
-      @selected_element.set_curs_pos(@win.stdscr)
-    end
 
 
     def set_selected_element(new_element)
@@ -112,6 +97,27 @@ module PPCurses
       @button_pair.button1.pushed
     end
 
+
+
+    # --------------------------------------------------------------------------------
+    protected
+
+    def show
+      y = 1
+      x = 1
+
+      for i in 0..@elements.length - 3
+        element = @elements[i]
+        @win.setpos(y, x)
+        element.show(@win.stdscr)
+        y += element.height
+      end
+
+      @win.setpos(y, x)
+      @button_pair.show(@win.stdscr)
+
+      @selected_element.set_curs_pos(@win.stdscr)
+    end
 
   end
 
