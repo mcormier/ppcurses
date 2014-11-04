@@ -9,8 +9,12 @@ module PPCurses
       @win = screen
       @elements = []
 
-      # TODO -- don't hard code labels.
-      @button_pair = ButtonPair.new('Submit', 'Cancel')
+     set_button_pair( ButtonPair.new('Submit', 'Cancel') )
+    end
+
+    # Expects a ButtonPair object. Use to override the default Submit/Cancel labels
+    def set_button_pair( pair )
+      @button_pair = pair
     end
 
     # Adds an element to the form.  Elements are rendered in the order they are added.
