@@ -59,6 +59,14 @@ module PPCurses
           end
 
           set_selected_element(@elements[next_selection])
+        elsif c == KEY_RIGHT
+          if @selected_element == @button_pair.button1
+            set_selected_element(@button_pair.button2)
+          end
+        elsif c == KEY_LEFT
+          if @selected_element == @button_pair.button2
+            set_selected_element(@button_pair.button1)
+          end
         else
           should_exit = @selected_element.handle_keypress(c)
           if should_exit
