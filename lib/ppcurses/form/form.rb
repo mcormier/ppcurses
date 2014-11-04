@@ -13,7 +13,23 @@ module PPCurses
       @button_pair = ButtonPair.new('Submit', 'Cancel')
     end
 
+    # Adds an element to the form.  Elements are rendered in the order they are added.
+    #
+    # An element must implement the following protocol methods:
+    #
+    # - def show(screen)
+    # - def height
+    # - def set_curs_pos(screen)
+    # - def send_tab
+    # - def handle_keypress(key)
+    #
     def add (element)
+      unless element.respond_to?('show'); raise end
+      unless element.respond_to?('height'); raise end
+      unless element.respond_to?('set_curs_pos'); raise end
+      unless element.respond_to?('send_tab'); raise end
+      unless element.respond_to?('handle_keypress'); raise end
+
       @elements.push(element)
     end
 
