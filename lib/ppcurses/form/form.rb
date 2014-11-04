@@ -2,7 +2,6 @@ module PPCurses
 
   class Form
 
-
     attr_accessor :selected_element
 
     def initialize (screen)
@@ -35,20 +34,6 @@ module PPCurses
       unless element.respond_to?('handle_keypress'); raise end
 
       @elements.push(element)
-    end
-
-
-
-
-    def set_selected_element(new_element)
-
-      unless @selected_element.nil?
-        @selected_element.selected=false
-      end
-
-      @selected_element = new_element
-      @selected_element.selected=true
-
     end
 
 
@@ -117,6 +102,18 @@ module PPCurses
       @button_pair.show(@win.stdscr)
 
       @selected_element.set_curs_pos(@win.stdscr)
+    end
+
+
+    def set_selected_element(new_element)
+
+      unless @selected_element.nil?
+        @selected_element.selected=false
+      end
+
+      @selected_element = new_element
+      @selected_element.selected=true
+
     end
 
   end
