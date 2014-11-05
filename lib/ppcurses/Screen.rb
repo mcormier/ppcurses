@@ -24,6 +24,23 @@ end
 
 
 
+module Curses
+  class Window
+
+    def cur_point
+      PPCurses::PPPoint.new(curx, cury)
+    end
+
+    def set_pos_by_point( p )
+      setpos( p.y, p.x)
+    end
+
+  end
+
+end
+
+
+
 module PPCurses
 
 
