@@ -17,16 +17,24 @@ module PPCurses
       x = screen.curx
       y = screen.cury
 
+      screen.addstr(' ')
       screen.attron(A_REVERSE) if @selected
-      screen.addstr(''.ljust(width, '-'))
+      screen.addstr(''.ljust(width-2, '-'))
       y += 1
       screen.setpos(y,x)
 
-      screen.addstr("| #{@label} |")
+      screen.addstr("|")
+      screen.attroff(A_REVERSE) if @selected
+      screen.addstr(" #{@label} ")
+      screen.attron(A_REVERSE) if @selected
+      screen.addstr("|")
 
       y += 1
       screen.setpos(y,x)
-      screen.addstr(''.ljust(width, '-'))
+      screen.attroff(A_REVERSE) if @selected
+      screen.addstr(' ')
+      screen.attron(A_REVERSE) if @selected
+      screen.addstr(''.ljust(width-2, '-'))
       screen.attroff(A_REVERSE) if @selected
 
     end
