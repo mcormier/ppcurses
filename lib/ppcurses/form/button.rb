@@ -12,6 +12,9 @@ module PPCurses
       @pushed = false
     end
 
+    #
+    # Screen should be of type Curses::Window
+    #
     def show(screen)
 
       x = screen.curx
@@ -83,16 +86,15 @@ module PPCurses
 
     def show(screen)
 
-      # TODO -- create a Point class
-      x = screen.curx
-      y = screen.cury + 1
-      screen.setpos(y,x)
+      p = screen.cur_point
+      p.y+=1
+      screen.set_pos_by_point(p)
 
 
       @button1.show(screen)
 
-      x += @button1.width + 2
-      screen.setpos(y,x)
+      p.x += @button1.width + 2
+      screen.set_pos_by_point(p)
 
       @button2.show(screen)
 
