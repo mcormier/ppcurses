@@ -17,14 +17,13 @@ module PPCurses
     #
     def show(screen)
 
-      x = screen.curx
-      y = screen.cury
+      p = screen.cur_point
 
       screen.addstr(' ')
       screen.attron(A_REVERSE) if @selected
       screen.addstr(''.ljust(width-2, '-'))
-      y += 1
-      screen.setpos(y,x)
+      p.y += 1
+      screen.set_pos_by_point(p)
 
       screen.addstr("|")
       screen.attroff(A_REVERSE) if @selected
@@ -32,8 +31,8 @@ module PPCurses
       screen.attron(A_REVERSE) if @selected
       screen.addstr("|")
 
-      y += 1
-      screen.setpos(y,x)
+      p.y += 1
+      screen.set_pos_by_point(p)
       screen.attroff(A_REVERSE) if @selected
       screen.addstr(' ')
       screen.attron(A_REVERSE) if @selected
