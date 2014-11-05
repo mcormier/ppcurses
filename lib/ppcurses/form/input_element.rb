@@ -7,8 +7,8 @@ module PPCurses
     attr_accessor :size
     attr_accessor :selected
 
-    attr_accessor :value_start_x_pos
-    attr_accessor :value_start_y_pos
+    attr_accessor :value_start_point
+
 
     # Stores the X location of the cursor relative to the
     # value being displayed.  If the cursor is in
@@ -28,8 +28,7 @@ module PPCurses
     def show(screen)
       print_label( screen )
 
-      @value_start_x_pos = screen.curx
-      @value_start_y_pos = screen.cury
+      @value_start_point = screen.cur_point
 
       print_value( screen )
     end
@@ -105,9 +104,9 @@ module PPCurses
 
     def set_curs_pos(screen)
       curs_set(VISIBLE)
-      x =  @value_start_x_pos + @cursor_location
+      x =  @value_start_point.x  + @cursor_location
 
-      screen.setpos( @value_start_y_pos, x )
+      screen.setpos( @value_start_point.y, x )
     end
 
     def height
