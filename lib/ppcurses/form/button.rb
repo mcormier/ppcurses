@@ -16,29 +16,9 @@ module PPCurses
     # Screen should be of type Curses::Window
     #
     def show(screen)
-
-      p = screen.cur_point
-
-      screen.addstr(' ')
       screen.attron(A_REVERSE) if @selected
-      screen.addstr(''.ljust(width-2, '-'))
-      p.y += 1
-      screen.set_pos_by_point(p)
-
-      screen.addstr("|")
+      screen.addstr("< #{@label} >")
       screen.attroff(A_REVERSE) if @selected
-      screen.addstr(" #{@label} ")
-      screen.attron(A_REVERSE) if @selected
-      screen.addstr("|")
-
-      p.y += 1
-      screen.set_pos_by_point(p)
-      screen.attroff(A_REVERSE) if @selected
-      screen.addstr(' ')
-      screen.attron(A_REVERSE) if @selected
-      screen.addstr(''.ljust(width-2, '-'))
-      screen.attroff(A_REVERSE) if @selected
-
     end
 
     def width
@@ -46,7 +26,7 @@ module PPCurses
     end
 
     def height
-      3
+      1
     end
 
     def set_curs_pos(screen)
