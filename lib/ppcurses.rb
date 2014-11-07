@@ -32,6 +32,7 @@ module PPCurses
  require_relative  'ppcurses/form/form.rb'
  require_relative  'ppcurses/form/button.rb'
  require_relative  'ppcurses/form/input_element.rb'
+ require_relative  'ppcurses/form/radio_button_group.rb'
 
 end
 
