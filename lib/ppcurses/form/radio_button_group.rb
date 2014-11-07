@@ -1,4 +1,9 @@
+# -*- encoding : utf-8 -*-
+
 module PPCurses
+
+  RADIO_NOT_SELECTED = '◎'
+  RADIO_SELECTED = '◉'
 
   class RadioButtonGroup
 
@@ -17,13 +22,13 @@ module PPCurses
 
     def show(screen)
       screen.attron(A_REVERSE) if @selected
-      screen.addstr(" #{@label}: ")
+      screen.addstr(" #{@label}:")
       screen.attroff(A_REVERSE) if @selected
       @options.each_with_index  do |option, index|
         if index == @current_option
-          screen.addstr(" #{option} (X)") # TODO -- better unicode character than X?
+          screen.addstr(" #{option} #{RADIO_SELECTED}")
         else
-          screen.addstr(" #{option} ( )")
+          screen.addstr(" #{option} #{RADIO_NOT_SELECTED}")
         end
       end
     end
