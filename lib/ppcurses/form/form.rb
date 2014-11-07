@@ -31,6 +31,7 @@ module PPCurses
       unless element.respond_to?('height'); raise end
       unless element.respond_to?('set_curs_pos'); raise end
       unless element.respond_to?('handle_keypress'); raise end
+      unless element.respond_to?('selected='); raise end
 
       @elements.push(element)
     end
