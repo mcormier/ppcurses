@@ -18,12 +18,13 @@ module PPCurses
 
     # Adds an element to the form.  Elements are rendered in the order they are added.
     #
-    # An element must implement the following protocol methods:
+    # An element must implement the following protocol:
     #
     # - def show(screen)
     # - def height
     # - def set_curs_pos(screen)
     # - def handle_keypress(key)
+    # - def selected=
     #
     def add (element)
       unless element.respond_to?('show'); raise end
