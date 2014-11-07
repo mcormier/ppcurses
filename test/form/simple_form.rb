@@ -7,13 +7,16 @@ require_relative '../../lib/ppcurses.rb'
 
 
 def display_form
+  form = PPCurses::Form.new(Curses)
 
   first_name = PPCurses::InputElement.new('First Name', 10)
   last_name = PPCurses::InputElement.new('Last Name', 10)
-  form = PPCurses::Form.new(Curses)
+
+  gender = PPCurses::RadioButtonGroup.new('Sex', ['Male', 'Female'])
 
   form.add(first_name)
   form.add(last_name)
+  form.add(gender)
 
   form.handle_input
 
