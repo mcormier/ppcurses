@@ -7,7 +7,7 @@ require_relative '../../lib/ppcurses.rb'
 
 
 def display_form
-  form = PPCurses::Form.new(Curses)
+  form = PPCurses::Form.new(Curses.stdscr)
 
   first_name = PPCurses::InputElement.new('First Name', 10)
   last_name = PPCurses::InputElement.new(' Last Name', 10)
