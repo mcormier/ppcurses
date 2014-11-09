@@ -25,6 +25,10 @@ end
 
 
 module Curses
+
+  #
+  #  Add some methods that allow accessing a window by PPPoint.
+  #
   class Window
 
     def cur_point
@@ -32,7 +36,11 @@ module Curses
     end
 
     def set_pos_by_point( p )
-      setpos( p.y, p.x)
+      setpos(p.y, p.x)
+    end
+
+    def move_to_point( p )
+      move(p.y, p.x)
     end
 
   end
