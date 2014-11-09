@@ -4,6 +4,9 @@ module PPCurses
 
     attr_accessor :selected_element
 
+    #
+    # Screen should be of type Curses::Window
+    #
     def initialize (screen)
       @win = screen
       @elements = []
@@ -91,14 +94,14 @@ module PPCurses
       for i in 0..@elements.length - 3
         element = @elements[i]
         @win.setpos(y, x)
-        element.show(@win.stdscr)
+        element.show(@win)
         y += element.height
       end
 
       @win.setpos(y, x)
-      @button_pair.show(@win.stdscr)
+      @button_pair.show(@win)
 
-      @selected_element.set_curs_pos(@win.stdscr)
+      @selected_element.set_curs_pos(@win)
     end
 
 
