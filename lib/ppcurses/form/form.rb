@@ -11,6 +11,8 @@ module PPCurses
       @win = screen
       @elements = []
 
+      @buttons_added = false
+
      set_button_pair( ButtonPair.new('Submit', 'Cancel') )
     end
 
@@ -39,8 +41,11 @@ module PPCurses
 
     def handle_input
 
-      @elements.push(@button_pair.button1)
-      @elements.push(@button_pair.button2)
+      unless @buttons_added
+        @elements.push(@button_pair.button1)
+        @elements.push(@button_pair.button2)
+        @buttons_added = true
+      end
 
       n_choices = @elements.length
 
