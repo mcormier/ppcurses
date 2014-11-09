@@ -10,9 +10,9 @@ def display_form
   form = PPCurses::Form.new(Curses)
 
   first_name = PPCurses::InputElement.new('First Name', 10)
-  last_name = PPCurses::InputElement.new('Last Name', 10)
+  last_name = PPCurses::InputElement.new(' Last Name', 10)
 
-  gender = PPCurses::RadioButtonGroup.new('Sex', ['Male', 'Female'])
+  gender = PPCurses::RadioButtonGroup.new('      Sex', ['Male', 'Female'])
 
   form.add(first_name)
   form.add(last_name)
