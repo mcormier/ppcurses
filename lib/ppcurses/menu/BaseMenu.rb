@@ -61,6 +61,10 @@ module PPCurses
       }
     end
 
+    def set_origin( point )
+      @win.move_to_point( point )
+    end
+
     def create_window
       w_height = @menu_items.length + 4
       w_width = @max_menu_width + 4
