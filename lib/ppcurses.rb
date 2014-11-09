@@ -11,6 +11,12 @@ module PPCurses
   INVISIBLE = 0
   VISIBLE = 1
 
+  def PPCurses.implements_protocol( element, methods )
+    methods.each { |method|
+      unless element.respond_to?(method); raise TypeError, "** Method #{method} MUST be defined **" end
+    }
+  end
+
 
  require_relative  'ppcurses/Screen.rb'
  require_relative  'ppcurses/pp_point.rb'
@@ -33,6 +39,7 @@ module PPCurses
  require_relative  'ppcurses/form/button.rb'
  require_relative  'ppcurses/form/input_element.rb'
  require_relative  'ppcurses/form/radio_button_group.rb'
+ require_relative  'ppcurses/form/combo_box.rb'
 
 end
 
