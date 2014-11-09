@@ -27,12 +27,7 @@ module PPCurses
     # - def selected=
     #
     def add (element)
-      unless element.respond_to?('show'); raise TypeError, '** Method show should must be defined **' end
-      unless element.respond_to?('height'); raise TypeError, '** Method height should must be defined **' end
-      unless element.respond_to?('set_curs_pos'); raise TypeError, '** Method set_curs_pos should must be defined **' end
-      unless element.respond_to?('handle_keypress'); raise TypeError, '** Method handle_keypress should must be defined **' end
-      unless element.respond_to?('selected='); raise TypeError, '** Method selected= should must be defined **' end
-
+      PPCurses.implements_protocol( element, %w(show height set_curs_pos handle_keypress selected=))
       @elements.push(element)
     end
 
