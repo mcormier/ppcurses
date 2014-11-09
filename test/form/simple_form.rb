@@ -20,7 +20,8 @@ def display_form
 
   form.handle_input
 
-  { first_name: first_name.value, last_name: last_name.value, form_submitted: form.submitted?}
+  { first_name: first_name.value, last_name: last_name.value,
+    gender: gender.current_option, form_submitted: form.submitted?}
 end
 
 
