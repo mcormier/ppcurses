@@ -39,37 +39,7 @@ module PPCurses
     def handle_keypress( key )
 
       if key == DELETE
-
-        # Cursor is at the front of the string, nothing in
-        # front of it to delete, or there is nothing to delete
-        if @cursor_location == 0 or @value.length == 0
-          return false
-        end
-
-        if @value.length == 1
-          @value = ''
-          @cursor_location = 0
-          return false
-        end
-
-        # Cursor is at the end of the string, remove the last character
-        if @cursor_location == @value.length
-          @value = @value.slice(0..@cursor_location-2)
-        elsif @cursor_location == 1
-          # cursor is right after the first character
-          @value = @value.slice(1..@value.length-1)
-        else
-          # Cursor is in the middle of the string, remove the character at the cursor location
-          # Example:
-          #
-          # abcdefg
-          # 1234567
-          #   ^ -> cursor-location = 3
-          #
-          @value = @value.slice(0..@cursor_location-2) + @value.slice(@cursor_location..@value.length-1)
-        end
-
-        @cursor_location -= 1
+        handle_delete
         return false
       end
 
@@ -122,6 +92,7 @@ module PPCurses
     # --------------------------------------------------------------------------------
     protected
 
+
     def print_label( screen )
       screen.attron(A_REVERSE) if @selected
       screen.addstr("#{@label}:")
@@ -129,12 +100,46 @@ module PPCurses
       screen.addstr(' ')
     end
 
+
     def print_value( screen )
       screen.attron(A_UNDERLINE)
       screen.addstr(@value.ljust(@size))
       screen.attroff(A_UNDERLINE)
     end
 
+
+    def handle_delete
+      # Cursor is at the front of the string, nothing in
+      # front of it to delete, or there is nothing to delete
+      if @cursor_location == 0 or @value.length == 0
+        return
+      end
+
+      if @value.length == 1
+        @value = ''
+        @cursor_location = 0
+        return
+      end
+
+      # Cursor is at the end of the string, remove the last character
+      if @cursor_location == @value.length
+        @value = @value.slice(0..@cursor_location-2)
+      elsif @cursor_location == 1
+        # cursor is right after the first character
+        @value = @value.slice(1..@value.length-1)
+      else
+        # Cursor is in the middle of the string, remove the character at the cursor location
+        # Example:
+        #
+        # abcdefg
+        # 1234567
+        #   ^ -> cursor-location = 3
+        #
+        @value = @value.slice(0..@cursor_location-2) + @value.slice(@cursor_location..@value.length-1)
+      end
+
+      @cursor_location -= 1
+    end
 
   end
 
