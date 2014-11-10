@@ -67,13 +67,8 @@ module PPCurses
         return false
       end
 
-      if @cursor_location == @value.length
-        @value += key
-      else
-        @value = @value.slice(0..@cursor_location-1) + key + @value.slice(@cursor_location..@value.length-1)
-      end
+      add_character(key)
 
-      @cursor_location += 1
       false
     end
 
@@ -139,6 +134,17 @@ module PPCurses
       end
 
       @cursor_location -= 1
+    end
+
+
+    def add_character ( char )
+      if @cursor_location == @value.length
+        @value += char
+      else
+        @value = @value.slice(0..@cursor_location-1) + char + @value.slice(@cursor_location..@value.length-1)
+      end
+
+      @cursor_location += 1
     end
 
   end
