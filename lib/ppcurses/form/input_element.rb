@@ -7,6 +7,8 @@ module PPCurses
     attr_accessor :size
     attr_accessor :selected
 
+    attr_accessor :filter
+
     attr_accessor :value_start_point
 
 
@@ -23,7 +25,17 @@ module PPCurses
       @selected = false
       @value = ''
       @cursor_location = 0
+      @filter = nil
     end
+
+    # Creates an InputElement that only allows integer input
+    #
+    def InputElement.new_integer_only( label, size)
+      i_only = PPCurses::InputElement.new(label, size)
+      i_only.filter =PPCurses::NumberFilter.new
+      i_only
+    end
+
 
     def show(screen)
       print_label( screen )
@@ -32,8 +44,6 @@ module PPCurses
 
       print_value( screen )
     end
-
-
 
 
     def handle_keypress( key )
@@ -67,9 +77,22 @@ module PPCurses
         return false
       end
 
+      unless passes_filter(key)
+        return false
+      end
+
       add_character(key)
 
       false
+    end
+
+
+    def passes_filter( key )
+      if @filter.nil?
+        return true
+      end
+
+      @filter.passes_filter( key )
     end
 
 
@@ -79,6 +102,7 @@ module PPCurses
 
       screen.setpos( @value_start_point.y, x )
     end
+
 
     def height
       1
@@ -145,6 +169,20 @@ module PPCurses
       end
 
       @cursor_location += 1
+    end
+
+  end
+
+
+
+  class NumberFilter
+
+    def passes_filter( key )
+      if key =~ /^\d+$/
+        return true
+      end
+
+      false
     end
 
   end
