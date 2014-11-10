@@ -46,6 +46,12 @@ module PPCurses
           return false
         end
 
+        if @value.length == 1
+          @value = ''
+          @cursor_location = 0
+          return false
+        end
+
         # Cursor is at the end of the string, remove the last character
         if @cursor_location == @value.length
           @value = @value.slice(0..@cursor_location-2)
