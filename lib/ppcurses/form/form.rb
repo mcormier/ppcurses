@@ -39,6 +39,8 @@ module PPCurses
 
     # TODO - re-evaluate logic.  If branching too complicated.
 
+    # TODO -- remove boolean return from handle_keypress
+
     def handle_input
 
       unless @buttons_added
@@ -88,6 +90,13 @@ module PPCurses
     end
 
 
+
+    def execute
+     handle_input
+
+      @win.clear
+      @win.refresh
+    end
 
     # --------------------------------------------------------------------------------
     protected
