@@ -29,6 +29,7 @@ module PPCurses
     end
 
     def set_global_action(action)
+      PPCurses.implements_protocol(action, %w(execute))
       @global_action = action
     end
 
