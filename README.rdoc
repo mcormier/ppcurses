@@ -3,7 +3,11 @@
 Some convenience code to initialize curses and some rudimentary GUI classes.  See the **test** directory for example programs.
 
 == Install
-  [sudo] gem install 'ppcurses'
+  gem install 'ppcurses'
+
+  To use ppcurses with a ruby > 2.1.0 you must install the curses gem.
+
+  gem install 'curses'
 
 == Usage
   require 'rubygems'
