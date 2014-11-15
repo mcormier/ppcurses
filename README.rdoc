@@ -23,7 +23,7 @@ Some convenience code to initialize curses and some rudimentary GUI classes.  Se
   screen = PPCurses::Screen.new()
   screen.run { displayMenu() }
 
-= Curses and Ruby
+== Curses and Ruby
 
 There are several curses implementations for Ruby.
 
