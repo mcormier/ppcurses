@@ -19,5 +19,35 @@ Some convenience code to initialize curses and some rudimentary GUI classes.  Se
   screen = PPCurses::Screen.new()
   screen.run { displayMenu() }
 
-== References
-http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
+= Curses and Ruby
+
+There are several curses implementations for Ruby.
+
+1. curses
+
+This is the implementation that PPCurses uses.  It was originally part of the Ruby
+standard library and later got pushed out of the standard libary into a gem.
+
+* http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
+* http://www.ruby-doc.org/stdlib-2.0.0/libdoc/curses/rdoc/Curses.html
+* http://www.ruby-doc.org/stdlib-2.1.0/libdoc/curses/rdoc/Curses.html
+* https://rubygems.org/gems/curses
+* https://github.com/ruby/curses
+
+2. ncurses
+
+Created by Earle Clubb this gem has been frozen at version 0.9.1 since 2004. You
+probably don't want his gem.
+
+* https://rubygems.org/gems/ncurses
+
+3. ncurses-ruby
+
+The heir to ncurses gem.  It is under active development.
+
+* https://rubygems.org/gems/ncurses-ruby
+* https://github.com/eclubb/ncurses-ruby
+
+
+
+
