@@ -38,19 +38,25 @@ There are several curses implementations for Ruby.
  * https://rubygems.org/gems/curses
  * https://github.com/ruby/curses
 
-[2. ncurses]
-
- Created by Earle Clubb this gem has been frozen at version 0.9.1 since 2004. You
- probably don't want his gem.
-
- * https://rubygems.org/gems/ncurses
-
-[3. ncurses-ruby]
+[2. ncurses-ruby]
 
  The heir to ncurses gem.  It is under active development.
 
  * https://rubygems.org/gems/ncurses-ruby
  * https://github.com/eclubb/ncurses-ruby
 
+[3. ncurses]
 
+ Created by Earle Clubb this gem has been frozen at version 0.9.1 since 2004. You
+ probably don't want this gem, you probably want ncurses-ruby.
+
+ * https://rubygems.org/gems/ncurses
+
+[4. ffi-curses]
+
+ A gem that makes curses available through FFI (foreign function interface), by
+ Sean O'Halpin. The latest version is from 2011 (0.4.0).
+
+* https://github.com/seanohalpin/ffi-ncurses
+* https://github.com/ffi/ffi
 
