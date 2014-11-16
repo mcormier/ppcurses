@@ -41,6 +41,9 @@ module PPCurses
  require_relative  'ppcurses/form/radio_button_group.rb'
  require_relative  'ppcurses/form/combo_box.rb'
 
+  # Windows
+  require_relative  'ppcurses/window/pp_window.rb'
+
 end
 
 
