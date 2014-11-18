@@ -7,7 +7,11 @@ require 'thread'
 # The code comes from a 2009 blog post by William Morgan.
 # http://masanjin.net/blog/ruby-ncurses-and-thread-blocking
 #
-# Here is the original code from the post
+#
+# Morgan is the original developer of Sup, a ruby curse email client (https://github.com/sup-heliotrope/sup)
+# and he works for tweeter now.
+#
+# Here is the original code from the post.
 =begin
 require 'ncurses'
 
