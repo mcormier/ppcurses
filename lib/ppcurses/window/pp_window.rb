@@ -7,7 +7,9 @@ module PPCurses
     def initialize(height, width, top, left)
       super(height,width,top,left)
 
+      # Enables reading arrow keys in getch
       keypad(true)
+
       box('|', '-')
     end
 
