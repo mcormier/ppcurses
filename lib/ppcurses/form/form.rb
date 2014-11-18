@@ -73,6 +73,7 @@ module PPCurses
         elsif c == KEY_LEFT and @selected_element == @button_pair.button2
             set_selected_element(@button_pair.button1)
         else
+          # TODO this is just plain wrong.
           should_exit = @selected_element.handle_keypress(c)
           if should_exit
             break
