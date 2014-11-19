@@ -25,7 +25,7 @@ module PPCurses
     end
 
     def create_window
-      @win = Window.new( self.win_height, self.win_width,
+      @win = PPWindow.new( self.win_height, self.win_width,
                          self.win_padding/2, self.win_padding/2)
       @win.clear
       @win.box('|', '-')
