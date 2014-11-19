@@ -1,3 +1,5 @@
+gem 'curses', '=1.0.1'
+require 'curses'
 
 module PPCurses
 
@@ -20,12 +22,12 @@ module PPCurses
 
  require_relative  'ppcurses/Screen.rb'
  require_relative  'ppcurses/pp_point.rb'
- # Menus
+ # Menus ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/menu/Menu.rb'
  require_relative  'ppcurses/menu/CompositeMenu.rb'
  require_relative  'ppcurses/menu/RadioMenu.rb'
  require_relative  'ppcurses/menu/menu_item.rb'
- # Actions
+ # Actions -------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/actions/ShowMenuAction.rb'
  require_relative  'ppcurses/actions/GetStringAction.rb'
  require_relative  'ppcurses/actions/GetBooleanAction.rb'
@@ -34,14 +36,13 @@ module PPCurses
  require_relative  'ppcurses/actions/GetDataAction.rb'
  require_relative  'ppcurses/actions/NulAction.rb'
  require_relative  'ppcurses/actions/InsertSQLDataAction.rb'
- # Forms
+ # Forms ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/form/form.rb'
  require_relative  'ppcurses/form/button.rb'
  require_relative  'ppcurses/form/input_element.rb'
  require_relative  'ppcurses/form/radio_button_group.rb'
  require_relative  'ppcurses/form/combo_box.rb'
-
-  # Windows
+  # Windows ------------------------------------------------------------------------------------------------------------
   require_relative  'ppcurses/window/pp_window.rb'
 
 end
