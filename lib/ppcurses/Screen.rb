@@ -1,9 +1,3 @@
-# Curses reference:
-# http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
-
-require 'curses'
-include Curses
-
 module OS
   def OS.windows?
     (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
@@ -66,7 +60,7 @@ module PPCurses
     #
     def run
       begin
-        init_screen
+        Curses.init_screen
         Curses.raw
 
         # Can't implement regardless as this can cause an unsupportedOperationException on some configurations
@@ -80,11 +74,11 @@ module PPCurses
         #  program to stop.
         Curses.stdscr.keypad(true)
 
-        clear
-        curs_set(INVISIBLE)
-        noecho
-        cbreak
-        start_color
+        Curses.clear
+        Curses.curs_set(INVISIBLE)
+        Curses.noecho
+        Curses.cbreak
+        Curses.start_color
 
         return yield
         
@@ -92,7 +86,7 @@ module PPCurses
         # Empty Catch block so ruby doesn't puke out
         # a stack trace when CTRL-C is used
       ensure
-        close_screen
+        Curses.close_screen
       end
     end
 
