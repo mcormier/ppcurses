@@ -13,9 +13,9 @@ module PPCurses
        @win.clrtoeol
        @win.box('|', '-')
        @win.addstr(@prompt)
-       echo
+       Curses.echo
        @data = @win.getstr
-       noecho
+       Curses.noecho
      end until @data =~ /^\d+$/
     end
 

@@ -46,7 +46,7 @@ class GetDataAction < BaseAction
 
   def execute
     create_window
-    echo
+    Curses.echo
 
     @win.setpos(@win.cury, x_padding )
 
@@ -58,7 +58,7 @@ class GetDataAction < BaseAction
 
     self.after_actions
 
-    noecho
+    Curses.noecho
     @win.clear 
     @win.refresh
     @win.close
@@ -71,14 +71,14 @@ class GetDataAction < BaseAction
   end
 
   def print_success_line(string)
-    init_pair(1, COLOR_GREEN, COLOR_BLACK)
+    Curses.init_pair(1, COLOR_GREEN, COLOR_BLACK)
     @win.attron(color_pair(1))
     self.print_line(string)
     @win.attroff(color_pair(1))
   end
 
   def print_error_line(string)
-    init_pair(1, COLOR_RED, COLOR_BLACK)
+    Curses.init_pair(1, COLOR_RED, COLOR_BLACK)
     @win.attron(color_pair(1))
     self.print_line(string)
     @win.attroff(color_pair(1))

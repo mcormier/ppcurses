@@ -27,9 +27,9 @@ module PPCurses
 
     def execute
       print_prompt
-      echo
+      Curses.echo
       @data = @win.getstr
-      noecho
+      Curses.noecho
     end
 
     def data
