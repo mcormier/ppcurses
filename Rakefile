@@ -35,3 +35,7 @@ task :testMenu do
   ruby 'test/menu/menuItemsWTarget.rb'
 end
 
+task :testForm do
+  ruby 'test/form/simple_form.rb'
+  ruby 'test/form/menu_opens_form.rb'
+end
