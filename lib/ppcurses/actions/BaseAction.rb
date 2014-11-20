@@ -1,5 +1,3 @@
-require 'curses'
-
 #noinspection RubyResolve
 module PPCurses
   class BaseAction
