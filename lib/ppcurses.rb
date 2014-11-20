@@ -23,6 +23,7 @@ module PPCurses
  require_relative  'ppcurses/Screen.rb'
  require_relative  'ppcurses/pp_point.rb'
  # Menus ---------------------------------------------------------------------------------------------------------------
+ require_relative  'ppcurses/menu/BaseMenu.rb'
  require_relative  'ppcurses/menu/Menu.rb'
  require_relative  'ppcurses/menu/CompositeMenu.rb'
  require_relative  'ppcurses/menu/RadioMenu.rb'
