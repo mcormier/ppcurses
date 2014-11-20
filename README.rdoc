@@ -5,7 +5,7 @@ Some convenience code to initialize curses and some rudimentary GUI classes.  Se
 == Install
   gem install 'ppcurses'
 
-  To use ppcurses with a ruby > 2.1.0 you must install the curses gem.
+  To use ppcurses with a ruby > 2.1.5 you must install the curses gem.
 
   gem install 'curses'
 
@@ -13,15 +13,15 @@ Some convenience code to initialize curses and some rudimentary GUI classes.  Se
   require 'rubygems'
   require 'ppcurses'
 
-  def displayMenu()
-    mainMenu = PPCurses::Menu.new( [ "Press", "<ESCAPE>", "to Quit" ], nil )
-    mainMenu.show()
-    mainMenu.menu_selection()
-    mainMenu.close()
+  def displayMenu
+    mainMenu = PPCurses::Menu.new( [ "Press", "<ESCAPE>", "to Quit" ])
+    mainMenu.show
+    mainMenu.menu_selection
+    mainMenu.close
   end
   
-  screen = PPCurses::Screen.new()
-  screen.run { displayMenu() }
+  screen = PPCurses::Screen.new
+  screen.run { displayMenu }
 
 == Curses and Ruby
 
