@@ -25,17 +25,17 @@ module PPCurses
       # Enables reading arrow keys in getch 
       @win.keypad(true)
       while 1
-        noecho
+        Curses.noecho
         c = @win.getch
 
-        if c == KEY_LEFT then @state = false end
-        if c == KEY_RIGHT then @state = true end
+        if c == Curses::KEY_LEFT then @state = false end
+        if c == Curses::KEY_RIGHT then @state = true end
         if c == ESCAPE then break end
 
-        echo
+        Curses.echo
         print_prompt
       end
-      echo
+      Curses.echo
     end
 
     def data
