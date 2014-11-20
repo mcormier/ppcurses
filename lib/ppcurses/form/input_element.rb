@@ -97,7 +97,7 @@ module PPCurses
 
 
     def set_curs_pos(screen)
-      curs_set(VISIBLE)
+      Curses.curs_set(VISIBLE)
       x =  @value_start_point.x  + @cursor_location
 
       screen.setpos( @value_start_point.y, x )
@@ -113,17 +113,17 @@ module PPCurses
 
 
     def print_label( screen )
-      screen.attron(A_REVERSE) if @selected
+      screen.attron(Curses::A_REVERSE) if @selected
       screen.addstr("#{@label}:")
-      screen.attroff(A_REVERSE) if @selected
+      screen.attroff(Curses::A_REVERSE) if @selected
       screen.addstr(' ')
     end
 
 
     def print_value( screen )
-      screen.attron(A_UNDERLINE)
+      screen.attron(Curses::A_UNDERLINE)
       screen.addstr(@value.ljust(@size))
-      screen.attroff(A_UNDERLINE)
+      screen.attroff(Curses::A_UNDERLINE)
     end
 
 

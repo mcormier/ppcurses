@@ -16,9 +16,9 @@ module PPCurses
     # Screen should be of type Curses::Window
     #
     def show(screen)
-      screen.attron(A_REVERSE) if @selected
+      screen.attron(Curses::A_REVERSE) if @selected
       screen.addstr("< #{@label} >")
-      screen.attroff(A_REVERSE) if @selected
+      screen.attroff(Curses::A_REVERSE) if @selected
     end
 
     def width
@@ -30,7 +30,7 @@ module PPCurses
     end
 
     def set_curs_pos(screen)
-      curs_set(INVISIBLE)
+      Curses.curs_set(INVISIBLE)
     end
 
     def handle_keypress( key )

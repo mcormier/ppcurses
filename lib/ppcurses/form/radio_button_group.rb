@@ -22,9 +22,9 @@ module PPCurses
     end
 
     def show(screen)
-      screen.attron(A_REVERSE) if @selected
+      screen.attron(Curses::A_REVERSE) if @selected
       screen.addstr(" #{@label}:")
-      screen.attroff(A_REVERSE) if @selected
+      screen.attroff(Curses::A_REVERSE) if @selected
       @options.each_with_index  do |option, index|
         if index == @current_option
           screen.addstr(" #{option} #{RADIO_SELECTED}")
@@ -45,7 +45,7 @@ module PPCurses
     end
 
     def set_curs_pos(screen)
-      curs_set(INVISIBLE)
+      Curses.curs_set(INVISIBLE)
     end
 
     def height
