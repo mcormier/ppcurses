@@ -3,7 +3,7 @@ module PPCurses
   class RadioMenu  < BaseMenu
 
     # TODO - duplicate code from Menu ...
-    def initialize( menu_items, action_items )
+    def initialize( menu_items, action_items=nil )
       @items = Array.new
       @actions = Array.new
 
