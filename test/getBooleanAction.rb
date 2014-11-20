@@ -13,4 +13,4 @@ end
 screen = PPCurses::Screen.new
 screen.run { do_boolean_action(action) }
 
-puts 'Value input was: ' + action.data
+puts "Value input was: #{action.data}"
