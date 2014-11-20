@@ -4,8 +4,8 @@ require 'rubygems'
 require_relative '../../lib/ppcurses.rb'
 
 def display_menu
-  center_menu = PPCurses::Menu.new( [ 'Press', '<ESCAPE>', 'to Quit'], nil )
-  radio_menu = PPCurses::RadioMenu.new( %w(Wow two menus!), nil )
+  center_menu = PPCurses::Menu.new( [ 'Press', '<ESCAPE>', 'to Quit'] )
+  radio_menu = PPCurses::RadioMenu.new( %w(Wow two menus!) )
 
   main_menu = PPCurses::CompositeMenu.new(center_menu, radio_menu)
 
