@@ -9,20 +9,15 @@ module PPCurses
     attr_accessor :side_wall_char
     attr_accessor :top_bot_wall_char
 
-    # TODO -- start using optional parameters....
-    # Current base ruby is 1.9.2.  action_items could be an optional parameter
-    # if the base was moved up to 2.0
-    #
-    def initialize(menu_items, action_items )
+
+    def initialize(menu_items, action_items=nil)
       @selection=0
       @max_menu_width = 0
 
       @side_wall_char = '|'
       @top_bot_wall_char = '-'
 
-      sample = menu_items[0]
-
-      case sample
+      case menu_items[0]
         when String
           # Case 1: menu_items is a list of strings, with an associated action list
           build_menu_items(menu_items, action_items)
