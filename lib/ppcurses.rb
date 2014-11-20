@@ -10,7 +10,9 @@ module PPCurses
   SPACE_BAR = ' '
   KEY_RIGHT = Curses::KEY_RIGHT
   KEY_LEFT = Curses::KEY_LEFT
-  
+  KEY_UP = Curses::KEY_UP
+  KEY_DOWN = Curses::KEY_DOWN
+
 
   # To be used in conjunction with curs_set for more readable code e.g. Curses.curs_set(INVISIBLE)
   INVISIBLE = 0
