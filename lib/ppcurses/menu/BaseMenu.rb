@@ -1,5 +1,3 @@
-require 'curses'
-
 module PPCurses
 
   #noinspection RubyResolve
@@ -11,7 +9,7 @@ module PPCurses
     attr_accessor :side_wall_char
     attr_accessor :top_bot_wall_char
 
-    #
+    # TODO -- start using optional parameters....
     # Current base ruby is 1.9.2.  action_items could be an optional parameter
     # if the base was moved up to 2.0
     #
@@ -68,9 +66,8 @@ module PPCurses
     def create_window
       w_height = @menu_items.length + 4
       w_width = @max_menu_width + 4
-      @win = PPCurses::PPWindow.new(w_height,w_width,(lines-w_height) / 2, (cols-w_width)/2)
+      @win = PPCurses::PPWindow.new(w_height,w_width,(Curses.lines-w_height) / 2, (Curses.cols-w_width)/2)
       @win.timeout=-1
-
     end
 
     def set_sub_menu(menu)
