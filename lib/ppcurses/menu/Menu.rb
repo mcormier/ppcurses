@@ -1,9 +1,3 @@
-# Curses reference:
-# http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
-
-require_relative 'BaseMenu.rb'
-require 'curses'
-
 module PPCurses
   #noinspection RubyResolve
   class Menu < BaseMenu
@@ -17,9 +11,9 @@ module PPCurses
 
       (0...@menu_items.length).each { |i|
         @win.setpos(y, x)
-        @win.attron(A_REVERSE) if @selection == i
+        @win.attron(Curses::A_REVERSE) if @selection == i
         @win.addstr(@menu_items[i].display_string)
-        @win.attroff(A_REVERSE) if @selection == i
+        @win.attroff(Curses::A_REVERSE) if @selection == i
         y += 1
       }
 
@@ -54,13 +48,13 @@ module PPCurses
     def handle_menu_selection(c)
       n_choices = @menu_items.length
 
-      if c == KEY_UP
+      if c == Curses::KEY_UP
         (@selection == 0) ? @selection = n_choices - 1 : @selection -= 1
         self.show
         return true
       end
 
-      if c == KEY_DOWN
+      if c == Curses::KEY_DOWN
         (@selection == n_choices-1) ? @selection = 0 : @selection += 1
         self.show
         return true
