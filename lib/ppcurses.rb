@@ -8,6 +8,9 @@ module PPCurses
   ESCAPE = 27
   DELETE = 127
   SPACE_BAR = ' '
+  KEY_RIGHT = Curses::KEY_RIGHT
+  KEY_LEFT = Curses::KEY_LEFT
+  
 
   # To be used in conjunction with curs_set for more readable code e.g. Curses.curs_set(INVISIBLE)
   INVISIBLE = 0
