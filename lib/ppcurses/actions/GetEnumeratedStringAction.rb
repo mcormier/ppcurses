@@ -50,7 +50,7 @@ module PPCurses
         Curses.echo
         print_prompt
       end
-      echo
+      Curses.echo
       # Go to next line so that further actions to overwrite
       # the choice
       @win.setpos(@win.cury + 1, x_padding)
