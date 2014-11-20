@@ -4,7 +4,7 @@ require 'rubygems'
 require_relative '../../lib/ppcurses.rb'
 
 def display_menu
-  menu = PPCurses::Menu.new( [ 'Press', '<ESCAPE>', 'to Quit'], nil )
+  menu = PPCurses::Menu.new( [ 'Press', '<ESCAPE>', 'to Quit'] )
   menu.side_wall_char = '\\'
   menu.top_bot_wall_char = '='
 
