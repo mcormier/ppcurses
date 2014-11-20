@@ -11,13 +11,18 @@ end
 
 desc 'Run All tests'
 task :testAll do
+  Rake::Task['testActions'].execute
+  Rake::Task['testMenu'].execute
+end
+
+task :testActions do
   ruby 'test/getDataAction.rb'
   ruby 'test/getEnumStringAction.rb'
   ruby 'test/getIntegerAction.rb'
   ruby 'test/getBooleanAction.rb'
   ruby 'test/getStringAction.rb'
-  Rake::Task['testMenu'].execute
 end
+
 
 desc 'Run All Menu tests'
 task :testMenu do
