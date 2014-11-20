@@ -15,6 +15,7 @@ task :testAll do
   Rake::Task['testMenu'].execute
 end
 
+desc 'Run All Action tests'
 task :testActions do
   ruby 'test/getDataAction.rb'
   ruby 'test/getEnumStringAction.rb'
