@@ -48,13 +48,13 @@ module PPCurses
     def handle_menu_selection(c)
       n_choices = @menu_items.length
 
-      if c == Curses::KEY_UP
+      if c == KEY_UP
         (@selection == 0) ? @selection = n_choices - 1 : @selection -= 1
         self.show
         return true
       end
 
-      if c == Curses::KEY_DOWN
+      if c == KEY_DOWN
         (@selection == n_choices-1) ? @selection = 0 : @selection += 1
         self.show
         return true
