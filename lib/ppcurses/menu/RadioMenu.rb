@@ -1,6 +1,3 @@
-
-require_relative 'BaseMenu.rb'
-
 module PPCurses
   #noinspection RubyResolve
   class RadioMenu  < BaseMenu
@@ -28,7 +25,7 @@ module PPCurses
      
       w_width = @menu_length + 4
 
-      @win = Window.new(3, w_width ,0, (cols - w_width) / 2)
+      @win = PPWindow.new(3, w_width ,0, (Curses.cols - w_width) / 2)
 
       @win.timeout=-1
       # Enables reading arrow keys in getch 
