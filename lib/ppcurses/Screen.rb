@@ -53,6 +53,33 @@ module PPCurses
   # noinspection RubyResolve
   class Screen
 
+
+    def setup_curses
+      Curses.init_screen
+      Curses.raw
+
+      # Can't implement regardless as this can cause an unsupportedOperationException on some configurations
+      #  like cygwin.
+      if OS.unix?
+        Curses.ESCDELAY=0
+      end
+
+
+      #  Otherwise arrow keys, etc can't be read from the main screen and cause the
+      #  program to stop.
+      Curses.stdscr.keypad(true)
+
+      Curses.clear
+      Curses.curs_set(INVISIBLE)
+      Curses.noecho
+      Curses.cbreak
+      Curses.start_color
+    end
+
+    def shutdown_curses
+      Curses.close_screen
+    end
+
     # Creates a curses session
     #
     # Example:
@@ -60,25 +87,7 @@ module PPCurses
     #
     def run
       begin
-        Curses.init_screen
-        Curses.raw
-
-        # Can't implement regardless as this can cause an unsupportedOperationException on some configurations
-        #  like cygwin.
-        if OS.unix?
-          Curses.ESCDELAY=0
-        end
-
-
-        #  Otherwise arrow keys, etc can't be read from the main screen and cause the
-        #  program to stop.
-        Curses.stdscr.keypad(true)
-
-        Curses.clear
-        Curses.curs_set(INVISIBLE)
-        Curses.noecho
-        Curses.cbreak
-        Curses.start_color
+        setup_curses
 
         return yield
         
@@ -86,7 +95,7 @@ module PPCurses
         # Empty Catch block so ruby doesn't puke out
         # a stack trace when CTRL-C is used
       ensure
-        Curses.close_screen
+         shutdown_curses
       end
     end
 
