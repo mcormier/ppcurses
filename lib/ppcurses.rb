@@ -57,7 +57,7 @@ module PPCurses
   require_relative  'ppcurses/window/pp_window.rb'
 
 
-  zeroPoint = PPPoint.new(0,0)
+  zeroPoint = Point.new(0,0)
 end
 
 

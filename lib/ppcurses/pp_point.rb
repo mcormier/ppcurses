@@ -1,19 +1,13 @@
 module PPCurses
 
 
-  # TODO REMOVE PP
-  class PPPoint
+  class Point
 
     attr_accessor :x, :y
 
     def initialize( x, y )
       @x = x
       @y = y
-    end
-
-
-    def PPPoint.zeroPoint
-      PPPoint.new(0,0)
     end
 
   end
