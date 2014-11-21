@@ -76,6 +76,12 @@ module PPCurses
       Curses.start_color
     end
 
+
+    def main_screen
+      Curses.stdscr
+    end
+
+
     def shutdown_curses
       Curses.close_screen
     end
