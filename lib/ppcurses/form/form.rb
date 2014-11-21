@@ -21,6 +21,7 @@ module PPCurses
       @button_pair = pair
     end
 
+    # Formal protocol required
     # Adds an element to the form.  Elements are rendered in the order they are added.
     #
     # An element must implement the following protocol:
