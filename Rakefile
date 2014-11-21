@@ -13,6 +13,7 @@ desc 'Run All tests'
 task :testAll do
   Rake::Task['testActions'].execute
   Rake::Task['testMenu'].execute
+  Rake::Task['testForm'].execute
 end
 
 desc 'Run All Action tests'
@@ -35,6 +36,7 @@ task :testMenu do
   ruby 'test/menu/menuItemsWTarget.rb'
 end
 
+desc 'Run All Form tests'
 task :testForm do
   ruby 'test/form/simple_form.rb'
   ruby 'test/form/menu_opens_form.rb'
