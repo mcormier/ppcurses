@@ -76,11 +76,23 @@ module PPCurses
       Curses.start_color
     end
 
-
-    def main_screen
-      Curses.stdscr
+    def print_with_attribute( toPrint, attribute )
+      Curses.stdscr.attron( attribute )
+      Curses.stdscr.addstr( toPrint )
+      Curses.stdscr.attroff( attribute )
     end
 
+    def get_ch
+      Curses.stdscr.getch
+    end
+
+    def width
+      Curses.cols
+    end
+
+    def height
+      Curses.lines
+    end
 
     def shutdown_curses
       Curses.close_screen
