@@ -14,6 +14,8 @@ module PPCurses
   KEY_DOWN = Curses::KEY_DOWN
 
 
+  A_REVERSE = Curses::A_REVERSE
+
   # To be used in conjunction with curs_set for more readable code e.g. Curses.curs_set(INVISIBLE)
   INVISIBLE = 0
   VISIBLE = 1
@@ -25,8 +27,11 @@ module PPCurses
   end
 
 
+ require_relative  'ppcurses/application.rb'
+ require_relative  'ppcurses/menu_bar.rb'
  require_relative  'ppcurses/Screen.rb'
  require_relative  'ppcurses/pp_point.rb'
+
  # Menus ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/menu/BaseMenu.rb'
  require_relative  'ppcurses/menu/Menu.rb'
