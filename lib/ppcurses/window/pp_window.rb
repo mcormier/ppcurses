@@ -1,7 +1,6 @@
-require 'curses'
-
 module PPCurses
 
+  # TODO -- remove PP
   class PPWindow < Curses::Window
 
     def initialize(height, width, top, left)
