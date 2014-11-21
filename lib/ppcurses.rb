@@ -30,7 +30,7 @@ module PPCurses
  require_relative  'ppcurses/application.rb'
  require_relative  'ppcurses/menu_bar.rb'
  require_relative  'ppcurses/Screen.rb'
- require_relative  'ppcurses/pp_point.rb'
+ require_relative 'ppcurses/geometry.rb'
 
  # Menus ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/menu/BaseMenu.rb'

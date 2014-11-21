@@ -12,4 +12,8 @@ module PPCurses
 
   end
 
+  class Rect
+
+  end
+
 end
