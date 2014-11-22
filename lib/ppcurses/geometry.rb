@@ -10,6 +10,10 @@ module PPCurses
       @y = y
     end
 
+    def to_s
+      "x=#{@x} y=#{@y}"
+    end
+
   end
 
   class Rect
