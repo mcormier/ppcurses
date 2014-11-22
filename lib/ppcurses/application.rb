@@ -7,9 +7,12 @@ module PPCurses
 
     def initialize
       @screen = PPCurses::Screen.new
+      @menubar = PPCurses::MenuBar.new
       @@shared_app = self
     end
 
+
+    # TODO populate menu bar with menubar items.
 
     # Informal protocol
     # A delegate receives notifications if and only if a method is defined
@@ -28,9 +31,14 @@ module PPCurses
           @delegate.applicationDidFinishLaunching(self)
       end
 
-      # TODO display default menu bar
+      @menubar.show(@screen)
 
-      @screen.setup_curses
+      @screen.get_ch
+
+      # TODO -- create an NSResponder chain ...
+
+
+      @screen.shutdown_curses
 
     end
 
