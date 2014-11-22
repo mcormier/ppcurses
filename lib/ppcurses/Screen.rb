@@ -94,6 +94,15 @@ module PPCurses
       Curses.lines
     end
 
+    def set_pos_by_point( p )
+      Curses.stdscr.setpos(p.y, p.x)
+    end
+
+    def cur_point
+      PPCurses::Point.new(Curses.stdscr.curx, Curses.stdscr.cury)
+    end
+
+
     def shutdown_curses
       Curses.close_screen
     end
