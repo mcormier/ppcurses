@@ -7,7 +7,12 @@ module PPCurses
 
     def initialize
       @screen = PPCurses::Screen.new
+
       @menubar = PPCurses::MenuBar.new
+      quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
+
+      @menubar.add_menu_item(quit_item)
+
       @@shared_app = self
     end
 
