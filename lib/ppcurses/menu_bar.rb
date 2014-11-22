@@ -9,6 +9,9 @@ module PPCurses
       screen.print_with_attribute( ' ' * screen.width, A_REVERSE )
     end
 
+    def add_menu_item(menu_item)
+
+    end
 
   end
 
@@ -21,7 +24,7 @@ module PPCurses
     attr_accessor :key
     attr_accessor :label
 
-    def intiialize( key, label )
+    def initialize( key, label )
       @key = key
       @label = label
     end
