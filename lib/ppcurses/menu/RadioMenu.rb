@@ -25,7 +25,7 @@ module PPCurses
      
       w_width = @menu_length + 4
 
-      @win = PPWindow.new(3, w_width ,0, (Curses.cols - w_width) / 2)
+      @win = Window.new(3, w_width ,0, (Curses.cols - w_width) / 2)
 
       @win.timeout=-1
       # Enables reading arrow keys in getch 

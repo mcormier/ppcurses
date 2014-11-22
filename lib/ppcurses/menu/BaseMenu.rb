@@ -61,7 +61,7 @@ module PPCurses
     def create_window
       w_height = @menu_items.length + 4
       w_width = @max_menu_width + 4
-      @win = PPCurses::PPWindow.new(w_height,w_width,(Curses.lines-w_height) / 2, (Curses.cols-w_width)/2)
+      @win = PPCurses::Window.new(w_height,w_width,(Curses.lines-w_height) / 2, (Curses.cols-w_width)/2)
       @win.timeout=-1
     end
 

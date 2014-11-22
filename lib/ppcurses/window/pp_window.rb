@@ -1,8 +1,8 @@
 module PPCurses
 
-  # TODO -- remove PP
-  class PPWindow < Curses::Window
+  class Window < Curses::Window
 
+    # TODO - use optional parameters.  A rect or a Curses window to wrap.
     def initialize(height, width, top, left)
       super(height,width,top,left)
 

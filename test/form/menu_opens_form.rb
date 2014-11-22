@@ -10,7 +10,7 @@ def display(screen)
 
   #screen.add_listener( menu )
 
-  @win = PPCurses::PPWindow.new(9,60,0,0)
+  @win = PPCurses::Window.new(9,60,0,0)
 
   @form = PPCurses::Form.new(@win)
   media = PPCurses::RadioButtonGroup.new('      Media Type', %w(CD Vinyl MP3) )
