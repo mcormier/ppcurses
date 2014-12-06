@@ -95,7 +95,27 @@ module PPCurses
     end
 
     def set_pos_by_point( p )
-      Curses.stdscr.setpos(p.y, p.x)
+      setpos(p.y, p.x)
+    end
+
+    def setpos(y, x)
+      Curses.stdscr.setpos(y, x)
+    end
+
+    def attron(attributes)
+      Curses.stdscr.attron(attributes)
+    end
+
+    def attroff(attributes)
+      Curses.stdscr.attroff(attributes)
+    end
+
+    def addstr(string)
+      Curses.stdscr.addstr(string)
+    end
+
+    def getch
+      Curses.stdscr.getch
     end
 
     def cur_point
