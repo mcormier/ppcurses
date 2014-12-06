@@ -122,6 +122,10 @@ module PPCurses
       PPCurses::Point.new(Curses.stdscr.curx, Curses.stdscr.cury)
     end
 
+    def curs_set(value)
+      Curses.curs_set(value)
+    end
+
 
     def shutdown_curses
       Curses.close_screen
