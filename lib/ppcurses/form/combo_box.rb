@@ -8,7 +8,7 @@ module PPCurses
 
     attr_accessor :selected
 
-    def initialize( label, options)
+    def initialize(label, options)
       @label = label
       @options = options
     end
@@ -28,7 +28,7 @@ module PPCurses
     end
 
     def set_curs_pos(screen)
-      curs_set(INVISIBLE)
+      screen.curs_set(INVISIBLE)
     end
 
     def handle_keypress(key)
