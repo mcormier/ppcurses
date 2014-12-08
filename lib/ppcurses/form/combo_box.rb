@@ -44,6 +44,17 @@ module PPCurses
       screen.curs_set(INVISIBLE)
     end
 
+    # Return Value
+    # The object in the receiver's internal item list corresponding to the last item selected
+    # from the pop-up list, or nil if no item is selected.
+    def object_value_of_selected_item
+      if  @options_menu.nil?
+        return nil
+      end
+
+      @options[@options_menu.selection]
+    end
+
     def handle_keypress(key)
 
       if key == ENTER
