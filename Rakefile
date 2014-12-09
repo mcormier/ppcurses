@@ -9,6 +9,12 @@ task :build do
   `gem build ppcurses.gemspec`
 end
 
+desc 'Builds a new gem and installs it locally'
+task :install_latest do
+  Rake::Task['build'].execute
+  `gem install ppcurses-0.1.0.gem`
+end
+
 desc 'Run All tests'
 task :testAll do
   Rake::Task['testActions'].execute
