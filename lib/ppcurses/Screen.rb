@@ -26,7 +26,7 @@ module Curses
   class Window
 
     def cur_point
-      PPCurses::Point.new(Curses.curx, Curses.cury)
+      PPCurses::Point.new(curx, cury)
     end
 
     def set_pos_by_point( p )
