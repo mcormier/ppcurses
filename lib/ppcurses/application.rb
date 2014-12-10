@@ -75,17 +75,59 @@ module PPCurses
 
   end
 
+
+  # Based on the Cocoa NSResponder
+  #
+  # Current link, which probably won't be valid in the future ...
+  #
+  # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSResponder_Class/index.html#//apple_ref/occ/instp/NSResponder/menu
+  #
+  class Responder
+
+    attr_accessor :next_responder
+
+    #
+    # Whether the responder accepts first responder status.
+    #
+    # As first responder, the receiver is the first object in the responder chain to be sent key events
+    # and action messages. By default, this property is FALSE. Subclasses set this property to TRUE if the
+    # receiver accepts first responder status.
+    #
+    def accepts_first_responder
+      false
+    end
+
+    #
+    # Notifies the receiver that it’s about to become first responder
+    #
+    # The default implementation returns TRUE, accepting first responder status. Subclasses can override
+    # this method to update state or perform some action such as highlighting the selection, or to
+    # return FALSE, refusing first responder status.
+    #
+    def become_first_responder
+      true
+    end
+
+    #
+    # Notifies the receiver that it’s been asked to relinquish its status as first responder in its window.
+    #
+    # The default implementation returns TRUE, resigning first responder status. Subclasses can override
+    # this method to update state or perform some action such as unhighlighting the selection, or to
+    # return FALSE, refusing to relinquish first responder status.
+    #
+    def resign_first_responder
+      true
+    end
+
+    #
+    # Informs the receiver that the user has pressed a key.
+    #
+    # The default implementation simply passes this message to the next responder.
+    #
+    def key_down( key )
+      @next_responder.key_down(key) unless @next_responder.nil?
+    end
+
+  end
+
 end
-
-
-# Based on the Cocoa NSResponder
-# https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSResponder_Class/index.html#//apple_ref/occ/instp/NSResponder/menu
-#
-# Responder -
-#
-# acceptsFirstResponder
-# becomeFirstResponder
-# resignFirstResponder
-#
-# nextResponder
-#
