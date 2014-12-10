@@ -18,8 +18,6 @@ module PPCurses
     end
 
 
-    # TODO populate menu bar with menubar items.
-
     # Informal protocol
     # A delegate receives notifications if and only if a method is defined
     #
@@ -53,6 +51,17 @@ module PPCurses
     end
 
     def terminate
+
+      # Cocoa returns an NSApplicationTerminateReply which can
+      # be a cancel, now or later response.  Simply support a boolean
+      # for now.
+      if @delegate.respond_to?(:applicationShouldTerminate)
+        should_terminate = @delegate.applicationShouldTerminate(self)
+        unless should_terminate
+          return
+        end
+      end
+
       @terminated = true
     end
 
