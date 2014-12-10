@@ -5,13 +5,15 @@ module PPCurses
 
     @@shared_app
 
+    attr_accessor :main_menu
+
     def initialize
       @screen = PPCurses::Screen.new
 
-      @menubar = PPCurses::MenuBar.new
+      @main_menu = PPCurses::MenuBar.new
       quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
 
-      @menubar.add_menu_item(quit_item)
+      @main_menu.add_menu_item(quit_item)
 
       @@shared_app = self
       @terminated = false
@@ -35,7 +37,7 @@ module PPCurses
           @delegate.applicationDidFinishLaunching(self)
       end
 
-      @menubar.show(@screen)
+      @main_menu.show(@screen)
 
       until @terminated
         c = @screen.get_ch
@@ -74,3 +76,16 @@ module PPCurses
   end
 
 end
+
+
+# Based on the Cocoa NSResponder
+# https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSResponder_Class/index.html#//apple_ref/occ/instp/NSResponder/menu
+#
+# Responder -
+#
+# acceptsFirstResponder
+# becomeFirstResponder
+# resignFirstResponder
+#
+# nextResponder
+#
