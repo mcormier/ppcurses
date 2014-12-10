@@ -14,6 +14,7 @@ module PPCurses
       @menubar.add_menu_item(quit_item)
 
       @@shared_app = self
+      @terminated = false
     end
 
 
@@ -38,13 +39,21 @@ module PPCurses
 
       @menubar.show(@screen)
 
-      @screen.get_ch
+      until @terminated
+        c = @screen.get_ch
 
-      # TODO -- create an NSResponder chain ...
+        # TODO -- create an NSResponder chain ...
+        terminate
+      end
+
 
 
       @screen.shutdown_curses
 
+    end
+
+    def terminate
+      @terminated = true
     end
 
     def Application.sharedApplication
