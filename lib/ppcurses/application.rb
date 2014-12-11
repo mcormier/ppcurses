@@ -128,6 +128,58 @@ module PPCurses
       @next_responder.key_down(key) unless @next_responder.nil?
     end
 
+    def Responder.isa( obj )
+      PPCurses.implements_protocol( obj, %w(accepts_first_responder become_first_responder resign_first_responder key_down))
+    end
+
+  end
+
+
+  #
+  # Derived from methods defined in Cocoa NSWindow
+  #
+  # Current link, which probably won't be valid in the future ...
+  #
+  # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSWindow_Class/index.html#//apple_ref/occ/instm/NSWindow
+  #
+  class ResponderManager
+
+    attr_accessor :first_responder
+
+    #
+    # Attempts to make a given responder the first responder
+    #
+    #
+    # If responder isn’t already the first responder, this method first sends a resign_first_responder message
+    # to the object that is the first responder. If that object refuses to resign, it remains the first responder,
+    # and this method immediately returns FALSE. If the current first responder resigns, this method sends a
+    # become_first_responder message to responder. If responder does not accept first responder status, the NSWindow object becomes first responder; in this case, the method returns YES even if responder refuses first responder status.
+    #
+    # If responder is nil, this method still sends resignFirstResponder to the current first responder. If the current first responder refuses to resign, it remains the first responder and this method immediately returns NO. If the current first responder returns YES from resignFirstResponder, the window is made its own first responder and this method returns YES.
+    # The Application Kit framework uses this method to alter the first responder in response to mouse-down events; you can also use it to explicitly set the first responder from within your program. The responder object is typically an NSView object in the window’s view hierarchy. If this method is called explicitly, first send acceptsFirstResponder to responder, and do not call makeFirstResponder: if acceptsFirstResponder returns NO.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Use setInitialFirstResponder: to the set the first responder to be used when the window is brought onscreen for the first time.
+    #
+    def make_first_responder( responder )
+
+      Responder.isa(responder)
+
+      if responder != @first_responder
+        will_resign = responder.resign_first_responder
+        unless will_resign
+          return false
+        end
+      end
+
+      will_accept = responder.become_first_responder
+      unless will_accept
+        return false
+      end
+
+      @first_responder = responder
+
+      true
+    end
+
+
   end
 
 end
