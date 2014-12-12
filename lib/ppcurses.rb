@@ -59,6 +59,9 @@ module PPCurses
 
 
   ZERO_POINT = Point.new(0,0)
+
+  NO = false
+  YES = true
 end
 
 
