@@ -29,6 +29,12 @@ module PPCurses
 
   end
 
+  # Based on Cocoa NSMenuItem
+  #
+  # Current link, which probably won't be valid in the future ...
+  #
+  # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSMenuItem_Class/index.html#//apple_ref/occ/instm/NSMenuItem/action
+  # ----------------------------------------------------------
   # MenuBarItems ...
   #
   # q:Quit d:Del u:Undel
@@ -38,12 +44,13 @@ module PPCurses
     attr_accessor :key
     attr_accessor :label
 
+    attr_accessor :action
+
 
     def initialize( key, label )
       @key = key
       @label = label
     end
-
 
     def to_s
       "#{@key}:#{@label}"
