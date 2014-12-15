@@ -141,6 +141,8 @@ module PPCurses
 
       @main_menu.add_menu_item(@quit_item)
 
+      @next_responder = @main_menu
+
       @@shared_app = self
       @terminated = false
     end
@@ -167,11 +169,8 @@ module PPCurses
 
       until @terminated
         c = @screen.get_ch
-
-        @quit_item.action.call
+        key_down(c)
       end
-
-
 
       @screen.shutdown_curses
 
