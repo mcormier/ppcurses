@@ -23,8 +23,23 @@ module PPCurses
       screen.print_with_attribute( ' ' * (screen.width - p.x), A_REVERSE )
     end
 
+
     def add_menu_item(menu_item)
       @menu_items.push(menu_item)
+    end
+
+
+    def key_down( key )
+
+      @menu_items.each do |menu_item|
+        if key == menu_item.key
+          menu_item.action.call
+          return
+        end
+      end
+
+      @next_responder.key_down(key) unless @next_responder.nil?
+
     end
 
   end
