@@ -2,7 +2,7 @@ module PPCurses
 
 
 
-  class MenuBar
+  class MenuBar < Responder
 
     def initialize
       @menu_items = []
