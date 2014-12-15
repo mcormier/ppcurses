@@ -135,9 +135,11 @@ module PPCurses
       @screen = PPCurses::Screen.new
 
       @main_menu = PPCurses::MenuBar.new
-      quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
 
-      @main_menu.add_menu_item(quit_item)
+      @quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
+      @quit_item.action = method(:terminate)
+
+      @main_menu.add_menu_item(@quit_item)
 
       @@shared_app = self
       @terminated = false
@@ -166,8 +168,7 @@ module PPCurses
       until @terminated
         c = @screen.get_ch
 
-        # TODO -- create an NSResponder chain ...
-        terminate
+        @quit_item.action.call
       end
 
 
