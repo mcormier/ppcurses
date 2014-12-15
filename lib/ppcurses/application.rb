@@ -164,9 +164,6 @@ module PPCurses
     #
     # If responder is nil, this method still sends resign_first_responder to the current first responder.
     #
-    # If the current first responder refuses to resign, it remains the first responder and this method
-    # immediately returns NO. If the current first responder returns YES from resign_first_responder,
-    # the window is made its own first responder and this method returns YES.
     def make_first_responder( responder )
 
       Responder.isa(responder) unless responder.nil?
@@ -180,8 +177,14 @@ module PPCurses
 
       @first_responder = nil
 
+      accepted = NO
       will_accept = responder.accepts_first_responder
-      unless will_accept
+
+      if will_accept
+        accepted = responder.become_first_responder
+      end
+          
+      unless accepted
         @first_responder = self
         return YES
       end
