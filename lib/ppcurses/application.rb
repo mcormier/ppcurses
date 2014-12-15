@@ -1,81 +1,5 @@
 module PPCurses
 
-  # noinspection RubyClassVariableUsageInspection
-  class Application
-
-    @@shared_app
-
-    attr_accessor :main_menu
-
-    def initialize
-      @screen = PPCurses::Screen.new
-
-      @main_menu = PPCurses::MenuBar.new
-      quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
-
-      @main_menu.add_menu_item(quit_item)
-
-      @@shared_app = self
-      @terminated = false
-    end
-
-
-    # Informal protocol
-    # A delegate receives notifications if and only if a method is defined
-    #
-    # applicationDidFinishLaunching
-    # applicationShouldTerminate
-    #
-    def set_delegate (delegate)
-     @delegate = delegate
-    end
-
-
-    def launch
-      @screen.setup_curses
-      if @delegate.respond_to?(:applicationDidFinishLaunching)
-          @delegate.applicationDidFinishLaunching(self)
-      end
-
-      @main_menu.show(@screen)
-
-      until @terminated
-        c = @screen.get_ch
-
-        # TODO -- create an NSResponder chain ...
-        terminate
-      end
-
-
-
-      @screen.shutdown_curses
-
-    end
-
-    def terminate
-
-      # Cocoa returns an NSApplicationTerminateReply which can
-      # be a cancel, now or later response.  Simply support a boolean
-      # for now.
-      if @delegate.respond_to?(:applicationShouldTerminate)
-        should_terminate = @delegate.applicationShouldTerminate(self)
-        unless should_terminate
-          return
-        end
-      end
-
-      @terminated = true
-    end
-
-    def Application.sharedApplication
-      @@shared_app
-    end
-
-
-
-  end
-
-
   # Based on the Cocoa NSResponder
   #
   # Current link, which probably won't be valid in the future ...
@@ -134,7 +58,7 @@ module PPCurses
 
   end
 
-
+#=======================================================================================================================
   #
   # Derived from methods defined in Cocoa NSWindow
   #
@@ -144,6 +68,7 @@ module PPCurses
   #
   class ResponderManager < Responder
 
+    # The first responder is the first object in a responder chain to receive an event or action message.
     attr_accessor :first_responder
 
     def accepts_first_responder
@@ -183,7 +108,7 @@ module PPCurses
       if will_accept
         accepted = responder.become_first_responder
       end
-          
+
       unless accepted
         @first_responder = self
         return YES
@@ -193,6 +118,83 @@ module PPCurses
 
       YES
     end
+
+
+  end
+
+#=======================================================================================================================
+
+  # noinspection RubyClassVariableUsageInspection
+  class Application < ResponderManager
+
+    @@shared_app
+
+    attr_accessor :main_menu
+
+    def initialize
+      @screen = PPCurses::Screen.new
+
+      @main_menu = PPCurses::MenuBar.new
+      quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
+
+      @main_menu.add_menu_item(quit_item)
+
+      @@shared_app = self
+      @terminated = false
+    end
+
+
+    # Informal protocol
+    # A delegate receives notifications if and only if a method is defined
+    #
+    # applicationDidFinishLaunching
+    # applicationShouldTerminate
+    #
+    def set_delegate (delegate)
+      @delegate = delegate
+    end
+
+
+    def launch
+      @screen.setup_curses
+      if @delegate.respond_to?(:applicationDidFinishLaunching)
+        @delegate.applicationDidFinishLaunching(self)
+      end
+
+      @main_menu.show(@screen)
+
+      until @terminated
+        c = @screen.get_ch
+
+        # TODO -- create an NSResponder chain ...
+        terminate
+      end
+
+
+
+      @screen.shutdown_curses
+
+    end
+
+    def terminate
+
+      # Cocoa returns an NSApplicationTerminateReply which can
+      # be a cancel, now or later response.  Simply support a boolean
+      # for now.
+      if @delegate.respond_to?(:applicationShouldTerminate)
+        should_terminate = @delegate.applicationShouldTerminate(self)
+        unless should_terminate
+          return
+        end
+      end
+
+      @terminated = true
+    end
+
+    def Application.sharedApplication
+      @@shared_app
+    end
+
 
 
   end
