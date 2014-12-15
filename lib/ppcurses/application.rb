@@ -90,33 +90,33 @@ module PPCurses
     # Whether the responder accepts first responder status.
     #
     # As first responder, the receiver is the first object in the responder chain to be sent key events
-    # and action messages. By default, this property is FALSE. Subclasses set this property to TRUE if the
+    # and action messages. By default, this property is NO. Subclasses set this property to YES if the
     # receiver accepts first responder status.
     #
     def accepts_first_responder
-      false
+      NO
     end
 
     #
     # Notifies the receiver that it’s about to become first responder
     #
-    # The default implementation returns TRUE, accepting first responder status. Subclasses can override
+    # The default implementation returns YES, accepting first responder status. Subclasses can override
     # this method to update state or perform some action such as highlighting the selection, or to
-    # return FALSE, refusing first responder status.
+    # return NO, refusing first responder status.
     #
     def become_first_responder
-      true
+      YES
     end
 
     #
     # Notifies the receiver that it’s been asked to relinquish its status as first responder in its window.
     #
-    # The default implementation returns TRUE, resigning first responder status. Subclasses can override
+    # The default implementation returns YES, resigning first responder status. Subclasses can override
     # this method to update state or perform some action such as unhighlighting the selection, or to
-    # return FALSE, refusing to relinquish first responder status.
+    # return NO, refusing to relinquish first responder status.
     #
     def resign_first_responder
-      true
+      YES
     end
 
     #
@@ -142,9 +142,13 @@ module PPCurses
   #
   # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSWindow_Class/index.html#//apple_ref/occ/instm/NSWindow
   #
-  class ResponderManager
+  class ResponderManager < Responder
 
     attr_accessor :first_responder
+
+    def accepts_first_responder
+      YES
+    end
 
     #
     # Attempts to make a given responder the first responder
@@ -152,31 +156,39 @@ module PPCurses
     #
     # If responder isn’t already the first responder, this method first sends a resign_first_responder message
     # to the object that is the first responder. If that object refuses to resign, it remains the first responder,
-    # and this method immediately returns FALSE. If the current first responder resigns, this method sends a
-    # become_first_responder message to responder. If responder does not accept first responder status, the NSWindow object becomes first responder; in this case, the method returns YES even if responder refuses first responder status.
+    # and this method immediately returns NO. If the current first responder resigns, this method sends a
+    # become_first_responder message to responder.
     #
-    # If responder is nil, this method still sends resignFirstResponder to the current first responder. If the current first responder refuses to resign, it remains the first responder and this method immediately returns NO. If the current first responder returns YES from resignFirstResponder, the window is made its own first responder and this method returns YES.
-    # The Application Kit framework uses this method to alter the first responder in response to mouse-down events; you can also use it to explicitly set the first responder from within your program. The responder object is typically an NSView object in the window’s view hierarchy. If this method is called explicitly, first send acceptsFirstResponder to responder, and do not call makeFirstResponder: if acceptsFirstResponder returns NO.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Use setInitialFirstResponder: to the set the first responder to be used when the window is brought onscreen for the first time.
+    # If responder does not accept first responder status, the ResponderManager becomes first responder; in
+    # this case, the method returns YES even if the responder refused first responder status.
     #
+    # If responder is nil, this method still sends resign_first_responder to the current first responder.
+    #
+    # If the current first responder refuses to resign, it remains the first responder and this method
+    # immediately returns NO. If the current first responder returns YES from resign_first_responder,
+    # the window is made its own first responder and this method returns YES.
     def make_first_responder( responder )
 
-      Responder.isa(responder)
+      Responder.isa(responder) unless responder.nil?
 
       if responder != @first_responder
         will_resign = responder.resign_first_responder
         unless will_resign
-          return false
+          return NO
         end
       end
 
-      will_accept = responder.become_first_responder
+      @first_responder = nil
+
+      will_accept = responder.accepts_first_responder
       unless will_accept
-        return false
+        @first_responder = self
+        return YES
       end
 
       @first_responder = responder
 
-      true
+      YES
     end
 
 
