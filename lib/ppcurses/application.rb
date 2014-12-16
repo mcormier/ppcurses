@@ -165,6 +165,8 @@ module PPCurses
         @delegate.applicationDidFinishLaunching(self)
       end
 
+      # TODO - Create a view hierarchy and show the views.
+      # Don't hard code show.
       @main_menu.show(@screen)
 
       until @terminated
