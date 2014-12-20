@@ -8,7 +8,7 @@ module PPCurses
       @menu_items = []
     end
 
-    # Expects screen to be PPCurses::Screen object
+    # Expects screen to be a PPCurses::Screen object
     # Need to convert to work with a window or a view.
     def show(screen)
 
