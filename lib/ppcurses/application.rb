@@ -131,20 +131,28 @@ module PPCurses
 
     attr_accessor :main_menu
 
+    # Any object of type PPCurses:View
+    attr_accessor :content_view
+
     def initialize
       @screen = PPCurses::Screen.new
 
-      @main_menu = PPCurses::MenuBar.new
-
-      @quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
-      @quit_item.action = method(:terminate)
-
-      @main_menu.add_menu_item(@quit_item)
-
+      @main_menu = create_default_menubar
       @next_responder = @main_menu
 
       @@shared_app = self
       @terminated = false
+    end
+
+
+    def create_default_menubar
+      menubar = PPCurses::MenuBar.new
+
+      quit_item = PPCurses::MenuBarItem.new('q', 'Quit')
+      quit_item.action = method(:terminate)
+      menubar.add_menu_item(quit_item)
+
+      menubar
     end
 
 
@@ -165,9 +173,11 @@ module PPCurses
         @delegate.applicationDidFinishLaunching(self)
       end
 
-      # TODO - Create a view hierarchy and show the views.
-      # Don't hard code show.
-      @main_menu.show(@screen)
+
+      # TODO - switch show to display?
+      @main_menu.show(@screen) unless @main_menu.nil?
+
+      @content_view.display(@screen) unless @content_view.nil?
 
       until @terminated
         c = @screen.get_ch
