@@ -23,7 +23,13 @@ module PPCurses
 
     ## Drawing
 
-    # display
+    # Expects screen to be a PPCurses::Screen object
+    # Need to convert to work with a window or a view.
+    #
+    # The default implementation does nothing
+    def display(screen)
+
+    end
 
 
     ## Key-view Loop Management
