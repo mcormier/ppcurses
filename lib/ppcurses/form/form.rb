@@ -1,14 +1,13 @@
 module PPCurses
 
-  class Form
+  class Form < View
 
     attr_accessor :selected_element
 
     #
     # Screen should be of type Curses::Window
     #
-    def initialize (screen)
-      @win = screen
+    def initialize
       @elements = []
 
       @buttons_added = false
@@ -56,7 +55,8 @@ module PPCurses
       show
 
       while 1
-        c = @win.getch
+        # TODO -- rewrite to receive key events as a responder.
+        # c = @win.getch
 
         if c == KEY_UP or c == KEY_DOWN or c == TAB
 
@@ -93,6 +93,7 @@ module PPCurses
 
 
 
+    # TODO Deprecated - to be removed
     def execute
      handle_input
 
@@ -100,9 +101,28 @@ module PPCurses
       @win.refresh
     end
 
+
+    def display(screen)
+      y = 1
+      x = 1
+
+      for i in 0..@elements.length - 3
+        element = @elements[i]
+        screen.setpos(y, x)
+        element.show(screen)
+        y += element.height
+      end
+
+      screen.setpos(y, x)
+      @button_pair.show(screen)
+
+      @selected_element.set_curs_pos(screen) unless @selected_element.nil?
+    end
+
     # --------------------------------------------------------------------------------
     protected
 
+    # Deprecated use display.
     def show
       y = 1
       x = 1
