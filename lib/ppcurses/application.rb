@@ -145,6 +145,11 @@ module PPCurses
     end
 
 
+    def content_view=(value)
+      @content_view=value
+      @main_menu.next_responder=@content_view
+    end
+
     def create_default_menubar
       menubar = PPCurses::MenuBar.new
 
@@ -177,6 +182,7 @@ module PPCurses
       # TODO - switch show to display?
       @main_menu.show(@screen) unless @main_menu.nil?
 
+      # TODO -- pass a subview of the screen.
       @content_view.display(@screen) unless @content_view.nil?
 
       until @terminated
