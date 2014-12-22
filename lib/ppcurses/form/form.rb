@@ -106,7 +106,7 @@ module PPCurses
       y = 1
       x = 1
 
-      for i in 0..@elements.length - 3
+      for i in 0..@elements.length - 1
         element = @elements[i]
         screen.setpos(y, x)
         element.show(screen)
