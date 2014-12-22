@@ -34,6 +34,11 @@ module PPCurses
     def add (element)
       PPCurses.implements_protocol( element, %w(show height set_curs_pos handle_keypress selected=))
       @elements.push(element)
+
+      if  @selected_element.nil?
+        set_selected_element(@elements[0])
+      end
+
     end
 
 
@@ -92,13 +97,21 @@ module PPCurses
     end
 
 
+    def key_down( key )
 
-    # TODO Deprecated - to be removed
-    def execute
-     handle_input
+      if key == KEY_UP or key == KEY_DOWN or key == TAB
+        selected_index = @elements.index(@selected_element)
+        n_choices = @elements.length
 
-      @win.clear
-      @win.refresh
+        if key == KEY_DOWN or key == TAB
+          (selected_index == n_choices-1) ? next_selection = 0 : next_selection = selected_index + 1
+        else
+          (selected_index == 0) ? next_selection = n_choices - 1 : next_selection =  selected_index - 1
+        end
+
+        set_selected_element(@elements[next_selection])
+      end
+
     end
 
 
