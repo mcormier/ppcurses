@@ -178,14 +178,13 @@ module PPCurses
         @delegate.applicationDidFinishLaunching(self)
       end
 
-
-      # TODO - switch show to display?
-      @main_menu.show(@screen) unless @main_menu.nil?
-
-      # TODO -- pass a subview of the screen.
-      @content_view.display(@screen) unless @content_view.nil?
-
       until @terminated
+        # TODO - switch show to display?
+        @main_menu.show(@screen) unless @main_menu.nil?
+
+        # TODO -- pass a subview of the screen.
+        @content_view.display(@screen) unless @content_view.nil?
+
         c = @screen.get_ch
         key_down(c)
       end
