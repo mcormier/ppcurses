@@ -18,7 +18,7 @@ require_relative '../../lib/ppcurses.rb'
   form.add(last_name)
   form.add(age)
   form.add(gender)
-
+  form.add( PPCurses::ButtonPair.new('Submit', 'Cancel') )
 
 
 app = PPCurses::Application.new
