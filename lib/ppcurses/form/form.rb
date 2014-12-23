@@ -9,15 +9,6 @@ module PPCurses
     #
     def initialize
       @elements = []
-
-      @buttons_added = false
-
-     set_button_pair( ButtonPair.new('Submit', 'Cancel') )
-    end
-
-    # Expects a ButtonPair object. Use to override the default Submit/Cancel labels
-    def set_button_pair( pair )
-      @button_pair = pair
     end
 
     # Formal protocol required
@@ -126,8 +117,6 @@ module PPCurses
         y += element.height
       end
 
-      screen.setpos(y, x)
-      @button_pair.show(screen)
 
       @selected_element.set_curs_pos(screen) unless @selected_element.nil?
     end
