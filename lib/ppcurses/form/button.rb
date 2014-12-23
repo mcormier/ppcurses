@@ -63,6 +63,18 @@ module PPCurses
       @selected = false
     end
 
+    def height
+      1
+    end
+
+    def set_curs_pos(screen)
+      Curses.curs_set(INVISIBLE)
+    end
+
+    def handle_keypress( key )
+      false
+    end
+
     def show(screen)
 
       p = screen.cur_point
