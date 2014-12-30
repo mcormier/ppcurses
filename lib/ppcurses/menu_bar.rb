@@ -2,10 +2,15 @@ module PPCurses
 
 
 
+  # The menubar is activated and deactivated by the ESCAPE key.
+  #
+  #  Any responders further down the responder chain will never receive ESCAPE key events.
+  #
   class MenuBar < Responder
 
     def initialize
       @menu_items = []
+      @selected = false
     end
 
     # Expects screen to be a PPCurses::Screen object
@@ -14,13 +19,18 @@ module PPCurses
 
       screen.set_pos_by_point(ZERO_POINT)
 
+      screen.attron(Curses::A_REVERSE) if @selected
+
       @menu_items.each do |menu_item|
-        screen.print_with_attribute( "#{menu_item} ", A_REVERSE )
+        screen.addstr( "#{menu_item} ")
       end
 
       p = screen.cur_point
 
-      screen.print_with_attribute( ' ' * (screen.width - p.x), A_REVERSE )
+      screen.addstr( ' ' * (screen.width - p.x) )
+
+      screen.attroff(Curses::A_REVERSE) if @selected
+
     end
 
 
@@ -31,10 +41,17 @@ module PPCurses
 
     def key_down( key )
 
-      @menu_items.each do |menu_item|
-        if key == menu_item.key
-          menu_item.action.call
-          return
+      if key == ESCAPE
+        @selected = !@selected
+        return
+      end
+
+      if @selected
+        @menu_items.each do |menu_item|
+          if key == menu_item.key
+            menu_item.action.call
+            return
+          end
         end
       end
 
