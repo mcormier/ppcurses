@@ -19,7 +19,11 @@ module PPCurses
 
       screen.set_pos_by_point(ZERO_POINT)
 
-      screen.attron(Curses::A_REVERSE) if @selected
+      if @selected
+       screen.attron(A_REVERSE)
+      else
+       screen.attron(A_UNDERLINE)
+      end
 
       @menu_items.each do |menu_item|
         screen.addstr( "#{menu_item} ")
@@ -29,7 +33,11 @@ module PPCurses
 
       screen.addstr( ' ' * (screen.width - p.x) )
 
-      screen.attroff(Curses::A_REVERSE) if @selected
+      if @selected
+        screen.attroff(A_REVERSE)
+      else
+        screen.attroff(A_UNDERLINE)
+      end
 
     end
 
@@ -53,6 +61,7 @@ module PPCurses
             return
           end
         end
+        return
       end
 
       @next_responder.key_down(key) unless @next_responder.nil?
