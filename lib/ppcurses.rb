@@ -15,6 +15,7 @@ module PPCurses
 
 
   A_REVERSE = Curses::A_REVERSE
+  A_UNDERLINE = Curses::A_UNDERLINE
 
   # To be used in conjunction with curs_set for more readable code e.g. Curses.curs_set(INVISIBLE)
   INVISIBLE = 0
