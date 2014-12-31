@@ -5,7 +5,7 @@ module PPCurses
   RADIO_NOT_SELECTED = '◎'
   RADIO_SELECTED = '◉'
 
-  class RadioButtonGroup
+  class RadioButtonGroup < View
 
     attr_accessor :selected
     attr_reader :current_option
@@ -34,14 +34,17 @@ module PPCurses
       end
     end
 
+    # deprecated to be removed
     def handle_keypress( key )
+      false
+    end
+
+    def key_down( key )
       if key == KEY_LEFT then @current_option = @current_option-1 end
       if key == KEY_RIGHT then @current_option = @current_option+1 end
 
       if @current_option < 0 then @current_option = @options.length-1 end
       if @current_option > @options.length-1 then @current_option = 0 end
-
-      false
     end
 
     def set_curs_pos(screen)
