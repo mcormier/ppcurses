@@ -4,7 +4,7 @@ module PPCurses
 
   # The menubar is activated and deactivated by the ESCAPE key.
   #
-  #  Any responders further down the responder chain will never receive ESCAPE key events.
+  # Any responders further down the responder chain will never receive ESCAPE key events.
   #
   class MenuBar < Responder
 
