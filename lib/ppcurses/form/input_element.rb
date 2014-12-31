@@ -1,6 +1,6 @@
 module PPCurses
 
-  class InputElement
+  class InputElement < View
 
     attr_accessor :label
     attr_accessor :value
@@ -46,27 +46,31 @@ module PPCurses
     end
 
 
+    # deprecated to be removed
     def handle_keypress( key )
+       false
+    end
 
+    def key_down( key )
       if key == DELETE
         handle_delete
-        return false
+        return
       end
 
       if key == KEY_LEFT
         @cursor_location -= 1 unless @cursor_location == 0
-        return false
+        return
       end
 
       if key == KEY_RIGHT
         @cursor_location += 1 unless @cursor_location == @value.length
-        return false
+        return
       end
 
 
       # Ignore control characters
       if key.is_a?(Fixnum)
-        return false
+        return
       end
 
       # Adding new characters to the string
@@ -74,16 +78,15 @@ module PPCurses
       # Check size of string before adding another character
       if @value.length >= @size
         # Ignore input
-        return false
+        return
       end
 
       unless passes_filter(key)
-        return false
+        return
       end
 
       add_character(key)
 
-      false
     end
 
 
