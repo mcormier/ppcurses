@@ -101,11 +101,15 @@ module PPCurses
         end
 
         set_selected_element(@elements[next_selection])
+        return
       end
+
+      @selected_element.key_down(key)
 
     end
 
 
+    # TODO -- call display of subview???
     def display(screen)
       y = 1
       x = 1
