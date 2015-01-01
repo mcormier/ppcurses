@@ -6,19 +6,19 @@ require_relative '../../lib/ppcurses.rb'
 
 
 
-  form = PPCurses::Form.new
+form = PPCurses::Form.new
 
-  first_name = PPCurses::InputElement.new('First Name', 10)
-  last_name = PPCurses::InputElement.new(' Last Name', 10)
-  age = PPCurses::InputElement.new_integer_only('      Age', 5)
+first_name = PPCurses::InputElement.new('First Name', 10)
+last_name = PPCurses::InputElement.new(' Last Name', 10)
+age = PPCurses::InputElement.new_integer_only('      Age', 5)
 
-  gender = PPCurses::RadioButtonGroup.new('      Sex', %w(Male Female))
+gender = PPCurses::RadioButtonGroup.new('      Sex', %w(Male Female))
 
-  form.add(first_name)
-  form.add(last_name)
-  form.add(age)
-  form.add(gender)
-  form.add( PPCurses::ButtonPair.new('Submit', 'Cancel') )
+form.add(first_name)
+form.add(last_name)
+form.add(age)
+form.add(gender)
+form.add( PPCurses::ButtonPair.new('Submit', 'Cancel') )
 
 
 app = PPCurses::Application.new
