@@ -60,7 +60,15 @@ module PPCurses
     def initialize(button1_label, button2_label)
       @button1 = Button.new(button1_label)
       @button2 = Button.new(button2_label)
+
+      @selected_button = @button1
+
       @selected = false
+    end
+
+    def selected=(val)
+      @selected_button.selected = val
+      @selected=val
     end
 
     def height
@@ -71,6 +79,22 @@ module PPCurses
       Curses.curs_set(INVISIBLE)
     end
 
+    def key_down( key )
+      if key == KEY_RIGHT or key == KEY_LEFT
+        @selected_button.selected=false
+
+        if @selected_button == @button1
+          @selected_button = @button2
+        else
+          @selected_button = @button1
+        end
+
+        @selected_button.selected=true
+
+      end
+    end
+
+      # Deprecated remove
     def handle_keypress( key )
       false
     end
