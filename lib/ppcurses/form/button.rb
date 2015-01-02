@@ -1,10 +1,12 @@
 module PPCurses
 
-  class Button
+  class Button < View
 
     attr_accessor :label
     attr_accessor :selected
     attr_accessor :pushed
+
+    attr_accessor :action
 
     def initialize(label)
       @label = label
@@ -33,14 +35,12 @@ module PPCurses
       Curses.curs_set(INVISIBLE)
     end
 
-    def handle_keypress( key )
+    def key_down( key )
 
       if key == ENTER
-        @pushed=true
-        return true
+        @action.call unless action.nil?
       end
 
-      false
     end
 
   end
@@ -49,7 +49,7 @@ module PPCurses
 
 
   # For grouping two buttons together, i.e. SUBMIT/CANCEL
-  class ButtonPair
+  class ButtonPair < View
 
     attr_accessor :selected
     attr_accessor :selected_element
@@ -90,8 +90,11 @@ module PPCurses
         end
 
         @selected_button.selected=true
-
+        return
       end
+
+      @selected_button.key_down(key)
+
     end
 
       # Deprecated remove
