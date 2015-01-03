@@ -34,10 +34,6 @@ module PPCurses
       end
     end
 
-    # deprecated to be removed
-    def handle_keypress( key )
-      false
-    end
 
     def key_down( key )
       if key == KEY_LEFT then @current_option = @current_option-1 end
