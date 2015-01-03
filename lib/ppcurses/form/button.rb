@@ -97,11 +97,6 @@ module PPCurses
 
     end
 
-      # Deprecated remove
-    def handle_keypress( key )
-      false
-    end
-
     def show(screen)
 
       p = screen.cur_point
