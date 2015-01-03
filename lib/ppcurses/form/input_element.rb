@@ -46,10 +46,6 @@ module PPCurses
     end
 
 
-    # deprecated to be removed
-    def handle_keypress( key )
-       false
-    end
 
     def key_down( key )
       if key == DELETE
