@@ -19,11 +19,11 @@ module PPCurses
     # - def show(screen)
     # - def height
     # - def set_curs_pos(screen)
-    # - def handle_keypress(key)
+    # - def key_down(key)
     # - def selected=
     #
     def add (element)
-      PPCurses.implements_protocol( element, %w(show height set_curs_pos handle_keypress selected=))
+      PPCurses.implements_protocol( element, %w(show height set_curs_pos key_down selected=))
       @elements.push(element)
 
       if  @selected_element.nil?
@@ -32,56 +32,6 @@ module PPCurses
 
     end
 
-
-    # TODO - re-evaluate logic.  If branching too complicated.
-
-    # TODO -- remove boolean return from handle_keypress
-
-    def handle_input
-
-      unless @buttons_added
-        @elements.push(@button_pair.button1)
-        @elements.push(@button_pair.button2)
-        @buttons_added = true
-      end
-
-      n_choices = @elements.length
-
-      set_selected_element(@elements[0])
-      show
-
-      while 1
-        # TODO -- rewrite to receive key events as a responder.
-        # c = @win.getch
-
-        if c == KEY_UP or c == KEY_DOWN or c == TAB
-
-          selected_index = @elements.index(@selected_element)
-
-          if c == KEY_DOWN or c == TAB
-            (selected_index == n_choices-1) ? next_selection = 0 : next_selection = selected_index + 1
-          else
-            (selected_index == 0) ? next_selection = n_choices - 1 : next_selection =  selected_index - 1
-          end
-
-          set_selected_element(@elements[next_selection])
-        elsif c == KEY_RIGHT and @selected_element == @button_pair.button1
-            set_selected_element(@button_pair.button2)
-        elsif c == KEY_LEFT and @selected_element == @button_pair.button2
-            set_selected_element(@button_pair.button1)
-        else
-          # TODO this is just plain wrong.
-          should_exit = @selected_element.handle_keypress(c)
-          if should_exit
-            break
-          end
-        end
-
-      show
-
-      end
-
-    end
 
     def submitted?
       @button_pair.button1.pushed
@@ -128,23 +78,6 @@ module PPCurses
     # --------------------------------------------------------------------------------
     protected
 
-    # Deprecated use display.
-    def show
-      y = 1
-      x = 1
-
-      for i in 0..@elements.length - 3
-        element = @elements[i]
-        @win.setpos(y, x)
-        element.show(@win)
-        y += element.height
-      end
-
-      @win.setpos(y, x)
-      @button_pair.show(@win)
-
-      @selected_element.set_curs_pos(@win)
-    end
 
 
     def set_selected_element(new_element)
