@@ -25,4 +25,25 @@ class TableView < View
 
 end
 
+
+# Based loosely on ...
+#
+# https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Protocols/NSTableDataSource_Protocol/index.html#//apple_ref/occ/intf/NSTableViewDataSource
+
+class TableViewDataSource
+
+  def number_of_rows_in_table
+
+  end
+
+  def object_value_for(column, row_index)
+
+  end
+
+  def TableViewDataSource.from_string_array(values)
+
+  end
+
+end
+
 end
