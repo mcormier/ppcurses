@@ -30,20 +30,29 @@ end
 #
 # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Protocols/NSTableDataSource_Protocol/index.html#//apple_ref/occ/intf/NSTableViewDataSource
 
-class TableViewDataSource
+class SingleColumnDataSource
+
+  def initialize(values)
+    @values = values
+  end
 
   def number_of_rows_in_table
-
+    @values.length
   end
 
   def object_value_for(column, row_index)
-
+    @values[row_index]
   end
+end
+
+class TableViewDataSource
 
   def TableViewDataSource.from_string_array(values)
-
+    SingleColumnDataSource.new(values)
   end
 
 end
+
+
 
 end
