@@ -2,7 +2,7 @@
 
 module PPCurses
 
-  class ComboBox
+  class ComboBox < View
 
     DOWN_ARROW = '∇'
 
@@ -55,7 +55,7 @@ module PPCurses
       @options[@options_menu.selection]
     end
 
-    def handle_keypress(key)
+    def key_down(key)
 
       if key == ENTER
 
@@ -74,7 +74,6 @@ module PPCurses
 
       end
 
-      false
     end
 
     #------------------------------------------------
