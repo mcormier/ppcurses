@@ -9,7 +9,7 @@ require 'date'
 #
 # This code, written by Tadoyoshi Funaba emulates the unix cal command using the ruby programming
 # language.  It has been added to the reference library because portions of this algorithm will
-# be used for a DatePicker in PPCurses.
+# be used for a DatePicker in PPCurses.  Some comments have been added to make the code more readable.
 #
 # =========================================== Example Usage ==========================================
 #  ruby cal.rb -t 
@@ -55,7 +55,12 @@ require 'date'
 # 12 13 14 15 16 17 18
 # 19 20 21 22 23 24 25
 # 26 27 28 29 30      
-#  
+# 
+# ----------------------------------------------------------------------------------------------------
+# 
+# ruby cal.rb -y
+# Displays the current year
+# 
 # =====================================================================================================
 
 class Cal
@@ -207,8 +212,10 @@ if __FILE__ == $0
 
   y, m = ARGV.values_at(1, 0).compact.collect{|x| x.to_i}
   
+  # If a year is given with no month, display a whole year
   cal.opt_y(true) if y && !m
 
+  # Use the current year and month if none was specified on the command line.
   to = Date.today
   y ||= to.year
   m ||= to.mon
