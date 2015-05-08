@@ -6,7 +6,11 @@
 #  
 
 require 'date'
-
+#
+# This code, written by Tadoyoshi Funaba emulates the unix cal command using the ruby programming
+# language.  It has been added to the reference library because portions of this algorithm will
+# be used for a DatePicker in PPCurses.
+#
 # =========================================== Example Usage ==========================================
 #  ruby cal.rb -t 
 #  Translates calendar display :
