@@ -18,7 +18,7 @@ module PPCurses
     attr_accessor :day_row
     attr_accessor :day_col
  
-    def initialize(day)
+    def initialize(day=Date.today)
     
       # TODO - this needs to be dynamic.  Currently hard-coded to may 15th 2015
       @day = Date.new(2015, 5, 9)
@@ -31,8 +31,8 @@ module PPCurses
                         "17 18 19 20 21 22 23", 
                         "24 25 26 27 28 29 30", 
                         "31                  "]
-       @day_row = 4
-       @day_col = 20
+       @day_row = 3
+       @day_col = 19
 
     
     end
