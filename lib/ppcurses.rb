@@ -1,5 +1,6 @@
 gem 'curses', '=1.0.1'
 require 'curses'
+require 'date'
 
 module PPCurses
 
@@ -35,6 +36,8 @@ module PPCurses
  require_relative  'ppcurses/geometry.rb'
  require_relative  'ppcurses/table_view.rb'
 
+ # Dates ---------------------------------------------------------------------------------------------------------------
+ require_relative  'ppcurses/date/MonthBuilder.rb'
  # Menus ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/menu/BaseMenu.rb'
  require_relative  'ppcurses/menu/Menu.rb'
@@ -57,6 +60,7 @@ module PPCurses
  require_relative  'ppcurses/form/input_element.rb'
  require_relative  'ppcurses/form/radio_button_group.rb'
  require_relative  'ppcurses/form/combo_box.rb'
+ require_relative  'ppcurses/form/date_picker.rb'
   # Windows ------------------------------------------------------------------------------------------------------------
   require_relative  'ppcurses/window/pp_window.rb'
 
