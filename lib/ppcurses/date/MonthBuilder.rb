@@ -14,29 +14,40 @@ module PPCurses
   class MonthDisplayForDay
   
     attr_accessor :day
-    attr_accessor :month_str_array
-    attr_accessor :day_row
-    attr_accessor :day_col
+    attr_accessor :month_str_array    
+    attr_accessor :day_pos
  
     def initialize(day=Date.today)
     
       # TODO - this needs to be dynamic.  Currently hard-coded to may 9th 2015
-      @day = Date.new(2015, 5, 9)
+      @day = Date.new(2015, 5, 31)
       
       @month_str_array = ["      May 2015      ", 
-                        " S  M Tu  W Th  F  S", 
-                        "                1  2", 
-                        " 3  4  5  6  7  8  9", 
-                        "10 11 12 13 14 15 16", 
-                        "17 18 19 20 21 22 23", 
-                        "24 25 26 27 28 29 30", 
-                        "31                  "]
-       @day_row = 3
-       @day_col = 19
+                          " S  M Tu  W Th  F  S", 
+                          "                1  2", 
+                          " 3  4  5  6  7  8  9", 
+                          "10 11 12 13 14 15 16", 
+                          "17 18 19 20 21 22 23", 
+                          "24 25 26 27 28 29 30", 
+                          "31                  "]
 
+       # Use nil so we can hava 1 based indexed array.
+       @day_pos = [ nil, [2,16], [2,19], 
+                  [3,1], [3,4], [3,7], [3,10], [3,13], [3,16], [3,19],
+                  [4,0], [4,3], [4,6], [4,9],  [4,12], [4,15], [4,18],
+                  [5,0], [5,3], [5,6], [5,9],  [5,12], [5,15], [5,18],
+                  [6,0], [6,3], [6,6], [6,9],  [6,12], [6,15], [6,18],
+                  [7,0] ]
     
     end
+  
+    def day_row
+      @day_pos[ @day.day ][0]
+    end
     
+    def day_col
+      @day_pos[ @day.day ][1]
+    end
   
   end
 
