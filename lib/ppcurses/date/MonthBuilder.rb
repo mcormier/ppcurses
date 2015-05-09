@@ -20,7 +20,7 @@ module PPCurses
  
     def initialize(day=Date.today)
     
-      # TODO - this needs to be dynamic.  Currently hard-coded to may 15th 2015
+      # TODO - this needs to be dynamic.  Currently hard-coded to may 9th 2015
       @day = Date.new(2015, 5, 9)
       
       @monthStrArray = ["      May 2015      ", 
