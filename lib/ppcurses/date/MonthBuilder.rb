@@ -14,7 +14,7 @@ module PPCurses
   class MonthDisplayForDay
   
     attr_accessor :day
-    attr_accessor :monthStrArray
+    attr_accessor :month_str_array
     attr_accessor :day_row
     attr_accessor :day_col
  
@@ -23,7 +23,7 @@ module PPCurses
       # TODO - this needs to be dynamic.  Currently hard-coded to may 9th 2015
       @day = Date.new(2015, 5, 9)
       
-      @monthStrArray = ["      May 2015      ", 
+      @month_str_array = ["      May 2015      ", 
                         " S  M Tu  W Th  F  S", 
                         "                1  2", 
                         " 3  4  5  6  7  8  9", 

@@ -10,7 +10,7 @@ end
 
 cal = PPCurses::MonthDisplayForDay.new
 
-cal.monthStrArray.each_with_index { |val, i| 
+cal.month_str_array.each_with_index { |val, i| 
 
   if i != cal.day_row 
     puts val
