@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'ppcurses'
   s.version     = '0.1.0'
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.1.5'
   s.date        = Time.new.strftime('%Y-%m-%d')
   s.summary     = 'Convenience classes when using curses'
   s.description = 'A curses abstraction layer.'
