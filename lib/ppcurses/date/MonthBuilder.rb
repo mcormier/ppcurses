@@ -11,8 +11,8 @@ end
 #
 def pict(year, month)
 
-  mw = (3 + 1) * 7 - 1
-  dw = 2
+  dw = 2                    # Day width
+  mw = (dw + 1) * 7 - 1     # Month width
   k = 0
   
   d = (1..31).detect{|x| Date.valid_date?(year, month, x, Date::GREGORIAN)}
@@ -41,16 +41,7 @@ def pict(year, month)
 
   
   #puts ta
-    # ------------ Currently mocked ------------------------
-    
-    month_str_array = ["      May 2015      ", 
-                          " S  M Tu  W Th  F  S", 
-                          "                1  2", 
-                          " 3  4  5  6  7  8  9", 
-                          "10 11 12 13 14 15 16", 
-                          "17 18 19 20 21 22 23", 
-                          "24 25 26 27 28 29 30", 
-                          "31                  "]
+  # ------------ Currently mocked ------------------------
 
        # Use nil so we can hava 1 based indexed array.
      day_pos = [ nil, [2,16], [2,19], 
@@ -60,7 +51,7 @@ def pict(year, month)
                   [6,0], [6,3], [6,6], [6,9],  [6,12], [6,15], [6,18],
                   [7,0] ]
                   
-  return month_str_array, day_pos                   
+  return ta, day_pos                   
 end
 
 
