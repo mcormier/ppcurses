@@ -7,8 +7,13 @@ end
 #
 # Differences:
 # - Only supports a monthly calendar type; no yearly calendar.
-# - Returns a second day position array that specifies  
+#
+# - Returns a secondary day position array that specifies the row 
+#     and column for each day of the month. Useful for highlighting a
+#     specific day 
+#
 # - Takes a Date object as initial parameter
+#
 # - K variable eliminated
 #
 def pict(day)
@@ -19,15 +24,17 @@ def pict(day)
   dw = 2                    # Day width
   mw = (dw + 1) * 7 - 1     # Month width
   
-  d = (1..31).detect{|x| Date.valid_date?(year, month, x, Date::GREGORIAN)}
+  #d = (1..31).detect{|x| Date.valid_date?(year, month, x, Date::GREGORIAN)}
+  
+  #puts d
      
-  fi = Date.new(year, month, d, Date::GREGORIAN)      # 2015-05-01
+  fi = Date.new(year, month, 1, Date::GREGORIAN)      # 2015-05-01
   fi -= (fi.jd + 1) % 7                               # 2015-04-29
     
-  ve  = (fi..fi +  6).collect{|cu|
+  ve  = (fi..fi +  6).collect{ |cu|
     %w(S M Tu W Th F S)[cu.wday]
   }
-  ve += (fi..fi + 41).collect{|cu|
+  ve += (fi..fi + 41).collect{ |cu|
     if cu.mon == month then cu.send(:mday) end.to_s
   }
   
@@ -80,7 +87,8 @@ module PPCurses
     attr_accessor :day_pos
  
     def initialize(day=Date.today)    
-      @day = day      
+      @day = day     
+      @day = Date.new(2015, 1, 10)   
       @month_str_array, @day_pos = pict(@day)
     end
   
