@@ -37,7 +37,7 @@ module PPCurses
  require_relative  'ppcurses/table_view.rb'
 
  # Dates ---------------------------------------------------------------------------------------------------------------
- require_relative  'ppcurses/date/MonthBuilder.rb'
+ require_relative  'ppcurses/date/meta_month.rb'
  # Menus ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/menu/BaseMenu.rb'
  require_relative  'ppcurses/menu/Menu.rb'
