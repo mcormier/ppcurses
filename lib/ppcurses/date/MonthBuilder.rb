@@ -1,11 +1,46 @@
 
+def group(xs, n)
+    (0..xs.size / n - 1).collect { |i| xs[i * n, n] } 
+end
 
-def pict(y, m)
+# This algorithm is based on ref/cal.rb by Tadayoshi Funaba
+#
+# Differences:
+# - Only supports one calendar type.
+# - Returns a second array that specifies  
+#
+def pict(year, month)
+
+  mw = (3 + 1) * 7 - 1
+  dw = 2
+  k = 0
+  
+  d = (1..31).detect{|x| Date.valid_date?(year, month, x, Date::GREGORIAN)}
+     
+  fi = Date.new(year, month, d, Date::GREGORIAN)      # 2015-05-01
+  fi -= (fi.jd - k + 1) % 7                           # 2015-04-29
     
-    
-    
-    
-    
+  ve  = (fi..fi +  6).collect{|cu|
+    %w(S M Tu W Th F S)[cu.wday]
+  }
+  ve += (fi..fi + 41).collect{|cu|
+    if cu.mon == month then cu.send(:mday) end.to_s
+  }
+  
+  ve = ve.collect{|e| e.rjust(dw)}                              # Creates an array of values ["S", " M", ... "31"]
+
+  gr = group(ve, 7)                                              # Creates an array of arrays.  7 for the days in the week  
+  ta = gr.collect{|xs| xs.join(' ')}                             # Converts inner arrays to strings
+  
+  # Adds month/year header to top 
+  ca = %w(January February March April May June July
+	        August September October November December)[month - 1]
+  ca = ca + ' ' + year.to_s 
+  ca = ca.center(mw)    
+  ta.unshift(ca)                                                
+
+  
+  #puts ta
     # ------------ Currently mocked ------------------------
     
     month_str_array = ["      May 2015      ", 
