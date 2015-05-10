@@ -24,12 +24,11 @@ def pict(day)
   dw = 2                    # Day width
   mw = (dw + 1) * 7 - 1     # Month width
   
-  #d = (1..31).detect{|x| Date.valid_date?(year, month, x, Date::GREGORIAN)}
-  
-  #puts d
-     
-  fi = Date.new(year, month, 1, Date::GREGORIAN)      # 2015-05-01
-  fi -= (fi.jd + 1) % 7                               # 2015-04-29
+  # First day of the month e.g. 2015-05-01
+  fi = Date.new(year, month, 1, Date::GREGORIAN) 
+  # Go backwards to the earliest closest day divisible by 7 date, e.g. 2015-04-26, 
+  # using the Julian day number and modulus.    
+  fi -= (fi.jd + 1) % 7                              
     
   ve  = (fi..fi +  6).collect{ |cu|
     %w(S M Tu W Th F S)[cu.wday]
@@ -88,7 +87,7 @@ module PPCurses
  
     def initialize(day=Date.today)    
       @day = day     
-      @day = Date.new(2015, 1, 10)   
+     # @day = Date.new(2015, 1, 10)   
       @month_str_array, @day_pos = pict(@day)
     end
   
