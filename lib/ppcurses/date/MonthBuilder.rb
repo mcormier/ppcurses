@@ -1,24 +1,28 @@
 
 def group(xs, n)
-    (0..xs.size / n - 1).collect { |i| xs[i * n, n] } 
+    (0..xs.size / n - 1).collect { |i| xs[i * n, n] }     #  / This comment fixes a Visual Studio Code highlighting bug
 end
 
 # This algorithm is based on ref/cal.rb by Tadayoshi Funaba
 #
 # Differences:
-# - Only supports one calendar type.
-# - Returns a second array that specifies  
+# - Only supports a monthly calendar type; no yearly calendar.
+# - Returns a second day position array that specifies  
+# - Takes a Date object as initial parameter
+# - K variable eliminated
 #
-def pict(year, month)
+def pict(day)
+
+  year = day.year
+  month = day.month
 
   dw = 2                    # Day width
   mw = (dw + 1) * 7 - 1     # Month width
-  k = 0
   
   d = (1..31).detect{|x| Date.valid_date?(year, month, x, Date::GREGORIAN)}
      
   fi = Date.new(year, month, d, Date::GREGORIAN)      # 2015-05-01
-  fi -= (fi.jd - k + 1) % 7                           # 2015-04-29
+  fi -= (fi.jd + 1) % 7                               # 2015-04-29
     
   ve  = (fi..fi +  6).collect{|cu|
     %w(S M Tu W Th F S)[cu.wday]
@@ -75,12 +79,9 @@ module PPCurses
     attr_accessor :month_str_array    
     attr_accessor :day_pos
  
-    def initialize(day=Date.today)
-    
-      # TODO - this needs to be dynamic.  Currently hard-coded to may 9th 2015
-      @day = Date.new(2015, 5, 31)
-      
-      @month_str_array, @day_pos = pict(@day.year, @day.month)
+    def initialize(day=Date.today)    
+      @day = day      
+      @month_str_array, @day_pos = pict(@day)
     end
   
     def day_row
