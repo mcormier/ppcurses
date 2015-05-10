@@ -66,8 +66,8 @@ def pict(day)
         pos = 0 
       end 
       i = pos * 3
-      if number < 10 then i += 1 end  
-      i = indexFor(pos, cu.mday)      
+      if cu.mday < 10 then i += 1 end  
+     
       day_pos.push [row, i]             
        
       cu.mday  
@@ -109,7 +109,7 @@ module PPCurses
   # The row and column position are necessary so that the day
   # selected can be highlighted.
   #
-  class MonthDisplayForDay
+  class MetaMonth
   
     attr_accessor :day
     attr_accessor :month_str_array    

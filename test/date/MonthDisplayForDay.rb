@@ -8,7 +8,7 @@ class String
 	def reverse_color;  "\033[7m#{self}\033[27m" end
 end
 
-cal = PPCurses::MonthDisplayForDay.new
+cal = PPCurses::MetaMonth.new
 
 cal.month_str_array.each_with_index { |val, i| 
 
