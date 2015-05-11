@@ -66,17 +66,17 @@ module PPCurses
     def key_down(key)
 
       if key == ENTER
-
-        # TODO - display a calendar 
         
-        if  @options_menu.nil?
+        if  @date_menu.nil?
           @options_menu = PPCurses::ChoiceMenu.new( @options )
+          @date_menu = PPCurses::DateMenu.new(@date)
         end
 
         @options_menu.set_origin(@combo_display_point)
+        @date_menu.set_origin(@combo_display_point)
 
-        @options_menu.show
-        @options_menu.menu_selection
+        @date_menu.show
+        @date_menu.menu_selection
 
         if @options_menu.pressed_enter
           @choice_made = true
