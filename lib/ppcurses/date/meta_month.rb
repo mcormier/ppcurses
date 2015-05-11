@@ -51,20 +51,20 @@ def pict(day)
     %w(S M Tu W Th F S)[cu.wday]
   }
   
-  row = 2
+  row = 1
   pos = -1  
   # Creates an array of values ["S", " M", ... "31"]
   ve += (fi..fi + 41).collect{ |cu|  # of type Date
      
     pos += 1 # Needed for meta info
-       
-    if cu.mon == month then
-       
-      # -------- Meta information for day_pos array 
-      if (cu.jd + 1) % 7 == 0 then 
+    if (cu.jd + 1) % 7 == 0 then 
         row += 1
         pos = 0 
-      end 
+    end 
+         
+    if cu.mon == month then
+       
+      # -------- Save meta information ing day_pos array    
       i = pos * 3
       if cu.mday < 10 then i += 1 end  
      
@@ -118,7 +118,6 @@ module PPCurses
  
     def initialize(day=Date.today)    
       @day = day     
-     # @day = Date.new(2015, 1, 10)   
       @month_str_array, @day_pos = pict(@day)
     end
   
