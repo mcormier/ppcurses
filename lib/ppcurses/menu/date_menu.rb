@@ -4,14 +4,8 @@ module PPCurses
   class DateMenu < ChoiceMenu
 
     def initialize(day)
-     
       @meta_info = MetaMonth.new(day)
-
-      @side_wall_char = '|'
-      @top_bot_wall_char = '-'
-
       find_max_menu_width
-
       create_window
     end
   
@@ -41,8 +35,7 @@ module PPCurses
   
   
     def show
-      @win.box(self.side_wall_char, self.top_bot_wall_char)
-      y = 2
+        y = 2
       x = 2
 
       str_array = @meta_info.month_str_array
