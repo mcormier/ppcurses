@@ -17,21 +17,10 @@ module PPCurses
 
     def initialize(label, initial_date = Date.today)
       @label = label
-      @options = ['Maine', 'New York', 'Kansas', 'California']
-
       @display_width = 13
-      @choice_made = false
-  
-      @date = initial_date
-
-
-      @options.each do |option|
-        if option.length > @display_width
-          @display_width = option.length
-        end
-      end
-
+      @date = initial_date      
     end
+    
 
     def show(screen)
       screen.attron(A_REVERSE) if @selected
@@ -67,19 +56,17 @@ module PPCurses
 
       if key == ENTER
         
-        if  @date_menu.nil?
-          @options_menu = PPCurses::ChoiceMenu.new( @options )
+        if  @date_menu.nil?         
           @date_menu = PPCurses::DateMenu.new(@date)
         end
 
-        @options_menu.set_origin(@combo_display_point)
         @date_menu.set_origin(@combo_display_point)
 
         @date_menu.show
         @date_menu.menu_selection
 
-        if @options_menu.pressed_enter
-          @choice_made = true
+        if @date_menu.pressed_enter
+          @date = @date_menu.day
         end
 
       end
@@ -89,10 +76,6 @@ module PPCurses
     #------------------------------------------------
     protected
     def display_string
-      if @choice_made
-        return ' '+ "#{@options[@options_menu.selection].center(@display_width,'-')} #{DOWN_ARROW}"
-      end
-
       " #{@date.month}-#{@date.day}-#{@date.year} #{DOWN_ARROW}"
     end
 

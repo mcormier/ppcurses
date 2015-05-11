@@ -1,7 +1,7 @@
 module PPCurses
 
 
-  class DateMenu < Menu
+  class DateMenu < ChoiceMenu
 
     def initialize(day)
      
@@ -17,6 +17,10 @@ module PPCurses
 
      create_window
 
+    end
+  
+    def day
+      @meta_info.day
     end
   
   
