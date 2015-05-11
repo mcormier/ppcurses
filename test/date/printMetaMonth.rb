@@ -18,8 +18,8 @@ cal.month_str_array.each_with_index { |val, i|
     num_of_digits = cal.day.day > 9 ? 2 : 1
    
     print val[0, cal.day_col] 
-	print val[cal.day_col, num_of_digits].reverse_color
-	puts  val[cal.day_col + num_of_digits, val.length] 
+	  print val[cal.day_col, num_of_digits].reverse_color
+	  puts  val[cal.day_col + num_of_digits, val.length] 
   end
 
 }
