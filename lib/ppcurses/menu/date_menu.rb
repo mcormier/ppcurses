@@ -68,6 +68,59 @@ module PPCurses
 
        @sub_menu.show if @sub_menu
     end
+    
+  def handle_menu_selection(c)     
+
+      curr_day = @meta_info.day
+
+      if c == KEY_UP       
+        curr_day = Date.jd(curr_day.jd - 7)
+        @meta_info.day = curr_day
+        self.show
+        return true
+      end
+
+      if c == KEY_DOWN
+        curr_day = Date.jd(curr_day.jd + 7)
+        @meta_info.day = curr_day        
+        self.show
+        return true
+      end
+
+     if c == KEY_LEFT     
+       curr_day = Date.jd(curr_day.jd - 1)
+       @meta_info.day = curr_day        
+       self.show
+       return true
+     end
+      
+     if c == KEY_RIGHT    
+       curr_day = Date.jd(curr_day.jd + 1)
+       @meta_info.day = curr_day        
+       self.show
+       return true
+     end 
+      #if c == ENTER && !@global_action.nil?
+      # 
+      #  unless @global_action.nil?
+      #    @global_action.execute
+      #  end
+      #
+      #  self.show
+      #  return true
+      #end
+
+      #item_consumed = @menu_items[@selection].handle_key(c)
+      #if item_consumed
+      #  self.show
+      #end
+
+      #item_consumed
+      false
+    end
+
+
+   
   
   end
   
