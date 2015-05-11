@@ -117,7 +117,11 @@ module PPCurses
     attr_accessor :day_pos
  
     def initialize(day=Date.today)    
-      @day = day     
+      self.day = day    
+    end
+  
+    def day=(new_day)
+      @day = new_day 
       @month_str_array, @day_pos = pict(@day)
     end
   
