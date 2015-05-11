@@ -64,7 +64,7 @@ def pict(day)
          
     if cu.mon == month then
        
-      # -------- Save meta information ing day_pos array    
+      # -------- Save meta information in day_pos array    
       i = pos * 3
       if cu.mday < 10 then i += 1 end  
      
