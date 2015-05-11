@@ -56,11 +56,11 @@ def pict(day)
   # Creates an array of values ["S", " M", ... "31"]
   ve += (fi..fi + 41).collect{ |cu|  # of type Date
      
-     pos += 1 
+    pos += 1 # Needed for meta info
        
     if cu.mon == month then
        
-      # Meta information for day_pos array 
+      # -------- Meta information for day_pos array 
       if (cu.jd + 1) % 7 == 0 then 
         row += 1
         pos = 0 
@@ -69,6 +69,7 @@ def pict(day)
       if cu.mday < 10 then i += 1 end  
      
       day_pos.push [row, i]             
+      # ---------  End Meta info ------------------
        
       cu.mday  
     end.to_s
