@@ -15,18 +15,15 @@ module PPCurses
     attr_accessor :selected
 
 
-    def initialize(label, initial_date = nil)
+    def initialize(label, initial_date = Date.today)
       @label = label
       @options = ['Maine', 'New York', 'Kansas', 'California']
 
       @display_width = 13
       @choice_made = false
   
-      if initial_date == nil
-        @date = Date.today
-      else
-        @date = initial_date
-      end
+      @date = initial_date
+
 
       @options.each do |option|
         if option.length > @display_width
