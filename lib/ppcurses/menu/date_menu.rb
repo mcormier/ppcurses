@@ -6,17 +6,13 @@ module PPCurses
     def initialize(day)
      
       @meta_info = MetaMonth.new(day)
-       
-     # @selection=0
-     # @max_menu_width = 0
 
       @side_wall_char = '|'
       @top_bot_wall_char = '-'
 
-     find_max_menu_width
+      find_max_menu_width
 
-     create_window
-
+      create_window
     end
   
     def day
