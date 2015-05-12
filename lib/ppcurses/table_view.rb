@@ -23,6 +23,10 @@ class TableView < View
     @data_source = val
   end
 
+  def display(screen)
+
+  end
+
 end
 
 
