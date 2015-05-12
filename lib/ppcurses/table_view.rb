@@ -24,7 +24,13 @@ class TableView < View
   end
 
   def display(screen)
-
+    y = 2
+    x = 2
+    for i in 0..@data_source.number_of_rows_in_table
+      screen.setpos(y,x)
+      screen.addstr(@data_source.object_value_for(0,i) )
+      y += 1
+    end
   end
 
 end
@@ -48,6 +54,8 @@ class SingleColumnDataSource
     @values[row_index]
   end
 end
+
+
 
 class TableViewDataSource
 
