@@ -65,50 +65,27 @@ module PPCurses
   def handle_menu_selection(c)     
 
       curr_day = @meta_info.day
+      day_change = 0
 
-      if c == KEY_UP       
-        curr_day = Date.jd(curr_day.jd - 7)
-        @meta_info.day = curr_day
-        self.show
-        return true
-      end
-
-      if c == KEY_DOWN
-        curr_day = Date.jd(curr_day.jd + 7)
-        @meta_info.day = curr_day        
-        self.show
-        return true
-      end
-
-     if c == KEY_LEFT     
-       curr_day = Date.jd(curr_day.jd - 1)
+     if c == KEY_UP    then day_change = -7 end       
+     if c == KEY_DOWN  then day_change = 7  end   
+     if c == KEY_LEFT  then day_change = -1 end      
+     if c == KEY_RIGHT then day_change = 1  end 
+     
+     # Use vi key bindings for months and year
+     # browsing.
+     if c == 'l'       then day_change = 30   end 
+     if c == 'h'       then day_change = -30  end
+     if c == 'j'       then day_change = 365  end
+     if c == 'k'       then day_change = -365 end
+     
+     if day_change != 0 
+       curr_day = Date.jd(curr_day.jd + day_change)
        @meta_info.day = curr_day        
        self.show
        return true
      end
-      
-     if c == KEY_RIGHT    
-       curr_day = Date.jd(curr_day.jd + 1)
-       @meta_info.day = curr_day        
-       self.show
-       return true
-     end 
-      #if c == ENTER && !@global_action.nil?
-      # 
-      #  unless @global_action.nil?
-      #    @global_action.execute
-      #  end
-      #
-      #  self.show
-      #  return true
-      #end
-
-      #item_consumed = @menu_items[@selection].handle_key(c)
-      #if item_consumed
-      #  self.show
-      #end
-
-      #item_consumed
+     
       false
     end
 
