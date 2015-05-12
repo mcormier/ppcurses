@@ -28,7 +28,7 @@ class TableView < View
     x = 2
     for i in 0..@data_source.number_of_rows_in_table
       screen.setpos(y,x)
-      screen.addstr(@data_source.object_value_for(0,i) )
+      screen.addstr(@data_source.object_value_for(self, 0, i) )
       y += 1
     end
   end
@@ -50,7 +50,7 @@ class SingleColumnDataSource
     @values.length
   end
 
-  def object_value_for(column, row_index)
+  def object_value_for(tableview, column, row_index)
     @values[row_index]
   end
 end
