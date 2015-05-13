@@ -4,7 +4,7 @@ require 'rubygems'
 require_relative '../../lib/ppcurses.rb'
 
 @count = 0
-def blah ( notification )
+def select_counter ( notification )
   @count += 1
 end
 
@@ -21,8 +21,8 @@ table_view.data_source=data_source
 
 note_centre = PPCurses::NotificationCentre.default_centre
 
-note_centre.add_observer(self, method(:blah),  PPTableViewSelectionDidChangeNotification, table_view )
+note_centre.add_observer(self, method(:select_counter),  PPTableViewSelectionDidChangeNotification, table_view )
 
 @app.launch
 
-puts "count is #{@count} "
+puts "Number of selection changes is: #{@count} "
