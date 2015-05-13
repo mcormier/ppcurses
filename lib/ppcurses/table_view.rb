@@ -1,5 +1,6 @@
 
-PPTableViewSelectionDidChangeNotification = 'PPTableViewSelectionDidChangeNotification'
+PPTableViewSelectionDidChangeNotification  = 'PPTableViewSelectionDidChangeNotification'
+PPTableViewSelectionIsChangingNotification = 'PPTableViewSelectionIsChangingNotification'
 
 module PPCurses
 
@@ -48,7 +49,8 @@ class TableView < View
       
       notary = NotificationCentre.default_centre
       
-      if key == KEY_DOWN
+      if key == KEY_DOWN        
+        notary.post_notification(PPTableViewSelectionIsChangingNotification, self) 
         @selected_row += 1
         if @selected_row > @data_source.number_of_rows_in_table(self) - 1 then
           @selected_row = 0
@@ -57,6 +59,7 @@ class TableView < View
       end
       
       if key == KEY_UP
+         notary.post_notification(PPTableViewSelectionIsChangingNotification, self) 
          @selected_row -= 1
          if @selected_row < 0 then @selected_row = @data_source.number_of_rows_in_table(self) - 1 end
          notary.post_notification(PPTableViewSelectionDidChangeNotification, self)
