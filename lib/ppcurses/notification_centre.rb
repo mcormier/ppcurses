@@ -30,10 +30,17 @@ module PPCurses
 	
 	def post_notification ( name, sender )
 	  
-	  if @listeners.has_key?(name)
-	    sender_hash =  @listeners.fetch(name)
-	  end
+	  if @listeners.has_key?(name) == false then return end
 	  
+	  sender_hash =  @listeners.fetch(name)
+	  
+	  if sender_hash.has_key?(sender) == false then return end
+	  
+	  listener_info = sender_hash.fetch(sender)
+	  observer = listener_info[0]
+	  callback = listener_info[1] 
+	  
+	  callback.call
 	end
 	
   end

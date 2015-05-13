@@ -1,4 +1,10 @@
+
+PPTableViewSelectionDidChangeNotification = 'PPTableViewSelectionDidChangeNotification'
+
 module PPCurses
+
+ 
+
 # Based loosely on ...
 #
 # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSTableView_Class/index.html#//apple_ref/occ/cl/NSTableView
@@ -6,8 +12,10 @@ module PPCurses
 #
 class TableView < View
 
+ 
   attr_accessor :data_source
   attr_reader   :selected_row
+
 
 
   # A data source must implement a formal protocol
@@ -44,6 +52,7 @@ class TableView < View
           @selected_row = 0
         end
         # TODO -- send notification of change
+        NotificationCentre.default_centre.post_notification(PPTableViewSelectionDidChangeNotification, self)        
       end
       
       if key == KEY_UP
