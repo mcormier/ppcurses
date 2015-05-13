@@ -46,21 +46,22 @@ class TableView < View
   #  NSNotificationCentre 
   def key_down( key )
       
+      notary = NotificationCentre.default_centre
+      
       if key == KEY_DOWN
         @selected_row += 1
         if @selected_row > @data_source.number_of_rows_in_table(self) - 1 then
           @selected_row = 0
         end
-        # TODO -- send notification of change
-        NotificationCentre.default_centre.post_notification(PPTableViewSelectionDidChangeNotification, self)        
+        notary.post_notification(PPTableViewSelectionDidChangeNotification, self)        
       end
       
       if key == KEY_UP
          @selected_row -= 1
          if @selected_row < 0 then @selected_row = @data_source.number_of_rows_in_table(self) - 1 end
-          # TODO -- send notification of change
+         notary.post_notification(PPTableViewSelectionDidChangeNotification, self)
       end
-      # @next_responder.key_down(key) unless @next_responder.nil?
+      
   end
   
 end
