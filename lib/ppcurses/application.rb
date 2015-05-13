@@ -148,7 +148,17 @@ module PPCurses
     def content_view=(value)
       
       if @content_view != nil then
-        # TODO clear current content_view before reassignment
+        # Clear current content_view before reassignment
+        frame = @content_view.frame
+        x = frame.origin.x
+        y = frame.origin.y
+        height = frame.size.height
+        
+        for i in y..y+height-1
+          @screen.setpos( i, x )        
+          @screen.clrtoeol
+        end
+        
       end
       
       @content_view=value

@@ -102,6 +102,10 @@ module PPCurses
       Curses.stdscr.setpos(y, x)
     end
 
+    def clrtoeol
+      Curses.stdscr.clrtoeol
+    end
+
     def attron(attributes)
       Curses.stdscr.attron(attributes)
     end
