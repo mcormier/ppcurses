@@ -37,14 +37,27 @@ module PPCurses
 	  if sender_hash.has_key?(sender) == false then return end
 	  
 	  listener_info = sender_hash.fetch(sender)
-	  observer = listener_info[0]
+	  # observer = listener_info[0]  # Currently unused
 	  callback = listener_info[1] 
 	  
-	  callback.call
+	  notification = Notification.new(name, sender)
+	  
+	  callback.call ( notification )
 	end
 	
   end
 
-
+  class Notification
+  
+    attr_reader :name
+	attr_reader :object
+  
+    def initialize( name, object )
+	  @name = name
+	  @object = object
+	end
+  
+  
+  end
 
 end

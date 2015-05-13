@@ -4,7 +4,7 @@ require 'rubygems'
 require_relative '../../lib/ppcurses.rb'
 
 @count = 0
-def blah
+def blah ( notification )
   @count += 1
 end
 
