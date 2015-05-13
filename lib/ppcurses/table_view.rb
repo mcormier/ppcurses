@@ -18,6 +18,11 @@ class TableView < View
   attr_accessor :data_source
   attr_reader   :selected_row
 
+  def initialize
+    super
+    origin = Point.new( 2, 2 )
+    setFrameOrigin(origin)
+  end
 
 
   # A data source must implement a formal protocol
@@ -32,8 +37,10 @@ class TableView < View
   end
 
   def display(screen)
-    y = 2
-    x = 2
+    
+    y = @frame.origin.y
+    x = @frame.origin.x
+    
     for i in 0..@data_source.number_of_rows_in_table(self)
       screen.setpos(y,x)
       screen.attron(Curses::A_REVERSE) if i == selected_row
