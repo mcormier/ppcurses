@@ -10,6 +10,16 @@ module PPCurses
 
   class View  < ResponderManager
 
+    attr_accessor :frame
+
+    # Extending classes should set the appropriate frame size;
+    # the default implementation sets the frame to a zero rect
+    # which, although avoids pointer errors, isn't very useful.
+    def initialize
+      @frame = Rect.zeroRect
+    end
+    
+
     ## Managing the View Hierarchy
 
     # superview
@@ -39,6 +49,19 @@ module PPCurses
     # nextKeyView
 
     #
+
+    ## Modifying the Frame Rectangle
+
+   
+    def setFrameOrigin( origin )
+      @frame.origin = origin
+    end
+    
+    
+    def setFrameSize( size )
+      @frame.size = size
+    end
+
 
   end
 

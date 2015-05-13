@@ -4,7 +4,7 @@ module PPCurses
 
     attr_accessor :x, :y
 
-    def initialize( x, y )
+    def initialize( x=0, y=0 )
       @x = x
       @y = y
     end
@@ -14,7 +14,7 @@ module PPCurses
     end
 
     def Point.zeroPoint
-        Point.new( 0, 0 )
+      Point.new
     end
 
   end
@@ -24,13 +24,13 @@ module PPCurses
   class Size
     attr_accessor :width, :height
     
-    def initialize( width, height )
+    def initialize( width=0, height=0 )
       @width = width
       @height = height
     end
     
     def Size.zeroSize
-      Size.new ( 0, 0 )
+      Size.new
     end
     
   end

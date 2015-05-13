@@ -146,6 +146,11 @@ module PPCurses
 
 
     def content_view=(value)
+      
+      if @content_view != nil then
+        # TODO clear current content_view before reassignment
+      end
+      
       @content_view=value
       @main_menu.next_responder=@content_view
     end
