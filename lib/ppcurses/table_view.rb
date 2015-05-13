@@ -1,6 +1,7 @@
 
 PPTableViewSelectionDidChangeNotification  = 'PPTableViewSelectionDidChangeNotification'
 PPTableViewSelectionIsChangingNotification = 'PPTableViewSelectionIsChangingNotification'
+PPTableViewEnterPressedNotification        = 'PPTableViewEnterPressedNotification'
 
 module PPCurses
 
@@ -64,6 +65,11 @@ class TableView < View
          if @selected_row < 0 then @selected_row = @data_source.number_of_rows_in_table(self) - 1 end
          notary.post_notification(PPTableViewSelectionDidChangeNotification, self)
       end
+      
+      if key == ENTER
+        notary.post_notification(PPTableViewEnterPressedNotification, self) 
+      end
+      
       
   end
   
