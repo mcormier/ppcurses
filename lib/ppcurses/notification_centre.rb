@@ -1,31 +1,39 @@
 module PPCurses
 
   class NotificationCentre
-  
-    @@default_centre = NotificationCentre.new
-  
+    
     def initialize
-	  @listeners = {}
+	  @listeners = Hash.new
 	end
+  
+     @@default_centre =  PPCurses::NotificationCentre.new
   
     def NotificationCentre.default_centre
 		@@default_centre
 	end
 	
 	#  method(:terminate)
-	def add_observer_and_selector_for_name( observer, selector, name, sender)
-	  # TODO -- implement
-	  blah = @listeners[name]
-	  if blah == nil then
-	    @listeners[name] = {}
+	def add_observer( observer, selector, name, sender)
+
+      if @listeners.has_key?(name)
+	    sender_hash = @listeners.fetch(name)
+      else
+	    sender_hash = Hash.new
+		@listeners.store(name, sender_hash)
 	  end
 	  
-	  @listeners[name][sender] = [observer, selector]
+	 sender_hash.store(sender, [observer, selector])
+
 	  
 	end
 	
-	def post_notification ( name, sender )
 	
+	def post_notification ( name, sender )
+	  
+	  if @listeners.has_key?(name)
+	    sender_hash =  @listeners.fetch(name)
+	  end
+	  
 	end
 	
   end
