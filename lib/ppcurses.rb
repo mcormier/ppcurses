@@ -30,6 +30,7 @@ module PPCurses
 
 
  require_relative  'ppcurses/application.rb'
+ require_relative  'ppcurses/notification_centre.rb'
  require_relative  'ppcurses/view.rb'
  require_relative  'ppcurses/menu_bar.rb'
  require_relative  'ppcurses/Screen.rb'
