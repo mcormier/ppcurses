@@ -13,6 +13,10 @@ module PPCurses
       "x=#{@x} y=#{@y}"
     end
 
+    def Point.zeroPoint
+        Point.new( 0, 0 )
+    end
+
   end
 
 # -------------------------------------------------------------------
@@ -23,6 +27,10 @@ module PPCurses
     def initialize( width, height )
       @width = width
       @height = height
+    end
+    
+    def Size.zeroSize
+      Size.new ( 0, 0 )
     end
     
   end
@@ -42,6 +50,10 @@ module PPCurses
       size  = Size.new(w, h)
       
       rect = Rect.new( origin, size)
+    end
+   
+    def Rect.zeroRect
+      Rect.new( Point.zeroPoint, Size.zeroSize )
     end
    
   end
