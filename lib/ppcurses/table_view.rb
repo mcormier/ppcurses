@@ -34,6 +34,18 @@ class TableView < View
     PPCurses.implements_protocol( val, %w(number_of_rows_in_table object_value_for ))
     @data_source = val
     @selected_row = 0
+    
+    # Determine frame size from datasource data
+    height = @data_source.number_of_rows_in_table(self)
+    width = 0    
+    for i in 0..@data_source.number_of_rows_in_table(self)-1
+      x = @data_source.object_value_for(self, 0, i).length
+      if x > width then width = x end
+    end
+    
+    sz = Size.new( width, height )
+    setFrameSize( sz )
+    
   end
 
   def display(screen)
@@ -41,7 +53,7 @@ class TableView < View
     y = @frame.origin.y
     x = @frame.origin.x
     
-    for i in 0..@data_source.number_of_rows_in_table(self)
+    for i in 0..@data_source.number_of_rows_in_table(self)-1
       screen.setpos(y,x)
       screen.attron(Curses::A_REVERSE) if i == selected_row
       screen.addstr(@data_source.object_value_for(self, 0, i) )
