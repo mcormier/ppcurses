@@ -35,7 +35,7 @@ module PPCurses
   
   
     def show
-        y = 2
+      y = 2
       x = 2
 
       str_array = @meta_info.month_str_array
