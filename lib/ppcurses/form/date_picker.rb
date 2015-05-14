@@ -13,7 +13,7 @@ module PPCurses
 
     # Does the element have focus in the form?
     attr_accessor :selected
-
+    attr_reader :date
 
     def initialize(label, initial_date = Date.today)
       @label = label
