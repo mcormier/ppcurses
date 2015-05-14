@@ -8,6 +8,9 @@ module PPCurses
     # Screen should be of type Curses::Window
     #
     def initialize
+      super
+      #origin = Point.new( 2, 2 )
+      #setFrameOrigin(origin)
       @elements = []
     end
 
@@ -29,7 +32,9 @@ module PPCurses
       if  @selected_element.nil?
         set_selected_element(@elements[0])
       end
-
+      
+      @frame.size.height += element.height
+      
     end
 
 
