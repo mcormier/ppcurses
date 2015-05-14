@@ -72,7 +72,7 @@ module PPCurses
     end
 
     def height
-      1
+      2
     end
 
     def set_curs_pos(screen)
