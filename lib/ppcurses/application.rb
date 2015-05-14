@@ -156,7 +156,7 @@ module PPCurses
         
         for i in y..y+height-1
           @screen.setpos( i, x )        
-          @screen.clrtoeol
+          @screen.clrtoeol  ## TODO use width !!!
         end
         
       end
