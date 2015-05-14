@@ -33,6 +33,10 @@ module PPCurses
       Size.new
     end
     
+    def to_s
+      "width=#{@width} height=#{@height}"
+    end
+    
   end
 
 # -------------------------------------------------------------------
@@ -56,6 +60,10 @@ module PPCurses
       Rect.new( Point.zeroPoint, Size.zeroSize )
     end
    
+    def to_s
+      "origin[#{@origin}] size[#{@size}]"
+    end
+    
   end
 
 end
