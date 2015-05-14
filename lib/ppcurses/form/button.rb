@@ -54,8 +54,8 @@ module PPCurses
     attr_accessor :selected
     attr_accessor :selected_element
 
-    attr_reader :button1
-    attr_reader :button2
+    attr_accessor :button1
+    attr_accessor :button2
 
     def initialize(button1_label, button2_label)
       @button1 = Button.new(button1_label)
