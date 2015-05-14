@@ -9,8 +9,8 @@ module PPCurses
     #
     def initialize
       super
-      #origin = Point.new( 2, 2 )
-      #setFrameOrigin(origin)
+      origin = Point.new( 1, 1 )
+      setFrameOrigin(origin)
       @elements = []
     end
 
@@ -66,8 +66,8 @@ module PPCurses
 
     # TODO -- call display of subview???
     def display(screen)
-      y = 1
-      x = 1
+       y = @frame.origin.y
+       x = @frame.origin.x
 
       for i in 0..@elements.length - 1
         element = @elements[i]
