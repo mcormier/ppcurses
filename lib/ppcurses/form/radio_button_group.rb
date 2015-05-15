@@ -27,9 +27,9 @@ module PPCurses
       screen.attroff(Curses::A_REVERSE) if @selected
       @options.each_with_index  do |option, index|
         if index == @current_option
-          screen.addstr(" #{option} #{RADIO_SELECTED}")
+          screen.addstr(" #{option} #{RADIO_SELECTED}  ")
         else
-          screen.addstr(" #{option} #{RADIO_NOT_SELECTED}")
+          screen.addstr(" #{option} #{RADIO_NOT_SELECTED}  ")
         end
       end
     end
