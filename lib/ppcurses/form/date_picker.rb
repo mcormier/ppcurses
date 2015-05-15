@@ -73,6 +73,10 @@ module PPCurses
 
     end
 
+    def clear
+       @date = Date.today
+    end
+
     #------------------------------------------------
     protected
     def display_string
