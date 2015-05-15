@@ -8,7 +8,7 @@ module PPCurses
   class RadioButtonGroup < View
 
     attr_accessor :selected
-    attr_reader :current_option
+    attr_accessor :current_option
 
     #
     # label  : a label for the radio button group
