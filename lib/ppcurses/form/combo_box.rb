@@ -75,6 +75,10 @@ module PPCurses
       end
 
     end
+    
+    def clear
+      @choice_made = false
+    end
 
     #------------------------------------------------
     protected

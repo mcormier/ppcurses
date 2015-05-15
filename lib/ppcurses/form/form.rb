@@ -26,7 +26,7 @@ module PPCurses
     # - def selected=
     #
     def add (element)
-      PPCurses.implements_protocol( element, %w(show height set_curs_pos key_down selected=))
+      PPCurses.implements_protocol( element, %w(show height set_curs_pos key_down selected= clear))
       @elements.push(element)
 
       if  @selected_element.nil?
@@ -78,6 +78,13 @@ module PPCurses
 
 
       @selected_element.set_curs_pos(screen) unless @selected_element.nil?
+    end
+
+    # clears or resets all values of elements in the form
+    def clear
+      for i in 0..@elements.length - 1
+        @elements[i].clear
+      end
     end
 
     # --------------------------------------------------------------------------------

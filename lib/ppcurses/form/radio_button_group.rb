@@ -50,6 +50,11 @@ module PPCurses
     def height
       1
     end
+    
+    def clear
+     @current_option = 0
+    end
+
 
   end
 

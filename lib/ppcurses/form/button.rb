@@ -43,6 +43,10 @@ module PPCurses
 
     end
 
+    def clear
+     # NOP
+    end
+
   end
 
 
@@ -112,6 +116,11 @@ module PPCurses
       @button2.show(screen)
 
     end
+    
+    def clear
+     # NOP
+    end
+
 
   end
 
