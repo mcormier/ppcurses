@@ -53,10 +53,17 @@ class TableView < View
     y = @frame.origin.y
     x = @frame.origin.x
     
+    j = number_of_columns
+    
     for i in 0..@data_source.number_of_rows_in_table(self)-1
       screen.setpos(y,x)
       screen.attron(Curses::A_REVERSE) if i == selected_row
-      screen.addstr(@data_source.object_value_for(self, 0, i) )
+      for k in 0..j-1
+        if k > 0 then
+          screen.addstr(' | ')
+        end
+        screen.addstr(@data_source.object_value_for(self, k, i) )
+      end
       screen.attroff(Curses::A_REVERSE) if i == selected_row
       y += 1
     end
@@ -92,8 +99,20 @@ class TableView < View
       
   end
   
+  def number_of_columns
+    num_col = 0
+    
+    while @data_source.object_value_for(self, num_col, 0) != nil do
+      num_col += 1
+    end
+    
+    
+    num_col
+  end
+  
 end
 
+# ==========================================================================================
 
 # Based on ...
 #
@@ -114,11 +133,25 @@ class SingleColumnDataSource
   # Called by the table view to return the data object associated with 
   # the specified row and column.
   def object_value_for(aTableview, column, row_index)
+    if  column > 0 then
+      return nil
+    end
+     
     @values[row_index]
   end
 end
 
-
+# Values in the constructor is expected to be a two sided array
+class MultipleColumnDataSource < SingleColumnDataSource
+    
+  # Called by the table view to return the data object associated with 
+  # the specified row and column.
+  def object_value_for(aTableview, column, row_index)
+    @values[row_index][column]
+  end
+  
+  
+end
 
 class TableViewDataSource
 
