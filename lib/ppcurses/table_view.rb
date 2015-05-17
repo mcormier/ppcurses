@@ -64,14 +64,15 @@ class TableView < View
     screen.setpos(y,x)
     @table_columns.each_with_index do |column,i|
       screen.addstr(column.identifier.center(column.width))
-      if i <  @table_columns.length - 1 then screen.addstr('|') end
+      if i <  @table_columns.length - 1 then screen.addstr(' | ') end
     end
     
     y += 1
     screen.setpos(y,x)
     # Display ================= divider
-    @table_columns.each do |column|
-      screen.addstr( ''.center(column.width, '=') )      
+    @table_columns.each_with_index do |column, i|
+      screen.addstr( ''.center(column.width, '=') )  
+      if i <  @table_columns.length - 1 then screen.addstr('===') end    
     end
     
     y += 1
@@ -80,12 +81,12 @@ class TableView < View
       screen.setpos(y,x)
       screen.attron(Curses::A_REVERSE) if i == selected_row
       
-      #for k in 0..j-1
+
       @table_columns.each_with_index do |col,j|
         col_str = @data_source.object_value_for(self, j, i)
         display_string = col_str.ljust(col.width)
         screen.addstr( display_string )
-        if j <  @table_columns.length - 1 then screen.addstr('|') end
+        if j <  @table_columns.length - 1 then screen.addstr(' | ') end
       end
       
       
