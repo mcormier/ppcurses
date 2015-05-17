@@ -45,6 +45,10 @@ class TableView < View
       if x > width then width = x end
     end
     
+    # Add an extra line for the column header
+    # and ====== divider 
+    height += 2
+    
     sz = Size.new( width, height )
     setFrameSize( sz )
     
@@ -56,6 +60,22 @@ class TableView < View
     x = @frame.origin.x
     
     j = number_of_columns
+    
+    # display column header
+    screen.setpos(y,x)
+    @table_columns.each_with_index do |column, i|
+      screen.addstr(column.identifier.center(column.width))
+      if i <  @table_columns.length - 1 then screen.addstr('|') end
+    end
+    
+    y += 1
+    screen.setpos(y,x)
+    # Display ================= divider
+    @table_columns.each do |column|
+      screen.addstr( ''.center(column.width, '=') )      
+    end
+    
+    y += 1
     
     for i in 0..@data_source.number_of_rows_in_table(self)-1
       screen.setpos(y,x)
@@ -134,8 +154,9 @@ class TableColumn
   attr_accessor :width
   attr_accessor :table_view
 
-  def initialize( identifier )
+  def initialize( identifier, width = 5 )
     @identifier = identifier
+    @width = width
   end
 
 end

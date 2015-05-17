@@ -9,12 +9,10 @@ values = [ ["true", "crossfit"],
 		   ["true",  "music"]
          ]
 
-col_a = PPCurses::TableColumn.new('bool')
-col_a.width = 6
+col_a = PPCurses::TableColumn.new('bool', 6)
 @table_view.add_table_column(col_a)		 
 
-col_b = PPCurses::TableColumn.new('Activity')
-col_b.width = 10
+col_b = PPCurses::TableColumn.new('Activity', 12)
 @table_view.add_table_column(col_b)	
 		 
 data_source = PPCurses::MultipleColumnDataSource.new(values)
