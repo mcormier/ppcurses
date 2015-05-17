@@ -46,6 +46,9 @@ module PPCurses
       @menu_items.push(menu_item)
     end
 
+    def remove_menu_item(menu_item)
+      @menu_items.delete(menu_item)
+    end
 
     def key_down( key )
 

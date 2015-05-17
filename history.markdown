@@ -4,7 +4,8 @@
  * Made option value in RadioButtonGroup accessible
  * Added clear logic to form to clear input data and reuse form.
  * Added a MultiColumnDataSource
- * Added TableColumn
+ * Added TableColumns to TableView
+ * Added MenuBar.remove_menu_item
 
 ## 0.1.1 / 2015 May 14th
 
