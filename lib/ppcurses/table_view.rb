@@ -22,6 +22,8 @@ class TableView < View
     super
     origin = Point.new( 2, 2 )
     setFrameOrigin(origin)
+    
+    @table_columns = []
   end
 
 
@@ -110,10 +112,36 @@ class TableView < View
     num_col
   end
   
+  ## Column Management
+  
+  def add_table_column( col )
+    col.table_view = self
+    @table_columns.push(col)    
+  end
+  
 end
 
 # ==========================================================================================
+#
+# Based loosely on ...
+# https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSTableColumn_Class/index.html#//apple_ref/swift/cl/NSTableColumn
+#
+#  The TableColumn class stores the display characteristics and identifier for a column
+#  in a TableView instance.  A table column object determines the width of its column.
+class TableColumn
 
+  attr_accessor :identifier
+  attr_accessor :width
+  attr_accessor :table_view
+
+  def initialize( identifier )
+    @identifier = identifier
+  end
+
+end
+
+
+# ==========================================================================================
 # Based on ...
 #
 # https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Protocols/NSTableDataSource_Protocol/index.html#//apple_ref/occ/intf/NSTableViewDataSource

@@ -41,6 +41,10 @@ buttons.button2.action = method(:music_cancel)
 @app = PPCurses::Application.new
 @table_view = PPCurses::TableView.new
 
+col_a = PPCurses::TableColumn.new('Activity')
+col_a.width = 10
+@table_view.add_table_column(col_a)	
+
 values = %w(Music Reading Lifts)
 data_source = PPCurses::SingleColumnDataSource.new(values)
 
