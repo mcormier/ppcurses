@@ -59,11 +59,10 @@ class TableView < View
     y = @frame.origin.y
     x = @frame.origin.x
     
-    j = number_of_columns
     
     # display column header
     screen.setpos(y,x)
-    @table_columns.each_with_index do |column, i|
+    @table_columns.each_with_index do |column,i|
       screen.addstr(column.identifier.center(column.width))
       if i <  @table_columns.length - 1 then screen.addstr('|') end
     end
@@ -80,12 +79,16 @@ class TableView < View
     for i in 0..@data_source.number_of_rows_in_table(self)-1
       screen.setpos(y,x)
       screen.attron(Curses::A_REVERSE) if i == selected_row
-      for k in 0..j-1
-        if k > 0 then
-          screen.addstr(' | ')
-        end
-        screen.addstr(@data_source.object_value_for(self, k, i) )
+      
+      #for k in 0..j-1
+      @table_columns.each_with_index do |col,j|
+        col_str = @data_source.object_value_for(self, j, i)
+        display_string = col_str.ljust(col.width)
+        screen.addstr( display_string )
+        if j <  @table_columns.length - 1 then screen.addstr('|') end
       end
+      
+      
       screen.attroff(Curses::A_REVERSE) if i == selected_row
       y += 1
     end
