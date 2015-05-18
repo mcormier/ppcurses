@@ -13,6 +13,10 @@ module PPCurses
       @meta_info.day
     end
   
+    def day=(new_day)
+      @meta_info.day = new_day
+    end
+  
   
     def find_max_menu_width
       @max_menu_width = 0

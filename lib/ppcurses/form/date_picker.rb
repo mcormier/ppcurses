@@ -75,6 +75,9 @@ module PPCurses
 
     def clear
        @date = Date.today
+       if  @date_menu.nil? == false
+         @date_menu.day = @date 
+       end
     end
 
     #------------------------------------------------
