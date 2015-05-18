@@ -6,6 +6,7 @@
  * Added a MultiColumnDataSource
  * Added TableColumns to TableView
  * Added MenuBar.remove_menu_item
+ * MenuBar.selected exposed
 
 ## 0.1.1 / 2015 May 14th
 
