@@ -7,6 +7,7 @@
  * Added TableColumns to TableView
  * Added MenuBar.remove_menu_item
  * MenuBar.selected exposed
+ * Decimal only input field
 
 ## 0.1.1 / 2015 May 14th
 
