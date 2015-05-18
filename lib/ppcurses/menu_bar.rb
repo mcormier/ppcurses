@@ -8,6 +8,8 @@ module PPCurses
   #
   class MenuBar < Responder
 
+    attr_accessor :selected
+
     def initialize
       @menu_items = []
       @selected = false
