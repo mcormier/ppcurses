@@ -23,9 +23,8 @@ module PPCurses
       @label = label
       @size = size
       @selected = false
-      @value = ''
-      @cursor_location = 0
       @filter = nil
+      self.clear
     end
 
     # Creates an InputElement that only allows integer input
@@ -127,6 +126,7 @@ module PPCurses
 
     def clear
       @value = ''
+      @cursor_location = 0
     end
 
 
