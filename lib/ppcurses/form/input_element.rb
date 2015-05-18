@@ -86,10 +86,19 @@ module PPCurses
         return
       end
 
-      unless passes_filter(key)
+      #
+      # Get a temporary version of the current value 
+      # with the new character added so that we can
+      # test it against the filter.
+      temp_val = value_with(key)
+
+      unless passes_filter(temp_val)
         return
       end
 
+      #
+      # Actually add the new character if the filter passes
+      #
       add_character(key)
 
     end
@@ -174,13 +183,27 @@ module PPCurses
     end
 
 
-    def add_character ( char )
+    
+    #
+    # Returns what the value of the input element would be, if
+    # the given character was added.  Does not modify the internal
+    # state. 
+    #
+    def value_with (char)
+      temp_val = @value
+    
       if @cursor_location == @value.length
-        @value += char
+        temp_val = @value + char
       else
-        @value = @value.slice(0..@cursor_location-1) + char + @value.slice(@cursor_location..@value.length-1)
+        temp_val = @value.slice(0..@cursor_location-1) + char + @value.slice(@cursor_location..@value.length-1)
       end
+      
+      temp_val
+    end 
+    
 
+    def add_character ( char )    
+      @value = value_with(char)
       @cursor_location += 1
     end
 
@@ -190,8 +213,8 @@ module PPCurses
 
   class IntegerFilter
 
-    def passes_filter( key )
-      if key =~ /^\d+$/
+    def passes_filter( value )
+      if value =~ /^\d+$/
         return true
       end
 
@@ -203,8 +226,8 @@ module PPCurses
 
   class DecimalFilter
 
-    def passes_filter( key )
-      if key =~ /^\d*\.?\d*$/
+    def passes_filter( value )
+       if value =~ /^\d*\.?\d*$/  #- works but multiple periods allowd.      
         return true
       end
 

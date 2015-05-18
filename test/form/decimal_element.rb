@@ -12,7 +12,6 @@ km = PPCurses::InputElement.new_decimal_only(' Decimal Number', 10)
 age = PPCurses::InputElement.new_integer_only('      Integer', 5)
 
 form.add(km)
-
 form.add(age)
 
 @app.content_view = form
