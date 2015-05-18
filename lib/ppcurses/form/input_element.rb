@@ -32,7 +32,16 @@ module PPCurses
     #
     def InputElement.new_integer_only( label, size)
       i_only = PPCurses::InputElement.new(label, size)
-      i_only.filter =PPCurses::NumberFilter.new
+      i_only.filter = PPCurses::IntegerFilter.new
+      i_only
+    end
+
+    # Creates an InputElement that only allows a number
+    # but allows a decimal point.  I.E. 10.2
+    #
+    def InputElement.new_decimal_only( label, size)
+      i_only = PPCurses::InputElement.new(label, size)
+      i_only.filter = PPCurses::DecimalFilter.new
       i_only
     end
 
@@ -179,10 +188,23 @@ module PPCurses
 
 
 
-  class NumberFilter
+  class IntegerFilter
 
     def passes_filter( key )
       if key =~ /^\d+$/
+        return true
+      end
+
+      false
+    end
+
+  end
+
+
+  class DecimalFilter
+
+    def passes_filter( key )
+      if key =~ /^\d*\.?\d*$/
         return true
       end
 
