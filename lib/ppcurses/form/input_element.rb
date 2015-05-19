@@ -227,7 +227,7 @@ module PPCurses
   class DecimalFilter
 
     def passes_filter( value )
-       if value =~ /^\d*\.?\d*$/  #- works but multiple periods allowd.      
+       if value =~ /^\d*\.?\d*$/        
         return true
       end
 
