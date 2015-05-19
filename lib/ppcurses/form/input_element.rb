@@ -43,7 +43,15 @@ module PPCurses
       i_only.filter = PPCurses::DecimalFilter.new
       i_only
     end
-
+   
+    # Creates an InputElement that only allows time data
+    # E.G.  20:10.20 == 20 hours, 10 minutes and 20 seconds  
+    #
+    def InputElement.new_time_only( label, size)
+      i_only = PPCurses::InputElement.new(label, size)
+      i_only.filter = PPCurses::TimeFilter.new
+      i_only
+    end
 
     def show(screen)
       print_label( screen )
@@ -209,7 +217,9 @@ module PPCurses
 
   end
 
-
+# ============================================================
+# ------------ Filters
+# ============================================================
 
   class IntegerFilter
 
@@ -235,5 +245,22 @@ module PPCurses
     end
 
   end
+ 
+  # Used for hours minute second input.
+  # Valid input includes:
+  #  3:33.20  == 3 hours 33 minutes and 20 seconds
+  #  33.20    == 33 minutes and 20 seconds
+  #  33       == 33 minutes
+  #  0.20     == 20 seconds
+  class TimeFilter
 
+    def passes_filter( value )
+       if value =~ /^\d*\:?\d*\.?\d*$/        
+        return true
+      end
+
+      false
+    end
+
+  end
 end
