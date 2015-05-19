@@ -55,7 +55,7 @@ module PPCurses
  require_relative  'ppcurses/actions/GetEnumeratedStringAction.rb'
  require_relative  'ppcurses/actions/GetDataAction.rb'
  require_relative  'ppcurses/actions/NulAction.rb'
- require_relative  'ppcurses/actions/InsertSQLDataAction.rb'
+
  # Forms ---------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/form/form.rb'
  require_relative  'ppcurses/form/button.rb'
