@@ -8,6 +8,7 @@
  * Added MenuBar.remove_menu_item
  * MenuBar.selected exposed
  * Decimal only input field
+ * InsertSQLAction removed.  SQL knowledge not appropriate for a UI library.
 
 ## 0.1.1 / 2015 May 14th
 
