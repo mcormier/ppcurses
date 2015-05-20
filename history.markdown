@@ -1,4 +1,4 @@
-## 0.1.2 / 2015 May ? (Work in progress)
+## 0.1.2 / 2015 May 20
 
  * Made date in DatePicker accessible
  * Made option value in RadioButtonGroup accessible
@@ -9,6 +9,9 @@
  * MenuBar.selected exposed
  * Decimal only input field
  * InsertSQLAction removed.  SQL knowledge not appropriate for a UI library.
+ * Removed PromptAction, getStringAction, getIntegerAction, 
+   getEnumeratedStringAction, getDataAction, getBooleanAction.  
+   Use a form with form elements. 
 
 ## 0.1.1 / 2015 May 14th
 
