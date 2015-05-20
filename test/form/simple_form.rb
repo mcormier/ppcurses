@@ -20,7 +20,7 @@ form = PPCurses::Form.new
 
 first_name = PPCurses::InputElement.new('First Name', 10)
 last_name = PPCurses::InputElement.new(' Last Name', 10)
-age = PPCurses::InputElement.new_integer_only('      Age', 5)
+age = PPCurses::InputElement.new_integer_only('       Age', 5)
 
 gender = PPCurses::RadioButtonGroup.new('      Sex', %w(Male Female))
 button_pair = PPCurses::ButtonPair.new('Submit', 'Cancel')
