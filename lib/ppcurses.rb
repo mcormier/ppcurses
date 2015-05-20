@@ -51,7 +51,6 @@ module PPCurses
  require_relative  'ppcurses/actions/ShowMenuAction.rb'
  require_relative  'ppcurses/actions/GetStringAction.rb'
  require_relative  'ppcurses/actions/GetIntegerAction.rb'
- require_relative  'ppcurses/actions/GetEnumeratedStringAction.rb'
  require_relative  'ppcurses/actions/NulAction.rb'
 
  # Forms ---------------------------------------------------------------------------------------------------------------
