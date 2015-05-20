@@ -49,7 +49,6 @@ module PPCurses
  require_relative  'ppcurses/menu/date_menu.rb'
  # Actions -------------------------------------------------------------------------------------------------------------
  require_relative  'ppcurses/actions/ShowMenuAction.rb'
- require_relative  'ppcurses/actions/GetStringAction.rb'
  require_relative  'ppcurses/actions/NulAction.rb'
 
  # Forms ---------------------------------------------------------------------------------------------------------------
