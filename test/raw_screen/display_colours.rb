@@ -13,7 +13,7 @@ def print_value(value, text_color, bg_color)
   pair_index = @index + 1
   Curses.setpos(@y_loc, @x_loc)
   Curses.init_pair(pair_index, text_color, bg_color)
-  color_pair = color_pair(pair_index)
+  color_pair = Curses.color_pair(pair_index)
   Curses.attron(color_pair)
   out_string = "#{value}"
   @x_loc = @x_loc + 5
@@ -34,7 +34,7 @@ def wait_for_key
 
 
   for i in 0..255
-    print_value("#{i}",   COLOR_BLACK,  i )
+    print_value("#{i}",  0,  i )
   end
 
 
