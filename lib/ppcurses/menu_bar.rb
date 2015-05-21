@@ -19,7 +19,7 @@ module PPCurses
     # Need to convert to work with a window or a view.
     def show(screen)
 
-      screen.set_pos_by_point(ZERO_POINT)
+      screen.set_pos_by_point(Point.zeroPoint)
 
       if @selected
        screen.attron(A_REVERSE)

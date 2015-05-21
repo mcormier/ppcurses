@@ -62,8 +62,6 @@ module PPCurses
   require_relative  'ppcurses/window/pp_window.rb'
 
 
-  ZERO_POINT = Point.new(0,0)
-
   NO = false
   YES = true
 end
