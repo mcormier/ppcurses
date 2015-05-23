@@ -5,6 +5,10 @@ module PPCurses
 
     def initialize(day)
       @meta_info = MetaMonth.new(day)
+      
+      @side_wall_char = '|'
+      @top_bot_wall_char = '-'
+      
       find_max_menu_width
       create_window
     end
@@ -39,6 +43,7 @@ module PPCurses
   
   
     def show
+      
       y = 2
       x = 2
 
@@ -60,7 +65,8 @@ module PPCurses
          
          y += 1
       }
-
+      
+       @win.box(self.side_wall_char, self.top_bot_wall_char)
        @win.refresh
 
        @sub_menu.show if @sub_menu
