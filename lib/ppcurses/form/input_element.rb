@@ -248,14 +248,14 @@ module PPCurses
  
   # Used for hours minute second input.
   # Valid input includes:
-  #  3:33.20  == 3 hours 33 minutes and 20 seconds
-  #  33.20    == 33 minutes and 20 seconds
-  #  33       == 33 minutes
-  #  0.20     == 20 seconds
+  #  3:33:20  == 3 hours 33 minutes and 20 seconds
+  #  33:20    == 33 minutes and 20 seconds
+  #  33       == 33 seconds
+  #  0:20     == 20 seconds
   class TimeFilter
 
     def passes_filter( value )
-       if value =~ /^\d*\:?\d*\.?\d*$/        
+       if value =~ /^\d*\:?\d*\:?\d*$/        
         return true
       end
 

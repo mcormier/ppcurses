@@ -1,5 +1,8 @@
 ## 0.1.3 / 2015 ?
 
+ * Bug, date_picker loses box on second viewing
+ * Change Time filter from 3:33.20 to 3:33:20
+
 ## 0.1.2 / 2015 May 20
 
  * Made date in DatePicker accessible
