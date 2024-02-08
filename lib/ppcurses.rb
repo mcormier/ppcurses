@@ -1,4 +1,4 @@
-gem 'curses', '=1.0.1'
+gem 'curses', '>=1.0.1'
 require 'curses'
 require 'date'
 
